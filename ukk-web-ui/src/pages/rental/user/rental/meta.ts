@@ -1,0 +1,73 @@
+export interface DataModel {
+  id: string | null
+  rental_code: string | null
+  customer_id: number | null
+  customer_name?: string | null
+  petugas_id: number | null
+  petugas_name?: string | null
+  start_date: string | null
+  end_date: string | null
+  duration_days: number | null
+  subtotal: number | null
+  deposit_total: number | null
+  grand_total: number | null
+  payment_method: string | null
+  status: string | null
+  notes: string | null
+  date_range?: string | null
+  items?: any[]
+}
+
+export const Meta = {
+  app: 'rental',
+  schema: 'rental',
+  name: 'rentals',
+  title: 'Booking Rental',
+  module: 'user/rental',
+  apiModule: 'transaction/rentals',
+  route_ui: 'user/rental',
+  dialogMode: false,
+
+  permission: {
+    browse: true,
+    create: true,
+    read: true,
+    update: true,
+    delete: true,
+    restore: true
+  },
+
+  model: {
+    id: null,
+    rental_code: null,
+    customer_id: null,
+    customer_name: null,
+    petugas_id: null,
+    petugas_name: null,
+    start_date: null,
+    end_date: null,
+    duration_days: null,
+    subtotal: 0,
+    deposit_total: 0,
+    grand_total: 0,
+    payment_method: null,
+    status: 'menunggu_bayar',
+    notes: null,
+    date_range: null,
+    items: [],
+  } as DataModel,
+
+  paymentMethodOptions: [
+    { label: 'Transfer', value: 'transfer' },
+    { label: 'COD', value: 'cod' }
+  ],
+
+  statusOptions: [
+    { label: 'Menunggu Bayar', value: 'menunggu_bayar' },
+    { label: 'Menunggu Verifikasi', value: 'menunggu_verif' },
+    { label: 'Diproses', value: 'diproses' },
+    { label: 'Aktif', value: 'aktif' },
+    { label: 'Selesai', value: 'selesai' },
+    { label: 'Dibatalkan', value: 'dibatalkan' }
+  ],
+}

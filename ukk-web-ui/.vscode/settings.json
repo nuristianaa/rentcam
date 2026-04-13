@@ -1,0 +1,8 @@
+{
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "typescript.validate.enable": false,
+  "volar.takeOverMode.enabled": false,
+  "eslint.validate": [],
+  "editor.codeActionsOnSave": []
+}

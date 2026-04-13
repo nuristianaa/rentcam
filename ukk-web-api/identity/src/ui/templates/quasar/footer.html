@@ -1,0 +1,19 @@
+</div> <!--  App -->
+</body>
+
+<script type="text/javascript">
+  const app = Vue.createApp(__s__)
+</script>
+
+<script type="text/javascript">
+  app.use(Quasar, { config: {} })
+  app.mount('#q-app')
+
+  // handle render quasar, agar tidak menampilkan raw data
+  document.addEventListener("DOMContentLoaded", function () {
+    var qAppElement = document.querySelector("#q-app")
+    if (qAppElement) qAppElement.style.display = "inherit"
+  });
+</script>
+
+</html>

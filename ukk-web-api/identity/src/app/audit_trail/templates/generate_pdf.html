@@ -1,0 +1,121 @@
+{% include './ui/templates/quasar/header.html' %}
+
+<style>
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+  }
+</style>
+
+<div class="row q-pa-md" style="width: 100%">
+  <div class="q-pa-md col-12">
+    <h5 class="text-center text-weight-bold q-mb-xs">
+      Unais - Change Logs
+    </h5>
+
+    <div class="row q-col-gutter-md">
+      <div class="col-5">
+        <div class="row">
+          <div class="col-4 col-sm-3 text-weight-bold">Range Date</div>
+          <div class="col-8 col-sm-9">[[ params.date_range ]]</div>
+        </div>
+        <div class="row">
+          <div class="col-4 col-sm-3 text-weight-bold">Modules</div>
+          <div class="col-8 col-sm-9">[[ params.req_modules ]]</div>
+        </div>
+      </div>
+
+      <div class="col-2 gt-sm"></div>
+
+      <div class="col-5">
+        <div class="row">
+          <div class="col-8 col-sm-3 text-weight-bold">Printed By</div>
+          <div class="col-4 col-sm-9">[[ params.printed_by ]]</div>
+        </div>
+        <div class="row">
+          <div class="col-8 col-sm-3 text-weight-bold">Printed At</div>
+          <div class="col-4 col-sm-9">[[ params.printed_at ]]</div>
+        </div>
+        <div class="row">
+          <div class="col-12">&nbsp;</div>
+        </div>
+      </div>
+
+    </div>
+    <q-separator class="q-mt-lg" />
+  </div>
+
+  <template v-for="(data, key) in rows" :key="key">
+    <h5 class="text-right text-weight-bold q-mb-xs">
+      {{ data.app }} - {{ capitalizeFirstLetter(data.module) }}
+    </h5>
+
+    <div class="col-12 q-pb-xs q-px-xs no-print">
+      <q-toggle
+        v-model="moduleToggles[key]" label="Show Identifier"
+        size="sm"
+        left-label
+      />
+    </div>
+
+    <q-table
+      flat
+      bordered
+      dense
+      wrap-cells
+      :style="`width: 100%; height: 100%`"
+      :rows="data.data"
+      :columns="columns"
+      row-key="ref"
+      hide-pagination
+      :rows-per-page-options="[0]"
+      :visible-columns="getVisibleCols(key)"
+    />
+  </template>
+</div>
+
+<script>
+  const H = _globalHelper;
+  const logsdata = [[ params.data | tojson ]];
+  const columns = [
+    { name: "ref", label: "Identifier", field: "ref", align: "left" },
+    { name: "column", label: "Column", field: "column", align: "left" },
+    { name: "type", label: "Type", field: "type", align: "left" },
+    { name: "prev_value", label: "Value Before", field: "prev_value", align: "left" },
+    { name: "after_value", label: "Value After", field: "after_value", align: "left" },
+    { name: "user", label: "User", field: "user", align: "left" },
+    { name: "date", label: "Date", field: "date", align: "left" },
+  ];
+  const allColumnNames = columns.map(c => c.name);
+</script>
+
+<script type="text/javascript">
+  const __s__ = {
+    data() {
+      return {
+        H: H,
+        rows: logsdata,
+        columns: columns,
+        moduleToggles: logsdata.map(() => true),
+      };
+    },
+    methods: {
+      getVisibleCols(index) {
+        if (this.moduleToggles[index]) {
+          return allColumnNames;
+        } else {        
+          return allColumnNames.filter(name => name !== 'ref');
+        }
+      },
+      capitalizeFirstLetter(string) {
+        if (typeof string !== 'string' || string.length === 0) {
+          return string;
+        }
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+    },
+  };
+</script>
+
+{% include 'ui/templates/quasar/footer.html' %}

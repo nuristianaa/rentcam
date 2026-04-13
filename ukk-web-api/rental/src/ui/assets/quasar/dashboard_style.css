@@ -1,0 +1,68 @@
+#map.map-container {
+  width: 100%;       /* ikut lebar col-8 */
+  height: 100%;     /* atur sesuai kebutuhan */
+  max-width: 100%;   /* jangan overflow */
+}
+table.bordered {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12.5px;
+}
+
+table.bordered th, table.bordered td {
+  border: 1px solid #000 !important;
+}
+
+table.bordered-light {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table.bordered-light th, table.bordered-light td {
+  border: 0px dashed #ddd;
+}
+
+.table-dpr {
+  text-transform: uppercase;
+}
+
+.table-dpr td {
+  min-width: 110px !important;
+} 
+
+table.table-dpr td {
+  border: 1px solid #000 !important;
+}
+
+.card-movement {
+  border:1px solid #ccc;
+}
+
+.rounded-corner {
+  border-radius: 10px;
+}
+
+.dashed-line {
+  width: 80%;             /* panjang garis, bisa 100% */
+  border-bottom: 2px dashed #555; /* warna & tipe garis */
+  margin-top: 8px;        /* jarak dari gambar */
+}
+
+.circle {
+  --size: 64px;            
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-weight: 600;
+  user-select: none;
+}
+
+@media print {
+  .page-break {
+    page-break-before: always;
+  }
+}

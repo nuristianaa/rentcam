@@ -1,0 +1,94 @@
+[
+  {
+    "app": "identity",
+    "name": "auth/users"
+  },
+  {
+    "app": "identity",
+    "name": "auth/roles"
+  },
+  {
+    "app": "identity",
+    "name": "auth/permissions"
+  },
+  {
+    "app": "identity",
+    "name": "auth/menu-items"
+  },
+  {
+    "app": "identity",
+    "name": "auth/master-menus"
+  },
+  {
+    "app": "identity",
+    "name": "auth/master-files"
+  },
+  {
+    "app": "identity",
+    "name": "audit-trails"
+  },
+  {
+    "app": "identity",
+    "name": "transaction/approvals"
+  },
+  {
+    "app": "identity",
+    "name": "transaction/approval-details"
+  },
+  {
+    "app": "identity",
+    "name": "transaction/sync-logs"
+  },
+  {
+    "app": "rental",
+    "name": "master/item-categories"
+  },
+  {
+    "app": "rental",
+    "name": "master/items"
+  },
+  {
+    "app": "rental",
+    "name": "transaction/rentals"
+  },
+  {
+    "app": "rental",
+    "name": "transaction/rental-items"
+  },
+  {
+    "app": "rental",
+    "name": "transaction/rental-histories"
+  },
+  {
+    "app": "rental",
+    "name": "transaction/payments"
+  },
+  {
+    "app": "rental",
+    "name": "transaction/fines"
+  },
+  {
+    "app": "rental",
+    "name": "transaction/reviews"
+  },
+  {
+    "app": "rental",
+    "name": "user/items"
+  },
+  {
+    "app": "rental",
+    "name": "user/rental"
+  },
+  {
+  "app": "rental",
+  "name": "user/rental-histories"
+  },
+  {
+    "app": "rental",
+    "name": "user/faq"
+  },
+  {
+    "app": "rental",
+    "name": "user/about"
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "static_file": [
+    {
+      "id": "STATIC_2",
+      "folder": "static_files",
+      "endpoint": "http://localhost:8090/"
+    }
+  ],
+  "azure": [
+    {
+      "id": "AZURE_2",
+      "account_name": "account_name",
+      "account_key": "",
+      "container": "private",
+      "container_public": "public",
+      "base_url": "https://account_name.blob.core.windows.net/public/"
+    }
+  ],
+  "digitalocean": [
+    {
+      "id": "DO_2",
+      "access_key": "do_key1",
+      "secret_key": "do_secret1",
+      "region": "sgp1",
+      "endpoint": "https://sgp1.digitaloceanspaces.com",
+      "bucket": "mybucket1",
+      "base_url": ""
+    }
+  ],
+  "gcs": [
+    {
+      "id": "GCS_2",
+      "bucket": "gcs-bucket",
+      "credentials_json": "gcs-creds.json"
+    }
+  ],
+  "s3": [
+    {
+      "id": "S3_2",
+      "access_key": "aws_key1",
+      "secret_key": "aws_secret1",
+      "bucket": "aws-bucket",
+      "endpoint": "https://s3.myhost.com"
+    }
+  ]
+}
