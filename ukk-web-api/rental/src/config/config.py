@@ -21,10 +21,8 @@ def is_dev() -> bool:
 origins = [
   "https://localhost",
   "https://rentcam.vercel.app",
-  "https://unais.com",
-  "https://qa.uanis.com",
-  "https://dev.uanis.com",
-  "https://unaisl.com",
+  "https://rentcamm.vercel.app",
+
 ]
 
 cors_origin = getenv('CORS_ORIGIN', '')
