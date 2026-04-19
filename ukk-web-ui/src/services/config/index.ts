@@ -74,7 +74,8 @@ export const Config = {
     return url
   },
   getApiRoot(app = 'rental') {
-    return this.apiUrl(app)
+    const version = 'v1/'
+    return this.apiUrl(app) + version
   },
   logout() {
     authStore().clearData()
