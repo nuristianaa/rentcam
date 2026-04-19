@@ -43,12 +43,22 @@ from utils.responses import (
 )
 
 
+from db.database import Base, engine
+
+
 # ==================================================================
 # 🌱 Lifespan (Startup & Shutdown)
 # ==================================================================
 @asynccontextmanager
 async def lifespan(app: FastAPI):
   print("🚀 FastAPI starting...")
+  # Create tables automatically on startup
+  try:
+    Base.metadata.create_all(bind=engine)
+    print("✅ Database tables created/verified.")
+  except Exception as e:
+    print(f"❌ Error creating tables: {e}")
+  
   startup_queue()
   # Start background async tasks
   task1 = asyncio.create_task(flush_audit_logs())

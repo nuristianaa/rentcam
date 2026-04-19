@@ -8,9 +8,9 @@ from fastapi.exceptions import RequestValidationError, ResponseValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
+from db.database import Base, engine
 from logger import logger
 from utils.helpers.date import currentmillis, now
-
 from utils.responses import (
   BadRequest400,
   Forbidden403,
@@ -26,6 +26,13 @@ from utils.responses import (
 @asynccontextmanager
 async def lifespan(app: FastAPI):
   print("🚀 Rental API starting...")
+  # Create tables automatically on startup
+  try:
+    Base.metadata.create_all(bind=engine)
+    print("✅ Database tables created/verified.")
+  except Exception as e:
+    print(f"❌ Error creating tables: {e}")
+  
   try:
     yield
   finally:
