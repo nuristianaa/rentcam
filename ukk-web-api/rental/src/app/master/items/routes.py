@@ -29,23 +29,13 @@ def browse(
 
 # UPLOAD FILES — harus di atas /{id} biar ga ketangkep sebagai id
 @router.post("/upload-files")
-def upload_files(
+async def upload_files(
   request: Request,
   db: Annotated[Session, Depends(get_db)],
   cred: Annotated[dict, Depends(get_cred_with_permission('create'))],
 ):
   service = Uploader(db=db, model=Item, module_name=path)
-  # Jalankan secara sinkron agar tidak memblokir event loop jika file besar
-  import asyncio
-  if asyncio.iscoroutinefunction(service.upload_files):
-      import async_to_sync
-      # Jika uploader-nya async, kita konversi (tapi lebih baik buat uploader-nya support sync)
-      # Untuk saat ini, kita coba buat rutenya def dulu.
-      pass
-
-  # Cara paling aman di FastAPI untuk handle async di dalam def:
-  from utils.helpers.async_proxy import run_async
-  data = run_async(service.upload_files(request=request, column="images"))
+  data = await service.upload_files(request=request, column="images")
   return data
 
 
