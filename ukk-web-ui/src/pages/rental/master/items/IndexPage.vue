@@ -91,19 +91,29 @@ const resolveImageUrl = (path: string, storage?: string | null): string | null =
 
 const getFirstImageUrl = (raw: any): string | null => {
   if (!raw) return null
+  
+  // Jika sudah string (path langsung)
   if (typeof raw === 'string') return resolveImageUrl(raw)
+
+  // Ambil item pertama dari array atau object
+  let firstItem = null
   if (Array.isArray(raw)) {
-    for (const item of raw) {
-      const url = getFirstImageUrl(item)
-      if (url) return url
-    }
-    return null
+    firstItem = raw[0]
+  } else if (typeof raw === 'object') {
+    // Jika formatnya { token_id: { path: '...' } }
+    const values = Object.values(raw)
+    if (values.length > 0) firstItem = values[0]
   }
-  if (typeof raw === 'object') {
-    if ('path' in raw) return resolveImageUrl(raw.path, raw.storage ?? null)
-    if ('url' in raw) return raw.url
-    return getFirstImageUrl(Object.values(raw))
+
+  if (!firstItem) return null
+
+  // Resolve item yang ditemukan
+  if (typeof firstItem === 'string') return resolveImageUrl(firstItem)
+  if (typeof firstItem === 'object') {
+    if ('path' in firstItem) return resolveImageUrl(firstItem.path, firstItem.storage ?? null)
+    if ('url' in firstItem) return firstItem.url
   }
+  
   return null
 }
 

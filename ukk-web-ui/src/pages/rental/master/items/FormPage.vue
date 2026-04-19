@@ -149,13 +149,14 @@ const imageList = computed<{ url: string }[]>(() => {
   const raw = (dataModel.value as any)?.images
   if (!raw || typeof raw !== 'object') return []
 
-  return Object.values(raw)
+  const items = Array.isArray(raw) ? raw : Object.values(raw)
+  
+  return items
     .map((val: any) => {
       let url: string | null = null
-      if (val && typeof val === 'object' && 'path' in val) {
-        url = resolveImageUrl(val.path, val.storage ?? null)
-      } else if (val && typeof val === 'object' && 'url' in val && val.url) {
-        url = val.url
+      if (val && typeof val === 'object') {
+        if ('path' in val) url = resolveImageUrl(val.path, val.storage ?? null)
+        else if ('url' in val) url = val.url
       } else if (typeof val === 'string') {
         url = resolveImageUrl(val)
       }
