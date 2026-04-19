@@ -92,6 +92,13 @@ class Uploader:
     maxheight_map: dict | None = None,
     column: str = "images",
   ):
+    # Ensure req_id is an integer if the model uses an integer primary key
+    if req_id is not None:
+        try:
+            req_id = int(req_id)
+        except (ValueError, TypeError):
+            pass
+
     column_attr = self._resolve_column(column)
 
     base_path = f"project_management/{self.module_name}/{req_code}-{req_id}"
@@ -166,13 +173,11 @@ class Uploader:
         }
 
     # update DB
-    obj = self.db.execute(select(self.model).where(self.model.id == req_id)).scalars().first()
-
     self.db.execute(update(self.model).where(self.model.id == req_id).values({column_attr: new_attachments}))
     self.db.commit()
 
-    self.db.flush()
-    self.db.refresh(obj)
+    # Get updated object
+    obj = self.db.execute(select(self.model).where(self.model.id == req_id)).scalars().first()
     return obj
 
   def _sanitize_attachment(self, attachment: dict) -> dict:
