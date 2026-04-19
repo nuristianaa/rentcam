@@ -11,10 +11,10 @@
       <div class="hero__inner">
         <div class="hero__badge">
           <q-icon name="support_agent" size="14px" />
-          Hubungi Kami
+          Contact Us
         </div>
-        <h1 class="hero__title">Kami Siap<br /><span class="hero__accent">Membantu Kamu</span></h1>
-        <p class="hero__sub">Punya pertanyaan, mau reservasi, atau butuh rekomendasi alat? Hubungi kami langsung — respons cepat!</p>
+        <h1 class="hero__title">We Are Ready<br /><span class="hero__accent">to Help You</span></h1>
+        <p class="hero__sub">Have questions, want to reserve, or need equipment recommendations? Contact us directly — quick response!</p>
       </div>
     </section>
 
@@ -27,9 +27,9 @@
           </div>
           <div class="channel-card__label">WhatsApp</div>
           <div class="channel-card__value">+62 812-3456-7890</div>
-          <div class="channel-card__note">Respons dalam 15 menit di jam kerja</div>
+          <div class="channel-card__note">Response within 15 minutes during working hours</div>
           <div class="channel-card__cta">
-            Chat Sekarang
+            Chat Now
             <q-icon name="arrow_forward" size="14px" />
           </div>
         </a>
@@ -40,9 +40,9 @@
           </div>
           <div class="channel-card__label">Email</div>
           <div class="channel-card__value">info@ukkreental.id</div>
-          <div class="channel-card__note">Untuk pertanyaan formal & invoice</div>
+          <div class="channel-card__note">For formal questions & invoices</div>
           <div class="channel-card__cta">
-            Kirim Email
+            Send Email
             <q-icon name="arrow_forward" size="14px" />
           </div>
         </a>
@@ -51,11 +51,11 @@
           <div class="channel-card__icon">
             <q-icon name="storefront" size="28px" />
           </div>
-          <div class="channel-card__label">Kunjungi Toko</div>
-          <div class="channel-card__value">Bandung, Jawa Barat</div>
-          <div class="channel-card__note">Senin – Sabtu · 08.00 – 20.00 WIB</div>
+          <div class="channel-card__label">Visit Store</div>
+          <div class="channel-card__value">Bandung, West Java</div>
+          <div class="channel-card__note">Monday – Saturday · 08:00 – 20:00 WIB</div>
           <div class="channel-card__cta">
-            Lihat Lokasi ↓
+            View Location ↓
           </div>
         </div>
       </div>
@@ -67,12 +67,12 @@
         <div class="wa-info__text">
           <div class="section-tag">
             <q-icon name="chat" size="13px" />
-            Konfirmasi Pembayaran
+            Payment Confirmation
           </div>
-          <h2 class="section-title">Pembayaran Transfer?<br /><em>Kirim Bukti ke WA Kami</em></h2>
+          <h2 class="section-title">Bank Transfer Payment?<br /><em>Send Receipt to Our WA</em></h2>
           <p class="wa-info__body">
-            Jika memilih metode bayar Transfer Bank, setelah transfer selesai
-            <strong>wajib kirim foto bukti transfer ke WhatsApp kami</strong> agar admin bisa memverifikasi dan booking Anda diproses.
+            If choosing the Bank Transfer payment method, after the transfer is complete
+            <strong>you must send a photo of the transfer receipt to our WhatsApp</strong> so that the admin can verify and process your booking.
           </p>
           <div class="wa-steps">
             <div class="wa-step" v-for="(s, i) in waSteps" :key="i">
@@ -80,9 +80,9 @@
               <div class="wa-step__text">{{ s }}</div>
             </div>
           </div>
-          <a href="https://wa.me/6281234567890?text=Halo%20UKK%20Rental%2C%20saya%20ingin%20konfirmasi%20pembayaran%20booking%20saya." target="_blank" class="wa-btn">
+          <a href="https://wa.me/6281234567890?text=Hello%20UKK%20Rental%2C%20I%20want%20to%20confirm%20my%20booking%20payment." target="_blank" class="wa-btn">
             <q-icon name="chat" size="18px" />
-            Kirim Bukti Transfer via WA
+            Send Transfer Receipt via WA
           </a>
         </div>
         <div class="wa-info__visual">
@@ -98,14 +98,14 @@
             </div>
             <div class="wm-body">
               <div class="wm-msg wm-msg--in">
-                Halo! Saya sudah transfer untuk booking BK-20251234. Ini bukti transfernya 📷
+                Hello! I have transferred for booking BK-20251234. Here is the transfer receipt 📷
               </div>
               <div class="wm-img">
                 <q-icon name="image" size="22px" />
-                <span>bukti_transfer.jpg</span>
+                <span>transfer_receipt.jpg</span>
               </div>
               <div class="wm-msg wm-msg--out">
-                Terima kasih! Pembayaran sudah kami terima. Booking Anda sudah diproses ✅ Alat siap diambil sesuai tanggal booking ya!
+                Thank you! We have received your payment. Your booking has been processed ✅ The equipment is ready for pickup on your booking date!
               </div>
               <div class="wm-time">14:32 ✓✓</div>
             </div>
@@ -119,9 +119,9 @@
       <div class="location__inner">
         <div class="section-tag" style="margin: 0 auto 14px; text-align:center">
           <q-icon name="location_on" size="13px" />
-          Lokasi Toko
+          Store Location
         </div>
-        <h2 class="section-title" style="text-align:center">Temukan Kami<br /><em>di Bandung</em></h2>
+        <h2 class="section-title" style="text-align:center">Find Us<br /><em>in Bandung</em></h2>
 
         <div class="loc-layout">
           <div class="loc-map">
@@ -146,9 +146,9 @@
                 <div class="loc-item__val">{{ li.val }}</div>
               </div>
             </div>
-            <a href="https://maps.google.com/?q=Bandung,Jawa+Barat" target="_blank" class="maps-btn">
+            <a href="https://maps.google.com/?q=Bandung,West+Java" target="_blank" class="maps-btn">
               <q-icon name="map" size="16px" />
-              Buka di Google Maps
+              Open in Google Maps
             </a>
           </div>
         </div>
@@ -160,9 +160,9 @@
       <div class="faq-snip__inner">
         <div class="section-tag" style="margin: 0 auto 14px">
           <q-icon name="help_outline" size="13px" />
-          Pertanyaan Cepat
+          Quick Questions
         </div>
-        <h2 class="section-title" style="text-align:center">Mungkin <em>Sudah Ada Jawabannya</em></h2>
+        <h2 class="section-title" style="text-align:center">Maybe <em>Already Answered</em></h2>
         <div class="faq-list">
           <div v-for="(f, i) in quickFaqs" :key="i" class="faq-item" :class="{ 'faq-item--open': openIdx === i }" @click="openIdx = openIdx === i ? -1 : i">
             <div class="faq-item__q">
@@ -177,7 +177,7 @@
         <div style="text-align:center; margin-top:28px;">
           <router-link to="/rental/user/faq" class="btn-secondary">
             <q-icon name="read_more" size="15px" />
-            Lihat Semua FAQ
+            View All FAQs
           </router-link>
         </div>
       </div>
@@ -192,24 +192,24 @@ import { ref } from 'vue'
 const openIdx = ref(-1)
 
 const waSteps = [
-  'Lakukan transfer ke rekening UKK Rental sesuai nominal tagihan',
-  'Screenshot atau foto struk pembayaran yang jelas',
-  'Kirim ke WhatsApp kami beserta nomor booking Anda',
-  'Tunggu konfirmasi admin (maks. 2 jam di jam kerja)',
+  'Make an exact amount transfer to the UKK Rental account',
+  'Screenshot or take a clear photo of the payment receipt',
+  'Send it to our WhatsApp along with your booking number',
+  'Wait for admin confirmation (max. 2 hours during business hours)',
 ]
 
 const locItems = [
-  { icon: 'location_on', label: 'Alamat', val: 'Bandung, Jawa Barat, Indonesia' },
-  { icon: 'schedule',    label: 'Jam Operasional', val: 'Senin – Sabtu · 08.00 – 20.00 WIB' },
-  { icon: 'event_busy',  label: 'Hari Libur', val: 'Minggu & Hari Besar Nasional' },
-  { icon: 'storefront',  label: 'Pickup & Return', val: 'Langsung di toko (no delivery)' },
+  { icon: 'location_on', label: 'Address', val: 'Bandung, West Java, Indonesia' },
+  { icon: 'schedule',    label: 'Operating Hours', val: 'Monday – Saturday · 08:00 – 20:00 WIB' },
+  { icon: 'event_busy',  label: 'Holidays', val: 'Sundays & National Holidays' },
+  { icon: 'storefront',  label: 'Pickup & Return', val: 'Directly at the store (no delivery)' },
 ]
 
 const quickFaqs = [
-  { q: 'Ke mana saya harus kirim bukti transfer?', a: 'Kirim foto bukti transfer ke WhatsApp admin kami di +62 812-3456-7890 beserta nomor booking Anda. Admin akan konfirmasi dalam 1–2 jam di hari kerja.' },
-  { q: 'Apakah saya bisa datang ke toko tanpa booking dulu?', a: 'Untuk memastikan stok tersedia, lebih baik booking online terlebih dahulu. Namun Anda boleh datang untuk melihat koleksi alat sebelum memutuskan.' },
-  { q: 'Bagaimana jika saya terlambat mengembalikan alat?', a: 'Segera hubungi kami via WhatsApp sebelum tanggal berakhir. Keterlambatan pengembalian dapat dikenakan biaya tambahan per hari sesuai tarif alat.' },
-  { q: 'Apakah nomor WhatsApp admin aktif 24 jam?', a: 'WhatsApp aktif 24 jam untuk menerima pesan, namun respons admin dijamin di jam kerja (08.00–20.00 WIB). Di luar jam itu, pesan akan dijawab keesokan harinya.' },
+  { q: 'Where should I send the transfer receipt?', a: 'Send a photo of the transfer receipt to our admin\'s WhatsApp at +62 812-3456-7890 along with your booking number. Admin will confirm within 1-2 hours on business days.' },
+  { q: 'Can I come to the store without booking first?', a: 'To ensure stock availability, it\'s better to book online first. However, you can come to see the equipment collection before deciding.' },
+  { q: 'What if I am late returning the equipment?', a: 'Contact us via WhatsApp immediately before the end date. Late returns may incur an additional daily charge according to the equipment rate.' },
+  { q: 'Is the admin\'s WhatsApp number active 24 hours?', a: 'WhatsApp is active 24 hours to receive messages, but admin response is guaranteed during business hours (08:00–20:00 WIB). Outside those hours, messages will be answered the next day.' },
 ]
 </script>
 

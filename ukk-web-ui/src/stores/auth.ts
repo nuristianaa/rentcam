@@ -50,17 +50,18 @@ const defaultData = {
     ],
     menu: {
       menu_items: [
-        { app: 'rental', name: 'Beranda', slug: 'rental/user', path: '/rental/user', icon: 'home' },
-        { app: 'rental', name: 'Alat Foto', slug: 'rental/user/items', path: '/rental/user/items', icon: 'photo_camera' },
-        { app: 'rental', name: 'Cara Sewa', slug: 'rental/user/how-to', path: '/rental/user/how-to', icon: 'menu_book' },
-        { app: 'rental', name: 'Kontak', slug: 'rental/user/contact', path: '/rental/user/contact', icon: 'contacts' },
+        { app: 'rental', name: 'Home', slug: 'rental/user', path: '/rental/user', icon: 'home' },
+        { app: 'rental', name: 'Catalog', slug: 'rental/user/items', path: '/rental/user/items', icon: 'photo_camera' },
+        { app: 'rental', name: 'How to Rent', slug: 'rental/user/how-to', path: '/rental/user/how-to', icon: 'menu_book' },
+        { app: 'rental', name: 'Contact', slug: 'rental/user/contact', path: '/rental/user/contact', icon: 'contacts' },
         { app: 'rental', name: 'Booking', slug: 'rental/user/rental', path: '/rental/user/rental', icon: 'shopping_cart' },
         { app: 'rental', name: 'FAQ', slug: 'rental/user/faq', path: '/rental/user/faq', icon: 'help' },
-        { app: 'rental', name: 'About', slug: 'rental/user/about', path: '/rental/user/about', icon: 'info' }
+        { app: 'rental', name: 'About', slug: 'rental/user/about', path: '/rental/user/about', icon: 'info' },
+        { app: 'rental', name: 'History', slug: 'rental/user/rental-histories', path: '/rental/user/rental-histories', icon: 'history' }
       ]
     },
     menu_favorites: [
-      { app: 'rental', name: 'Alat Foto', slug: 'rental/user/items', path: '/rental/user/items', icon: 'photo_camera' }
+      { app: 'rental', name: 'Catalog', slug: 'rental/user/items', path: '/rental/user/items', icon: 'photo_camera' }
     ],
     table_configs: [
       {
@@ -155,18 +156,19 @@ export const authStore = defineStore('auth', {
         // USER FALLBACK MENU - menu lengkap
         if (!Array.isArray(data.menu?.menu_items) || data.menu.menu_items.length === 0) {
           data.menu.menu_items = [
-            { app: 'rental', name: 'Beranda', slug: 'rental/user', path: '/rental/user', icon: 'home' },
-            { app: 'rental', name: 'Alat Foto', slug: 'rental/user/items', path: '/rental/user/items', icon: 'photo_camera' },
-            { app: 'rental', name: 'Cara Sewa', slug: 'rental/user/how-to', path: '/rental/user/how-to', icon: 'menu_book' },
-            { app: 'rental', name: 'Kontak', slug: 'rental/user/contact', path: '/rental/user/contact', icon: 'contacts' },
+            { app: 'rental', name: 'Home', slug: 'rental/user', path: '/rental/user', icon: 'home' },
+            { app: 'rental', name: 'Catalog', slug: 'rental/user/items', path: '/rental/user/items', icon: 'photo_camera' },
+            { app: 'rental', name: 'How to Rent', slug: 'rental/user/how-to', path: '/rental/user/how-to', icon: 'menu_book' },
+            { app: 'rental', name: 'Contact', slug: 'rental/user/contact', path: '/rental/user/contact', icon: 'contacts' },
             { app: 'rental', name: 'Booking', slug: 'rental/user/rental', path: '/rental/user/rental', icon: 'shopping_cart' },
             { app: 'rental', name: 'FAQ', slug: 'rental/user/faq', path: '/rental/user/faq', icon: 'help' },
-            { app: 'rental', name: 'About', slug: 'rental/user/about', path: '/rental/user/about', icon: 'info' }
+            { app: 'rental', name: 'About', slug: 'rental/user/about', path: '/rental/user/about', icon: 'info' },
+            { app: 'rental', name: 'History', slug: 'rental/user/rental-histories', path: '/rental/user/rental-histories', icon: 'info' }
           ]
         }
         if (!Array.isArray(data.menu_favorites) || data.menu_favorites.length === 0) {
           data.menu_favorites = [
-            { app: 'rental', name: 'Alat Foto', slug: 'rental/user/items', path: '/rental/user/items', icon: 'photo_camera' }
+            { app: 'rental', name: 'Catalog', slug: 'rental/user/items', path: '/rental/user/items', icon: 'photo_camera' }
           ]
         }
         if (!Array.isArray(data.permissions)) data.permissions = []
@@ -192,7 +194,7 @@ export const authStore = defineStore('auth', {
             children: [
               { app: 'core', icon: 'home', name: 'Home', path: '/home', slug: 'home' },
               {
-                app: 'core', icon: 'manage_accounts', name: 'User Managements', path: '/user-managements', slug: 'user-managements',
+                app: 'core', icon: 'manage_accounts', name: 'User Management', path: '/user-managements', slug: 'user-managements',
                 children: [
                   { app: 'core', icon: 'person', name: 'Users', path: '/users', slug: 'auth/users' },
                   { app: 'core', icon: 'people', name: 'Roles', path: '/roles', slug: 'auth/roles' }
@@ -203,21 +205,21 @@ export const authStore = defineStore('auth', {
               {
                 app: 'core', icon: 'inventory_2', name: 'Master Data', path: '/master', slug: 'master',
                 children: [
-                  { app: 'core', icon: 'category', name: 'Kategori Alat', path: '/rental/master/item-categories', slug: 'rental/master/item-categories' },
-                  { app: 'core', icon: 'camera_alt', name: 'Alat Foto', path: '/rental/master/items', slug: 'rental/master/items' }
+                  { app: 'core', icon: 'category', name: 'Categories', path: '/rental/master/item-categories', slug: 'rental/master/item-categories' },
+                  { app: 'core', icon: 'camera_alt', name: 'Equipments', path: '/rental/master/items', slug: 'rental/master/items' }
                 ]
               },
               {
-                app: 'core', icon: 'receipt_long', name: 'Transaksi', path: '/transaction', slug: 'transaction',
+                app: 'core', icon: 'receipt_long', name: 'Transactions', path: '/transaction', slug: 'transaction',
                 children: [
-                  { app: 'core', icon: 'assignment', name: 'Rental', path: '/rental/transaction/rentals', slug: 'rental/transaction/rentals' },
-                  { app: 'core', icon: 'list_alt', name: 'Item Rental', path: '/rental/transaction/rental-items', slug: 'rental/transaction/rental-items' },
-                  { app: 'core', icon: 'history', name: 'Riwayat Rental', path: '/rental/transaction/rental-histories', slug: 'rental/transaction/rental-histories' },
-                  { app: 'core', icon: 'payments', name: 'Pembayaran', path: '/rental/transaction/payments', slug: 'rental/transaction/payments' },
-                  { app: 'core', icon: 'rate_review', name: 'Ulasan', path: '/rental/transaction/reviews', slug: 'rental/transaction/reviews' }
+                  { app: 'core', icon: 'assignment', name: 'Rentals', path: '/rental/transaction/rentals', slug: 'rental/transaction/rentals' },
+                  { app: 'core', icon: 'list_alt', name: 'Rental Items', path: '/rental/transaction/rental-items', slug: 'rental/transaction/rental-items' },
+                  { app: 'core', icon: 'history', name: 'Rental History', path: '/rental/transaction/rental-histories', slug: 'rental/transaction/rental-histories' },
+                  { app: 'core', icon: 'payments', name: 'Payments', path: '/rental/transaction/payments', slug: 'rental/transaction/payments' },
+                  { app: 'core', icon: 'rate_review', name: 'Reviews', path: '/rental/transaction/reviews', slug: 'rental/transaction/reviews' }
                 ]
               },
-              { app: 'core', icon: 'analytics', name: 'Laporan', path: '/rental/transaction/reports', slug: 'rental/transaction/reports' }
+              { app: 'core', icon: 'analytics', name: 'Reports', path: '/rental/transaction/reports', slug: 'rental/transaction/reports' }
             ]
           }
         ]
@@ -228,12 +230,47 @@ export const authStore = defineStore('auth', {
             app: 'RentCam', icon: 'menu', name: 'Menu', path: '/menu', slug: 'menu',
             children: [
               { app: 'core', icon: 'home', name: 'Home', path: '/home', slug: 'home' },
-              { app: 'core', icon: 'assignment', name: 'Rental', path: '/rental/transaction/rentals', slug: 'rental/transaction/rentals' },
-              { app: 'core', icon: 'list_alt', name: 'Item Rental', path: '/rental/transaction/rental-items', slug: 'rental/transaction/rental-items' },
-              { app: 'core', icon: 'history', name: 'Riwayat Rental', path: '/rental/transaction/rental-histories', slug: 'rental/transaction/rental-histories' },
-              { app: 'core', icon: 'payments', name: 'Pembayaran', path: '/rental/transaction/payments', slug: 'rental/transaction/payments' },
-              { app: 'core', icon: 'rate_review', name: 'Ulasan', path: '/rental/transaction/reviews', slug: 'rental/transaction/reviews' }
+              { app: 'core', icon: 'camera_alt', name: 'Equipments', path: '/rental/master/items', slug: 'rental/master/items' },
+              { app: 'core', icon: 'assignment', name: 'Rentals', path: '/rental/transaction/rentals', slug: 'rental/transaction/rentals' },
+              { app: 'core', icon: 'list_alt', name: 'Rental Items', path: '/rental/transaction/rental-items', slug: 'rental/transaction/rental-items' },
+              { app: 'core', icon: 'history', name: 'Rental History', path: '/rental/transaction/rental-histories', slug: 'rental/transaction/rental-histories' },
+              { app: 'core', icon: 'payments', name: 'Payments', path: '/rental/transaction/payments', slug: 'rental/transaction/payments' },
+              { app: 'core', icon: 'rate_review', name: 'Reviews', path: '/rental/transaction/reviews', slug: 'rental/transaction/reviews' }
             ]
+          }
+        ]
+
+        // PETUGAS PERMISSIONS
+        data.permissions = [
+          // Alat Foto — CRUD
+          {
+            app: 'rental', name: 'master/items',
+            detail: { browse: true, read: true, create: true, update: true, delete: true, restore: false }
+          },
+          // Rental — CRUD (tanpa delete)
+          {
+            app: 'rental', name: 'transaction/rentals',
+            detail: { browse: true, read: true, create: true, update: true, delete: false, restore: false }
+          },
+          // Item Rental — read only (dikelola lewat rental)
+          {
+            app: 'rental', name: 'transaction/rental-items',
+            detail: { browse: true, read: true, create: false, update: false, delete: false, restore: false }
+          },
+          // Riwayat Rental — read only
+          {
+            app: 'rental', name: 'transaction/rental-histories',
+            detail: { browse: true, read: true, create: false, update: false, delete: false, restore: false }
+          },
+          // Pembayaran — petugas bisa browse, read, dan tambah
+          {
+            app: 'rental', name: 'transaction/payments',
+            detail: { browse: true, read: true, create: true, update: false, delete: false, restore: false }
+          },
+          // Ulasan — read only
+          {
+            app: 'rental', name: 'transaction/reviews',
+            detail: { browse: true, read: true, create: false, update: false, delete: false, restore: false }
           }
         ]
       }
@@ -296,7 +333,7 @@ export const authStore = defineStore('auth', {
             }
           })
           .filter((item: any) => {
-            if (!this.getToken() && item.path === '/rental/user/rental') return false
+            if (!this.getToken() && ['/rental/user/rental', '/rental/user/rental-histories'].includes(item.path)) return false
             return true
           })
       }

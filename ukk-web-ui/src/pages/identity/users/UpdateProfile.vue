@@ -55,17 +55,20 @@ const getData = async () => {
 }
 
 const submit = async () => {
-  if (validateSubmit()) {
-    loading.value = true
-
+  if (!validateSubmit()) return
+  loading.value = true
+  try {
     let status = 600
     status = await save()
-    status = await checkUploadFile(dataModel.value)
-
     if (status === 200) {
+      await checkUploadFile(dataModel.value)
       Helper.showSuccess('Data has been successfully saved.')
+      loading.value = false
       back()
+    } else {
+      loading.value = false
     }
+  } catch (e) {
     loading.value = false
   }
 }

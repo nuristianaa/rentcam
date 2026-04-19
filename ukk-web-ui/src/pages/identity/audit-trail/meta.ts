@@ -18,8 +18,8 @@ export interface DataModel {
 
 const Meta = {
   schema: '',
-  name: 'AuditTrail',
-  title: 'Audit Trail',
+  name: 'LogActivity',
+  title: 'Log Activity',
   module: 'audit-trails',
   route_ui: 'audit-trails',
   hide_trash: true,

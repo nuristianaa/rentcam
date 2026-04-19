@@ -15,44 +15,44 @@
         <div class="hero__badge">
           <span class="hero__badge-dot" />
           <q-icon name="camera_alt" size="12px" />
-          Rental Peralatan Foto · Bandung
+          Camera Equipment Rental · Bandung
         </div>
 
         <h1 class="hero__title">
-          Sewa Alat Foto<br />
-          <span class="hero__title--accent">Profesional,</span>
-          <span class="hero__title--light"> Mudah &amp; Terpercaya.</span>
+          Rent Professional<br />
+          <span class="hero__title--accent">Camera Gear,</span>
+          <span class="hero__title--light"> Easy &amp; Trusted.</span>
         </h1>
 
         <p class="hero__sub">
-          Kamera, lensa, drone, lighting — semua tersedia dengan harga terjangkau.
-          Pesan online, ambil langsung ke toko kami di Bandung — cepat, mudah, dan terpercaya.
+          Cameras, lenses, drones, lighting — all available at affordable prices.
+          Book online, pick up directly at our store in Bandung — fast, easy, and reliable.
         </p>
 
         <div class="hero__actions">
           <button class="btn btn--primary btn--lg" @click="$router.push({ name: 'rental/user/items' })">
             <q-icon name="photo_camera" size="17px" />
-            Lihat Semua Alat
+            View All Equipments
           </button>
           <button v-if="isLoggedIn" class="btn btn--ghost btn--lg" @click="$router.push({ name: 'rental/user/rental-histories' })">
             <q-icon name="history" size="16px" />
-            Riwayat Booking
+            Booking History
           </button>
           <button v-else class="btn btn--outline-white btn--lg" @click="$router.push({ name: 'login' })">
             <q-icon name="login" size="16px" />
-            Masuk / Daftar
+            Login / Register
           </button>
         </div>
 
         <div class="hero__stats">
           <div class="hero__stat">
             <div class="hero__stat-num">50<span class="hero__stat-accent">+</span></div>
-            <div class="hero__stat-label">Item Tersedia</div>
+            <div class="hero__stat-label">Items Available</div>
           </div>
           <div class="hero__stat-sep" />
           <div class="hero__stat">
             <div class="hero__stat-num">Rp<span class="hero__stat-accent"> 0</span></div>
-            <div class="hero__stat-label">Biaya Pendaftaran</div>
+            <div class="hero__stat-label">Registration Fee</div>
           </div>
           <div class="hero__stat-sep" />
           <div class="hero__stat">
@@ -71,7 +71,7 @@
     <!-- ── BRANDS / MITRA ────────────────────────────────────────── -->
     <section class="brands-section">
       <div class="container">
-        <p class="brands-title">Brand Pilihan Terbaik untuk Karya Anda</p>
+        <p class="brands-title">Top Brands for Your Creative Needs</p>
         <div class="brands-grid">
           <div class="brand-item">Sony</div>
           <div class="brand-item">Canon</div>
@@ -87,9 +87,9 @@
     <section class="section how reveal-section">
       <div class="container">
         <div class="section__head">
-          <div class="section__tag">Cara Kerja</div>
-          <h2 class="section__title">Empat Langkah Mudah</h2>
-          <p class="section__sub">Dari memilih alat hingga alat tiba di tangan Anda — semua prosesnya sederhana dan terlacak secara real-time.</p>
+          <div class="section__tag">How It Works</div>
+          <h2 class="section__title">Four Easy Steps</h2>
+          <p class="section__sub">From choosing equipment to receiving it — the whole process is simple and tracked in real-time.</p>
         </div>
 
         <div class="steps">
@@ -112,9 +112,9 @@
     <section class="section section--navy categories reveal-section">
       <div class="container">
         <div class="section__head">
-          <div class="section__tag section__tag--light">Koleksi Kami</div>
-          <h2 class="section__title section__title--light">Apa yang Bisa Disewa?</h2>
-          <p class="section__sub section__sub--light">Dari kamera entry-level hingga perlengkapan profesional — tersedia untuk semua kebutuhan sesi foto Anda.</p>
+          <div class="section__tag section__tag--light">Our Collection</div>
+          <h2 class="section__title section__title--light">What Can You Rent?</h2>
+          <p class="section__sub section__sub--light">From entry-level cameras to professional gear — available for all your photography sessions.</p>
         </div>
 
         <div class="cat-grid">
@@ -131,7 +131,7 @@
             <div class="cat-card__title">{{ cat.title }}</div>
             <div class="cat-card__desc">{{ cat.desc }}</div>
             <div class="cat-card__cta">
-              Lihat Koleksi
+              View Collection
               <q-icon name="arrow_forward" size="13px" />
             </div>
           </div>
@@ -144,14 +144,14 @@
       <div class="container">
         <div class="why__layout">
           <div class="why__left">
-            <div class="section__tag">Kenapa Kami?</div>
-            <h2 class="section__title">Rental yang Bisa<br />Diandalkan</h2>
+            <div class="section__tag">Why Us?</div>
+            <h2 class="section__title">Reliable<br />Rental Services</h2>
             <p class="section__sub">
-              Kami tidak sekadar meminjamkan alat. Setiap proses dirancang agar pelanggan merasa aman, nyaman, dan percaya.
+              We do more than just rent out gear. Every process is designed to ensure you feel secure, comfortable, and confident.
             </p>
             <button v-if="isLoggedIn" class="btn btn--primary q-mt-md" @click="$router.push({ name: 'rental/user/items' })">
               <q-icon name="camera" size="16px" />
-              Mulai Booking
+              Start Booking
             </button>
             <div class="why__deco">
               <div class="why__ring why__ring--1" />
@@ -179,9 +179,9 @@
     <section class="section section--navy flow reveal-section">
       <div class="container">
         <div class="section__head">
-          <div class="section__tag section__tag--light">Alur Status Booking</div>
-          <h2 class="section__title section__title--light">Pantau Pesanan Real-Time</h2>
-          <p class="section__sub section__sub--light">Setiap perubahan status dapat dipantau langsung di halaman riwayat booking Anda.</p>
+          <div class="section__tag section__tag--light">Booking Status Flow</div>
+          <h2 class="section__title section__title--light">Monitor Your Order Real-Time</h2>
+          <p class="section__sub section__sub--light">Every status update can be tracked directly on your booking history page.</p>
         </div>
 
         <div class="flow-track">
@@ -202,9 +202,9 @@
     <section class="section payment reveal-section">
       <div class="container">
         <div class="section__head">
-          <div class="section__tag">Pembayaran</div>
-          <h2 class="section__title">Metode Pembayaran</h2>
-          <p class="section__sub">Bayar sesuai preferensi Anda. Deposit dikembalikan penuh setelah alat kembali dalam kondisi baik — tidak ada biaya tersembunyi.</p>
+          <div class="section__tag">Payment</div>
+          <h2 class="section__title">Payment Methods</h2>
+          <p class="section__sub">Pay according to your preference. Deposit will be fully refunded after the equipment is returned in good condition — no hidden fees.</p>
         </div>
 
         <div class="pay-grid">
@@ -215,28 +215,28 @@
                 <q-icon name="account_balance" size="22px" />
               </div>
               <div>
-                <div class="pay-card__label">Transfer Bank</div>
-                <div class="pay-card__badge">Direkomendasikan</div>
+                <div class="pay-card__label">Bank Transfer</div>
+                <div class="pay-card__badge">Recommended</div>
               </div>
             </div>
-            <div class="pay-card__desc">Lakukan transfer ke rekening kami, kemudian <strong>kirim bukti transfer via WhatsApp</strong> ke nomor admin. Setelah dikonfirmasi, status booking akan diperbarui.</div>
+            <div class="pay-card__desc">Transfer to our bank account, then <strong>send the transfer receipt via WhatsApp</strong> to the admin. Once confirmed, your booking status will be updated.</div>
             <div class="pay-card__steps">
               <div class="pay-step">
                 <div class="pay-step__num">1</div>
-                <div class="pay-step__text">Lakukan transfer ke rekening yang tertera</div>
+                <div class="pay-step__text">Transfer to the provided account number</div>
               </div>
               <div class="pay-step">
                 <div class="pay-step__num">2</div>
-                <div class="pay-step__text">Kirim foto bukti transfer ke WhatsApp admin</div>
+                <div class="pay-step__text">Send photo of the receipt to admin's WhatsApp</div>
               </div>
               <div class="pay-step">
                 <div class="pay-step__num">3</div>
-                <div class="pay-step__text">Tunggu konfirmasi dari admin (maks. 2 jam)</div>
+                <div class="pay-step__text">Wait for admin confirmation (max 2 hours)</div>
               </div>
             </div>
             <a href="https://wa.me/6281234567890" target="_blank" class="pay-wa-btn">
               <q-icon name="chat" size="16px" />
-              Kirim Bukti ke WhatsApp
+              Send Receipt via WhatsApp
             </a>
           </div>
 
@@ -246,21 +246,21 @@
               <div class="pay-card__icon">
                 <q-icon name="payments" size="22px" />
               </div>
-              <div class="pay-card__label">COD (Bayar di Toko)</div>
+              <div class="pay-card__label">COD (Pay in Store)</div>
             </div>
-            <div class="pay-card__desc">Bayar tunai secara langsung saat mengambil alat di toko kami. Tidak perlu transfer terlebih dahulu.</div>
+            <div class="pay-card__desc">Pay with cash directly when picking up the equipment at our store. No need to transfer beforehand.</div>
             <div class="pay-card__steps">
               <div class="pay-step">
                 <div class="pay-step__num">1</div>
-                <div class="pay-step__text">Buat booking secara online</div>
+                <div class="pay-step__text">Create a booking online</div>
               </div>
               <div class="pay-step">
                 <div class="pay-step__num">2</div>
-                <div class="pay-step__text">Datang ke toko sesuai tanggal sewa</div>
+                <div class="pay-step__text">Come to the store on your rental date</div>
               </div>
               <div class="pay-step">
                 <div class="pay-step__num">3</div>
-                <div class="pay-step__text">Bayar tunai dan ambil alat langsung</div>
+                <div class="pay-step__text">Pay cash and grab your equipment</div>
               </div>
             </div>
           </div>
@@ -271,8 +271,8 @@
               <q-icon name="shield" size="20px" />
             </div>
             <div>
-              <div class="pay-deposit__title">Sistem Deposit Transparan</div>
-              <div class="pay-deposit__desc">Deposit wajib dibayar saat pengambilan alat sebagai jaminan. Dikembalikan 100% saat alat dikembalikan dalam kondisi baik — tidak ada biaya tersembunyi.</div>
+              <div class="pay-deposit__title">Transparent Deposit System</div>
+              <div class="pay-deposit__desc">Deposit is required during pickup as a guarantee. 100% refunded when the gear is returned in good condition — zero hidden fees.</div>
             </div>
           </div>
         </div>
@@ -284,31 +284,31 @@
       <div class="container">
         <div class="loc-layout">
           <div class="loc-info">
-            <div class="section__tag section__tag--light">Lokasi Toko</div>
-            <h2 class="section__title section__title--light">Kunjungi Toko Kami</h2>
+            <div class="section__tag section__tag--light">Store Location</div>
+            <h2 class="section__title section__title--light">Visit Our Store</h2>
             <p class="section__sub section__sub--light">
-              Alat dapat diambil dan dikembalikan langsung ke toko kami. Tidak ada biaya pengiriman — cukup datang sesuai jadwal booking Anda.
+              Equipment can be picked up and returned directly to our store. No shipping cost — just visit us according to your booking schedule.
             </p>
             <div class="loc-details">
               <div class="loc-detail-item">
                 <div class="loc-detail-icon"><q-icon name="location_on" size="18px" /></div>
                 <div>
-                  <div class="loc-detail-label">Alamat</div>
-                  <div class="loc-detail-val">Bandung, Jawa Barat</div>
+                  <div class="loc-detail-label">Address</div>
+                  <div class="loc-detail-val">Bandung, West Java</div>
                 </div>
               </div>
               <div class="loc-detail-item">
                 <div class="loc-detail-icon"><q-icon name="schedule" size="18px" /></div>
                 <div>
-                  <div class="loc-detail-label">Jam Operasional</div>
-                  <div class="loc-detail-val">Senin – Sabtu · 08.00 – 20.00 WIB</div>
+                  <div class="loc-detail-label">Operating Hours</div>
+                  <div class="loc-detail-val">Monday – Saturday · 08.00 – 20.00 WIB</div>
                 </div>
               </div>
               <div class="loc-detail-item">
                 <div class="loc-detail-icon"><q-icon name="store" size="18px" /></div>
                 <div>
-                  <div class="loc-detail-label">Metode Pickup</div>
-                  <div class="loc-detail-val">Ambil langsung di toko (no delivery)</div>
+                  <div class="loc-detail-label">Pickup Method</div>
+                  <div class="loc-detail-val">Direct pickup at the store (no delivery)</div>
                 </div>
               </div>
             </div>
@@ -318,7 +318,7 @@
               class="btn btn--primary loc-map-btn"
             >
               <q-icon name="map" size="16px" />
-              Buka di Google Maps
+              Open in Google Maps
             </a>
           </div>
 
@@ -347,17 +347,17 @@
         <div class="cta__grid" />
       </div>
       <div class="cta__inner">
-        <div class="section__tag cta__tag">Mulai Sekarang</div>
-        <h2 class="cta__title">Siap Merekam<br /><em>Momen Terbaik?</em></h2>
-        <p class="cta__sub">Temukan alat foto yang tepat dan buat booking dalam hitungan menit.</p>
+        <div class="section__tag cta__tag">Start Now</div>
+        <h2 class="cta__title">Ready to Capture<br /><em>Your Best Moments?</em></h2>
+        <p class="cta__sub">Find the right camera equipment and create a booking in minutes.</p>
         <div class="cta__actions">
           <button class="btn btn--primary btn--lg" @click="$router.push({ name: 'rental/user/items' })">
             <q-icon name="photo_camera" size="17px" />
-            Jelajahi Alat Foto
+            Explore Equipment
           </button>
           <a href="https://wa.me/6281234567890" target="_blank" class="btn btn--outline-white btn--lg">
             <q-icon name="chat" size="17px" />
-            Hubungi via WhatsApp
+            Contact via WhatsApp
           </a>
         </div>
       </div>
@@ -371,26 +371,26 @@
             <q-icon name="camera_alt" size="18px" />
           </div>
           <span class="footer__name">RENTCAM</span>
-          <p class="footer__tagline">Platform rental peralatan foto terpercaya di Bandung.</p>
+          <p class="footer__tagline">Trusted camera equipment rental platform in Bandung.</p>
         </div>
         <div class="footer__links">
           <div class="footer__col">
-            <div class="footer__col-title">Navigasi</div>
-            <router-link class="footer__link" to="/rental/user/items">Alat Foto</router-link>
-            <router-link class="footer__link" to="/rental/user/how-to">Cara Sewa</router-link>
-            <router-link class="footer__link" to="/rental/user/about">Tentang Kami</router-link>
+            <div class="footer__col-title">Navigation</div>
+            <router-link class="footer__link" to="/rental/user/items">Equipments</router-link>
+            <router-link class="footer__link" to="/rental/user/how-to">How to Rent</router-link>
+            <router-link class="footer__link" to="/rental/user/about">About Us</router-link>
             <router-link class="footer__link" to="/rental/user/faq">FAQ</router-link>
-            <router-link class="footer__link" to="/rental/user/contact">Kontak Kami</router-link>
+            <router-link class="footer__link" to="/rental/user/contact">Contact Us</router-link>
           </div>
           <div class="footer__col">
-            <div class="footer__col-title">Akun</div>
-            <router-link class="footer__link" to="/rental/user/rental-histories">Riwayat Booking</router-link>
-            <router-link class="footer__link" to="/login">Masuk</router-link>
+            <div class="footer__col-title">Account</div>
+            <router-link class="footer__link" to="/rental/user/rental-histories">Booking History</router-link>
+            <router-link class="footer__link" to="/login">Login</router-link>
           </div>
         </div>
       </div>
       <div class="footer__bottom">
-        <span>&copy; 2026 RENTCAM · rental alat photo</span>
+        <span>&copy; 2026 RENTCAM · camera equipment rental</span>
       </div>
     </footer>
 
@@ -430,61 +430,61 @@ onMounted(() => {
 const steps = [
   {
     icon: 'search',
-    title: 'Pilih Alat',
-    desc: 'Browse koleksi kamera, lensa, drone, dan aksesori. Filter berdasarkan kategori dan ketersediaan stok.',
+    title: 'Choose Gear',
+    desc: 'Browse our collection of cameras, lenses, drones, and accessories. Filter by category and stock availability.',
   },
   {
     icon: 'calendar_today',
-    title: 'Tentukan Tanggal',
-    desc: 'Pilih tanggal mulai dan selesai. Minimal 1 hari. Sistem cek otomatis ketersediaan stok secara real-time.',
+    title: 'Set Date',
+    desc: 'Select your start and end dates. Minimum 1 day. System automatically checks real-time availability.',
   },
   {
     icon: 'chat',
-    title: 'Bayar & Kirim Bukti WA',
-    desc: 'Transfer ke rekening kami, lalu kirim bukti bayar via WhatsApp. COD bisa bayar tunai langsung di toko.',
+    title: 'Pay & Send Receipt via WA',
+    desc: 'Transfer to our bank account, then send the payment receipt via WhatsApp. COD allows cash payment directly at the store.',
   },
   {
     icon: 'storefront',
-    title: 'Ambil di Toko',
-    desc: 'Datang ke toko kami di Bandung sesuai tanggal mulai sewa. Alat siap dan sudah dicek kondisinya.',
+    title: 'Pickup at Store',
+    desc: 'Come to our store in Bandung on your rental start date. The equipment is ready and its condition has been verified.',
   },
 ]
 
 const categories = [
   {
     icon: 'camera_alt',
-    title: 'Kamera',
-    desc: 'Mirrorless & DSLR dari berbagai brand untuk kebutuhan foto dan video profesional.',
+    title: 'Cameras',
+    desc: 'Mirrorless & DSLRs from various brands for professional photo and video needs.',
     filter: 'kamera',
   },
   {
     icon: 'center_focus_strong',
-    title: 'Lensa',
-    desc: 'Lensa portrait, wide, telephoto, macro — berbagai mount tersedia.',
+    title: 'Lenses',
+    desc: 'Portrait, wide, telephoto, and macro lenses — various mounts available.',
     filter: 'lensa',
   },
   {
     icon: 'flight',
-    title: 'Drone',
-    desc: 'Drone aerial untuk foto dan video dari ketinggian dengan hasil sinematik.',
+    title: 'Drones',
+    desc: 'Aerial drones for photos and videos from above with cinematic results.',
     filter: 'drone',
   },
   {
     icon: 'wb_incandescent',
     title: 'Lighting',
-    desc: 'Strobo, softbox, LED panel, dan aksesori pencahayaan lainnya.',
+    desc: 'Strobes, softboxes, LED panels, and other lighting accessories.',
     filter: 'lighting',
   },
   {
     icon: 'videocam',
     title: 'Video',
-    desc: 'Gimbal, monitor, mikrofon, dan perlengkapan produksi video.',
+    desc: 'Gimbals, monitors, microphones, and video production gear.',
     filter: 'video',
   },
   {
     icon: 'photo_filter',
-    title: 'Aksesori',
-    desc: 'Filter, tripod, tas kamera, baterai, memory card, dan lain-lain.',
+    title: 'Accessories',
+    desc: 'Filters, tripods, camera bags, batteries, memory cards, and much more.',
     filter: 'aksesori',
   },
 ]
@@ -492,23 +492,23 @@ const categories = [
 const whyItems = [
   {
     icon: 'verified',
-    title: 'Kondisi Alat Terjamin',
-    desc: 'Setiap alat dicek dan dibersihkan sebelum diserahkan. Kami melampirkan berita acara kondisi alat.',
+    title: 'Guaranteed Equipment Condition',
+    desc: 'Every item is checked and cleaned prior to handover. We attach an equipment condition report.',
   },
   {
     icon: 'storefront',
-    title: 'Pickup Langsung di Toko',
-    desc: 'Ambil dan kembalikan alat langsung ke toko kami. Tidak ada biaya antar-jemput, lebih efisien!',
+    title: 'Direct Store Pickup',
+    desc: 'Pick up and return your equipment directly at our store. No delivery fees, much more efficient!',
   },
   {
     icon: 'shield',
-    title: 'Deposit Transparan',
-    desc: 'Deposit dibayar saat pengambilan dan dikembalikan penuh setelah alat kembali dalam kondisi baik.',
+    title: 'Transparent Deposit',
+    desc: 'Deposit is paid during pickup and fully refunded when the gear returns in good condition.',
   },
   {
     icon: 'support_agent',
-    title: 'Support via WhatsApp',
-    desc: 'Konfirmasi pembayaran, tanya info alat, atau lapor kendala — semua bisa via WhatsApp kami.',
+    title: 'WhatsApp Support',
+    desc: 'Payment confirmations, gear inquiries, or reporting issues — all available via our WhatsApp.',
   },
 ]
 
@@ -516,36 +516,36 @@ const whyItems = [
 const statusFlow = [
   {
     value: 'menunggu_bayar',
-    label: 'Menunggu Bayar',
-    desc: 'Booking dibuat, lakukan pembayaran',
+    label: 'Waiting for Payment',
+    desc: 'Booking created, please proceed with payment',
     icon: 'receipt_long',
     color: 'yellow',
   },
   {
     value: 'menunggu_verif',
-    label: 'Menunggu Verifikasi',
-    desc: 'Bukti bayar diterima, admin verifikasi',
+    label: 'Waiting for Verification',
+    desc: 'Payment receipt received, waiting for admin verification',
     icon: 'fact_check',
     color: 'orange',
   },
   {
     value: 'diproses',
-    label: 'Diproses',
-    desc: 'Alat disiapkan, Anda bisa datang ke toko',
+    label: 'Processing',
+    desc: 'Equipment is being prepared, you may visit the store',
     icon: 'inventory_2',
     color: 'blue',
   },
   {
     value: 'aktif',
-    label: 'Aktif',
-    desc: 'Alat sudah di tangan Anda, masa sewa berjalan',
+    label: 'Active',
+    desc: 'Equipment is in your hands, rental period is active',
     icon: 'camera_alt',
     color: 'teal',
   },
   {
     value: 'selesai',
-    label: 'Selesai',
-    desc: 'Alat dikembalikan ke toko, deposit diproses',
+    label: 'Completed',
+    desc: 'Equipment has been returned, deposit is processed',
     icon: 'task_alt',
     color: 'green',
   },

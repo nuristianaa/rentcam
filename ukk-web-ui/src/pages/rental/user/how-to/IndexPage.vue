@@ -11,10 +11,10 @@
       <div class="hero__inner">
         <div class="hero__badge">
           <q-icon name="auto_stories" size="14px" />
-          Panduan Lengkap
+          Complete Guide
         </div>
-        <h1 class="hero__title">Cara Menyewa<br /><span class="hero__accent">Langkah demi Langkah</span></h1>
-        <p class="hero__sub">Dari memilih alat, konfirmasi bayar via WhatsApp, hingga ambil sendiri di toko — ikuti panduan ini dan proses rental jadi super mudah.</p>
+        <h1 class="hero__title">How to Rent<br /><span class="hero__accent">Step by Step</span></h1>
+        <p class="hero__sub">From selecting gear, confirming payment via WhatsApp, to picking it up at the store — follow this guide to make your rental process super easy.</p>
         <div class="hero__pills">
           <div class="hero__pill" v-for="p in heroPills" :key="p">
             <q-icon name="check_circle" size="14px" />
@@ -59,7 +59,7 @@
         </div>
 
         <div class="step-block__content">
-          <div class="step-tag">Langkah {{ i + 1 }}</div>
+          <div class="step-tag">Step {{ i + 1 }}</div>
           <h2 class="step-title">{{ step.title }}</h2>
           <p class="step-desc">{{ step.desc }}</p>
 
@@ -82,10 +82,10 @@
           <div class="step-nav">
             <button v-if="i > 0" class="step-nav-btn" @click="scrollToStep(i - 1)">
               <q-icon name="arrow_back" size="14px" />
-              Langkah Sebelumnya
+              Previous Step
             </button>
             <button v-if="i < steps.length - 1" class="step-nav-btn step-nav-btn--next" @click="scrollToStep(i + 1)">
-              Langkah Berikutnya
+              Next Step
               <q-icon name="arrow_forward" size="14px" />
             </button>
           </div>
@@ -98,10 +98,10 @@
       <div class="status-section__inner">
         <div class="section-tag" style="margin: 0 auto 14px">
           <q-icon name="alt_route" size="13px" />
-          Status Booking
+          Booking Status
         </div>
-        <h2 class="section-title" style="text-align:center">Pantau Status<br /><em>Booking Anda Secara Real-Time</em></h2>
-        <p class="status-section__sub">Setiap perubahan status dapat dipantau di halaman Riwayat Booking.</p>
+        <h2 class="section-title" style="text-align:center">Monitor Your<br /><em>Booking Status Real-Time</em></h2>
+        <p class="status-section__sub">Every status update can be monitored on the Booking History page.</p>
 
         <div class="status-flow">
           <div v-for="(s, i) in statusFlow" :key="s.value" class="status-node">
@@ -124,16 +124,16 @@
         <div class="cta__icon">
           <q-icon name="photo_camera" size="28px" />
         </div>
-        <h2 class="cta__title">Sudah Paham?<br /><em>Mulai Booking Sekarang!</em></h2>
-        <p class="cta__sub">Pilih alat favoritmu dan mulai petualangan fotografimu hari ini.</p>
+        <h2 class="cta__title">Ready to Go?<br /><em>Start Booking Now!</em></h2>
+        <p class="cta__sub">Choose your favorite gear and start your photography journey today.</p>
         <div class="cta__actions">
           <router-link to="/rental/user/items" class="cta-btn cta-btn--primary">
             <q-icon name="camera_alt" size="16px" />
-            Lihat Koleksi Alat
+            View Equipment Collection
           </router-link>
           <router-link to="/rental/user/contact" class="cta-btn cta-btn--ghost">
             <q-icon name="chat" size="16px" />
-            Hubungi Kami
+            Contact Us
           </router-link>
         </div>
       </div>
@@ -154,114 +154,114 @@ const scrollToStep = (i: number) => {
 }
 
 const heroPills = [
-  'Booking Online 24/7',
-  'Ambil Langsung di Toko',
-  'Transfer? Kirim Bukti ke WA',
-  'Deposit Transparan',
+  'Book Online 24/7',
+  'Pick Up at Store',
+  'Transfer? Send receipt to WA',
+  'Transparent Deposit',
 ]
 
 const steps = [
   {
-    shortLabel: 'Buat Akun',
+    shortLabel: 'Create Account',
     icon: 'person_add',
     color: 'purple',
-    title: 'Daftar & Login ke Akun Anda',
-    desc: 'Buat akun gratis di RENTCAM untuk mulai booking. Daftar hanya butuh email dan password — tidak ada biaya pendaftaran sama sekali.',
+    title: 'Register & Log in to Your Account',
+    desc: 'Create a free account on RENTCAM to start booking. Registration only requires an email and password — absolutely no registration fee.',
     tips: [
-      { icon: 'lock', text: 'Akun Anda aman dan terenkripsi' },
-      { icon: 'phone_android', text: 'Bisa login dari HP atau komputer' },
-      { icon: 'info', text: 'Guest bisa browse alat, tapi perlu login untuk booking' },
+      { icon: 'lock', text: 'Your account is secure and encrypted' },
+      { icon: 'phone_android', text: 'Log in from your phone or computer' },
+      { icon: 'info', text: 'Guests can browse gear, but log in is required to book' },
     ],
-    cta: { href: '/login', icon: 'login', label: 'Daftar Sekarang', color: 'navy', external: false },
+    cta: { href: '/login', icon: 'login', label: 'Register Now', color: 'navy', external: false },
   },
   {
-    shortLabel: 'Pilih Alat',
+    shortLabel: 'Choose Gear',
     icon: 'camera_alt',
     color: 'blue',
-    title: 'Jelajahi & Pilih Alat Foto',
-    desc: 'Browse koleksi lengkap alat foto kami: kamera mirrorless, DSLR, lensa, drone, lighting, gimbal, dan banyak lagi. Filter berdasarkan kategori untuk menemukan alat yang pas.',
+    title: 'Explore & Choose Camera Gear',
+    desc: 'Browse our complete collection of camera equipment: mirrorless cameras, DSLRs, lenses, drones, lighting, gimbals, and much more. Filter by category to find the perfect gear.',
     tips: [
-      { icon: 'search', text: 'Gunakan filter kategori untuk pencarian lebih cepat' },
-      { icon: 'check_circle', text: 'Status "Tersedia" berarti stok ada di tanggal Anda' },
-      { icon: 'photo_camera', text: 'Klik detail alat untuk lihat spesifikasi lengkap dan kalender disponibilitas' },
+      { icon: 'search', text: 'Use category filters for faster searches' },
+      { icon: 'check_circle', text: '"Available" means there is stock on your dates' },
+      { icon: 'photo_camera', text: 'Click an item to see its full specs and availability calendar' },
     ],
-    cta: { href: '/rental/user/items', icon: 'storefront', label: 'Lihat Koleksi Alat', color: 'navy', external: false },
+    cta: { href: '/rental/user/items', icon: 'storefront', label: 'View Collection', color: 'navy', external: false },
   },
   {
-    shortLabel: 'Tentukan Tanggal',
+    shortLabel: 'Set Dates',
     icon: 'calendar_month',
     color: 'teal',
-    title: 'Pilih Tanggal Sewa',
-    desc: 'Tentukan tanggal mulai dan tanggal selesai sewa. Durasi minimal 1 hari. Sistem akan mengecek ketersediaan stok secara real-time sesuai tanggal yang Anda pilih.',
+    title: 'Select Rental Dates',
+    desc: 'Determine your start date and end date. Minimum duration is 1 day. The system will check real-time stock availability based on your chosen dates.',
     tips: [
-      { icon: 'event', text: 'Tanggal mulai adalah hari Anda ambil alat di toko' },
-      { icon: 'event_available', text: 'Tanggal selesai adalah hari Anda wajib kembalikan alat' },
-      { icon: 'warning', text: 'Tanggal yang sudah dipesan orang lain tidak bisa dipilih' },
+      { icon: 'event', text: 'Start date is the day you pick up the gear at our store' },
+      { icon: 'event_available', text: 'End date is the day you must return the gear' },
+      { icon: 'warning', text: 'Booked dates cannot be selected' },
     ],
     cta: null,
   },
   {
-    shortLabel: 'Konfirmasi Bayar',
+    shortLabel: 'Confirm Payment',
     icon: 'chat',
     color: 'green',
-    title: 'Bayar & Kirim Bukti ke WhatsApp',
-    desc: 'Setelah booking tersimpan, lakukan pembayaran. Ada 2 pilihan: TRANSFER BANK (kirim bukti foto ke WA admin) atau COD (bayar tunai langsung saat ambil di toko).',
+    title: 'Pay & Send Receipt to WhatsApp',
+    desc: 'After your booking is saved, proceed with payment. There are 2 options: BANK TRANSFER (send a photo of your receipt to our WhatsApp) or COD (pay cash when you pick it up).',
     tips: [
-      { icon: 'account_balance', text: 'Transfer Bank: Transfer → Foto bukti → Kirim ke WA admin → Tunggu konfirmasi' },
-      { icon: 'payments', text: 'COD: Tidak perlu transfer, cukup siapkan uang tunai saat datang ke toko' },
-      { icon: 'timer', text: 'Konfirmasi WA dari admin maks. 2 jam di jam kerja (08.00–20.00)' },
+      { icon: 'account_balance', text: 'Bank Transfer: Transfer → Photo receipt → Send to WA → Wait for confirmation' },
+      { icon: 'payments', text: 'COD: No need to transfer, just prepare cash when coming to the store' },
+      { icon: 'timer', text: 'WhatsApp confirmation within 2 hours during working hours (08.00–20.00)' },
     ],
-    cta: { href: 'https://wa.me/6281234567890?text=Halo%20admin%2C%20saya%20ingin%20konfirmasi%20pembayaran%20booking%20saya.', icon: 'chat', label: 'Kirim Bukti ke WhatsApp', color: 'wa', external: true },
+    cta: { href: 'https://wa.me/6281234567890?text=Halo%20admin%2C%20saya%20ingin%20konfirmasi%20pembayaran%20booking%20saya.', icon: 'chat', label: 'Send Receipt via WhatsApp', color: 'wa', external: true },
   },
   {
-    shortLabel: 'Ambil di Toko',
+    shortLabel: 'Pick Up at Store',
     icon: 'storefront',
     color: 'orange',
-    title: 'Datang ke Toko & Ambil Alat',
-    desc: 'Setelah status booking berubah ke "Diproses", datanglah ke toko kami di Bandung sesuai tanggal mulai sewa. Bawa identitas diri (KTP) dan siapkan deposit saat pengambilan.',
+    title: 'Visit Our Store & Pick Up Gear',
+    desc: 'Once your booking status changes to "Processing", come to our store in Bandung on your rental start date. Bring your ID (KTP) and prepare the deposit amount.',
     tips: [
-      { icon: 'badge', text: 'Bawa KTP asli saat pengambilan alat di toko' },
-      { icon: 'payments', text: 'Deposit dibayar di toko saat pengambilan (tunai/transfer)' },
-      { icon: 'schedule', text: 'Jam toko: Senin–Sabtu 08.00–20.00 WIB' },
-      { icon: 'fact_check', text: 'Cek kondisi alat bersama admin sebelum dibawa pulang' },
+      { icon: 'badge', text: 'Bring your original ID (KTP) when picking up the gear' },
+      { icon: 'payments', text: 'Deposit is paid at the store upon pickup (Cash/Transfer)' },
+      { icon: 'schedule', text: 'Store hours: Monday–Saturday 08.00–20.00 WIB' },
+      { icon: 'fact_check', text: 'Check the gear condition with the admin before taking it' },
     ],
-    cta: { href: 'https://maps.google.com/?q=Bandung,Jawa+Barat', icon: 'map', label: 'Buka Google Maps', color: 'navy', external: true },
+    cta: { href: 'https://maps.google.com/?q=Bandung,Jawa+Barat', icon: 'map', label: 'Open in Google Maps', color: 'navy', external: true },
   },
   {
-    shortLabel: 'Gunakan Alat',
+    shortLabel: 'Use Gear',
     icon: 'camera',
     color: 'purple',
-    title: 'Gunakan Alat dengan Bertanggung Jawab',
-    desc: 'Masa sewa berjalan! Gunakan alat sesuai panduan. Perawatan alat selama masa sewa adalah tanggung jawab penyewa. Simpan di tempat aman dan hindari benturan keras.',
+    title: 'Use Gear Responsibly',
+    desc: 'Your rental period begins! Use the equipment according to instructions. Care for the equipment during the rental period is the renter`s responsibility. Store it securely and avoid hard impacts.',
     tips: [
-      { icon: 'shield', text: 'Simpan alat di tas kamera yang aman dari benturan' },
-      { icon: 'water_drop', text: 'Hindari paparan hujan/lembab berlebihan pada kamera dan lensa' },
-      { icon: 'support_agent', text: 'Jika ada kendala dengan alat, segera hubungi kami via WhatsApp' },
+      { icon: 'shield', text: 'Store the gear safely in a camera bag to prevent impacts' },
+      { icon: 'water_drop', text: 'Avoid exposing cameras and lenses to excessive rain or moisture' },
+      { icon: 'support_agent', text: 'If you experience any issues, contact us immediately via WhatsApp' },
     ],
     cta: null,
   },
   {
-    shortLabel: 'Kembalikan',
+    shortLabel: 'Return',
     icon: 'task_alt',
     color: 'blue',
-    title: 'Kembalikan Alat & Terima Deposit',
-    desc: 'Kembalikan alat ke toko kami sebelum atau tepat pada tanggal selesai sewa. Kondisi alat dicek bersama admin. Jika kondisi baik, deposit dikembalikan penuh pada saat itu juga.',
+    title: 'Return Gear & Get Deposit Back',
+    desc: 'Return the equipment to our store before or precisely on the end date. The condition will be checked alongside the admin. If it is in good shape, your deposit will be fully refunded on the spot.',
     tips: [
-      { icon: 'event', text: 'Kembalikan maksimal sebelum toko tutup (20.00 WIB) di hari selesai sewa' },
-      { icon: 'cleaning_services', text: 'Bersihkan lensa dan bodi kamera sebelum dikembalikan' },
-      { icon: 'payments', text: 'Deposit kembali penuh jika kondisi alat baik, tidak ada kerusakan baru' },
-      { icon: 'warning', text: 'Keterlambatan pengembalian dapat dikenakan biaya tambahan per hari' },
+      { icon: 'event', text: 'Return before closing time (20.00 WIB) on the rental end date' },
+      { icon: 'cleaning_services', text: 'Wipe the lenses and camera body before returning' },
+      { icon: 'payments', text: 'Deposit is fully refunded if equipment condition is good, with no new damages' },
+      { icon: 'warning', text: 'Late returns may incur additional daily charges' },
     ],
     cta: null,
   },
 ]
 
 const statusFlow = [
-  { value: 'menunggu_bayar', label: 'Menunggu Bayar', desc: 'Booking dibuat, lakukan pembayaran dan kirim bukti ke WA admin', icon: 'receipt_long', color: 'yellow' },
-  { value: 'menunggu_verif', label: 'Menunggu Verifikasi', desc: 'Bukti bayar diterima, admin sedang verifikasi', icon: 'fact_check', color: 'orange' },
-  { value: 'diproses', label: 'Diproses', desc: 'Pembayaran OK, alat disiapkan — silakan datang ke toko', icon: 'inventory_2', color: 'blue' },
-  { value: 'aktif', label: 'Aktif', desc: 'Alat sudah di tangan Anda, masa sewa berjalan', icon: 'camera_alt', color: 'teal' },
-  { value: 'selesai', label: 'Selesai', desc: 'Alat dikembalikan ke toko, deposit diproses', icon: 'task_alt', color: 'green' },
+  { value: 'menunggu_bayar', label: 'Waiting for Payment', desc: 'Booking created, make payment and send receipt to WA admin', icon: 'receipt_long', color: 'yellow' },
+  { value: 'menunggu_verif', label: 'Waiting for Verification', desc: 'Receipt received, admin is verifying', icon: 'fact_check', color: 'orange' },
+  { value: 'diproses', label: 'Processing', desc: 'Payment OK, equipment is prepared — please come to the store', icon: 'inventory_2', color: 'blue' },
+  { value: 'aktif', label: 'Active', desc: 'Equipment is in your hands, rental period is running', icon: 'camera_alt', color: 'teal' },
+  { value: 'selesai', label: 'Completed', desc: 'Equipment returned to store, deposit returned', icon: 'task_alt', color: 'green' },
 ]
 </script>
 

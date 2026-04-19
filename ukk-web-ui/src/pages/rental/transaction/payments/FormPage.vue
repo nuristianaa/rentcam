@@ -79,7 +79,7 @@
             <q-separator class="q-mb-md" />
             <q-toggle
               v-model="autoVerify"
-              label="Langsung verifikasi setelah disimpan"
+              label="Verify immediately after saving"
               color="positive"
               left-label
             />
@@ -90,7 +90,7 @@
             <f-select
               v-model="verifyStatus"
               col="6"
-              label="Status Verifikasi"
+              label="Verification Status"
               :options="verifyOptions"
               option-label="label"
               option-value="value"
@@ -99,29 +99,29 @@
             <f-textarea
               v-model="verifyNotes"
               col="12"
-              label="Catatan Verifikasi"
+              label="Verification Notes"
             />
           </template>
         </template>
 
         <!-- Mode VERIFIKASI: hanya tampilkan info + pilih status verifikasi -->
         <template v-else>
-          <f-card title="Informasi Pembayaran" col="12">
+          <f-card title="Payment Information" col="12">
             <div class="row q-col-gutter-sm">
               <div class="col-6">
-                <div class="text-caption text-grey">Kode Rental</div>
+                <div class="text-caption text-grey">Rental Code</div>
                 <div class="text-body2 text-bold">{{ dataModel.rental_code || '-' }}</div>
               </div>
               <div class="col-6">
-                <div class="text-caption text-grey">Tipe</div>
+                <div class="text-caption text-grey">Type</div>
                 <div class="text-body2">{{ typeLabel(dataModel.type) }}</div>
               </div>
               <div class="col-6">
-                <div class="text-caption text-grey">Jumlah</div>
+                <div class="text-caption text-grey">Amount</div>
                 <div class="text-body2 text-bold text-positive">{{ formatCurrency(dataModel.amount) }}</div>
               </div>
               <div class="col-6">
-                <div class="text-caption text-grey">Status Saat Ini</div>
+                <div class="text-caption text-grey">Current Status</div>
                 <q-badge :color="statusColor(dataModel.status)" :label="statusLabel(dataModel.status)" />
               </div>
               <div class="col-6" v-if="dataModel.bank_name">
@@ -129,7 +129,7 @@
                 <div class="text-body2">{{ dataModel.bank_name }}</div>
               </div>
               <div class="col-6" v-if="dataModel.account_number">
-                <div class="text-caption text-grey">No. Rekening</div>
+                <div class="text-caption text-grey">Account No.</div>
                 <div class="text-body2">{{ dataModel.account_number }}</div>
               </div>
             </div>
@@ -140,7 +140,7 @@
             <f-select
               v-model="verifyStatus"
               col="6"
-              label="Status Verifikasi"
+              label="Verification Status"
               :options="verifyOptions"
               option-label="label"
               option-value="value"
@@ -149,7 +149,7 @@
             <f-textarea
               v-model="verifyNotes"
               col="12"
-              label="Catatan Verifikasi"
+              label="Verification Notes"
             />
           </template>
 
@@ -158,7 +158,7 @@
               <template v-slot:avatar>
                 <q-icon name="info" />
               </template>
-              Pembayaran sudah <strong>{{ statusLabel(dataModel.status) }}</strong> — tidak dapat diubah lagi.
+              Payment is already <strong>{{ statusLabel(dataModel.status) }}</strong> — cannot be changed again.
             </q-banner>
           </div>
         </template>
@@ -196,8 +196,8 @@ const verifyNotes    = ref<string>('')
 const isEditMode = computed(() => !!id)
 
 const verifyOptions = [
-  { label: 'Terverifikasi ✓', value: 'terverifikasi' },
-  { label: 'Ditolak ✗',       value: 'ditolak' },
+  { label: 'Verified ✓', value: 'terverifikasi' },
+  { label: 'Rejected ✗',       value: 'ditolak' },
 ]
 
 // ─── Helpers ───────────────────────────────────────────────────
@@ -319,7 +319,7 @@ const verify = (targetId?: string | null): Promise<number> => {
   const id = targetId ?? dataModel.value.id
   if (!id) return Promise.resolve(600)
   if (!verifyStatus.value) {
-    Helper.showError('Pilih status verifikasi terlebih dahulu.')
+    Helper.showError('Please select a verification status first.')
     return Promise.resolve(600)
   }
 
@@ -339,7 +339,7 @@ const submit = async () => {
   if (isEditMode.value) {
     const statusapi = await verify()
     if (statusapi === 200) {
-      Helper.showSuccess('Verifikasi berhasil.')
+      Helper.showSuccess('Verification successful.')
       back()
     }
   } else {
@@ -347,8 +347,8 @@ const submit = async () => {
     if (saveStatus === 200) {
       Helper.showSuccess(
         autoVerify.value
-          ? 'Pembayaran disimpan dan langsung diverifikasi.'
-          : 'Pembayaran berhasil disimpan.'
+          ? 'Payment saved and verified immediately.'
+          : 'Payment saved successfully.'
       )
       back()
     }

@@ -54,8 +54,8 @@ class RentalService(StdService):
       raise BadRequest400(f"Metode bayar tidak valid. Pilihan: {', '.join(VALID_PAYMENT_METHODS)}")
 
   def _validate_dates(self, start: datetime.date, end: datetime.date):
-    if end <= start:
-      raise BadRequest400("Tanggal selesai harus setelah tanggal mulai.")
+    if end < start:
+      raise BadRequest400("Tanggal selesai tidak boleh sebelum tanggal mulai.")
 
   def _get_item_or_raise(self, item_id: int) -> Item:
     item = self.db.query(Item).filter(
@@ -116,7 +116,7 @@ class RentalService(StdService):
     if not req.items:
       raise BadRequest400("Minimal 1 alat harus dipilih.")
 
-    duration = (req.end_date - req.start_date).days
+    duration = max((req.end_date - req.start_date).days + 1, 1)
 
     # 2. Validasi stok & hitung total
     subtotal      = 0.0
@@ -207,7 +207,7 @@ class RentalService(StdService):
 
     self._validate_payment_method(req.payment_method)
     self._validate_dates(req.start_date, req.end_date)
-    duration = (req.end_date - req.start_date).days
+    duration = max((req.end_date - req.start_date).days + 1, 1)
 
     if not req.items: raise BadRequest400("Minimal 1 alat harus dipilih.")
 

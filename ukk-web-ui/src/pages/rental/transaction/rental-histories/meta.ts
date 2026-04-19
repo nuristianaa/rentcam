@@ -66,7 +66,7 @@ export const Meta = {
   app: 'rental',
   schema: 'rental',
   name: 'rental-histories',
-  title: 'Riwayat Rental',
+  title: 'Rental History',
   module: 'transaction/rental-histories',
   apiModule: 'transaction/rentals',
   route_ui: 'transaction/rental-histories',
@@ -109,12 +109,12 @@ export const Meta = {
   ],
 
   statusOptions: [
-    { label: 'Menunggu Bayar',       value: 'menunggu_bayar' },
-    { label: 'Menunggu Verifikasi',  value: 'menunggu_verif' },
-    { label: 'Diproses',             value: 'diproses' },
-    { label: 'Aktif',                value: 'aktif' },
-    { label: 'Selesai',              value: 'selesai' },
-    { label: 'Dibatalkan',           value: 'dibatalkan' },
+    { label: 'Waiting for Payment',       value: 'menunggu_bayar' },
+    { label: 'Waiting for Verification',  value: 'menunggu_verif' },
+    { label: 'Processing',             value: 'diproses' },
+    { label: 'Active',                value: 'aktif' },
+    { label: 'Completed',              value: 'selesai' },
+    { label: 'Cancelled',           value: 'dibatalkan' },
   ],
 
   statusColor: {
@@ -128,16 +128,16 @@ export const Meta = {
 
   statusFlowOptions: <Record<string, { label: string; value: string }[]>>{
     menunggu_bayar: [
-      { label: 'Menunggu Verifikasi', value: 'menunggu_verif' },
-      { label: 'Dibatalkan',          value: 'dibatalkan' },
+      { label: 'Waiting for Verification', value: 'menunggu_verif' },
+      { label: 'Cancelled',          value: 'dibatalkan' },
     ],
     menunggu_verif: [
-      { label: 'Diproses',       value: 'diproses' },
-      { label: 'Menunggu Bayar', value: 'menunggu_bayar' },
-      { label: 'Dibatalkan',     value: 'dibatalkan' },
+      { label: 'Processing',       value: 'diproses' },
+      { label: 'Waiting for Payment', value: 'menunggu_bayar' },
+      { label: 'Cancelled',     value: 'dibatalkan' },
     ],
     diproses: [
-      { label: 'Dibatalkan', value: 'dibatalkan' },
+      { label: 'Cancelled', value: 'dibatalkan' },
     ],
     aktif:      [],
     selesai:    [],

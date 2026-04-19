@@ -532,7 +532,7 @@ const openCustomerProfile = () => {
         initials: (u?.name ?? '?').charAt(0).toUpperCase(),
       }
     } else {
-      $q.notify({ type: 'negative', message: 'Gagal memuat profil customer.' })
+      $q.notify({ type: 'negative', message: 'Failed to load customer profile.' })
     }
   }, 'identity')
 }
@@ -715,7 +715,7 @@ const recalcDuration = () => {
     const diff = Math.ceil(
       (new Date(e).getTime() - new Date(s).getTime()) / (1000 * 60 * 60 * 24)
     )
-    dataModel.value.duration_days = diff > 0 ? diff : 0
+    dataModel.value.duration_days = diff >= 0 ? diff + 1 : 0
     // Recalculate ALL line item subtotals based on new duration
     ;(dataModel.value.items ?? []).forEach((row: any) => {
       row.subtotal = (row.quantity ?? 0) * (row.price_per_day ?? 0) * (dataModel.value.duration_days ?? 1)
@@ -779,7 +779,7 @@ const removeItem = (idx: number) => {
 const onLineItemChange = (row: any, val: any) => {
   // val adalah primitive id (karena emit-value + option-value="id")
   if (val == null) {
-    if (row.item_id == null) return  // guard: tidak ada perubahan
+    if (row.item_id == null) return  // guard: no changes
     row.item_id        = null
     row.item_code      = null
     row.item_name      = null
@@ -913,7 +913,7 @@ const submit = async () => {
   const status = dataModel.value.id ? await update() : await save()
 
   if (status === 200) {
-    Helper.showSuccess('Data berhasil disimpan.')
+    Helper.showSuccess('Data successfully saved.')
     back()
   }
 

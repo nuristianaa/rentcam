@@ -39,7 +39,7 @@ export default defineRouter(function (/* { store, ssrContext } */) {
     if (!path) path = to?.path
     path = path.replaceAll('/', ' ')
     path = path.replaceAll('-', ' ')
-    document.title = 'UKK | ' + path.replace(/(^\w{1})|(\s+\w{1})/g, (letter: string) => letter.toUpperCase())
+    document.title = 'RentCam rental alat photo | ' + path.replace(/(^\w{1})|(\s+\w{1})/g, (letter: string) => letter.toUpperCase())
     next()
   })
 

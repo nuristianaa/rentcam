@@ -47,7 +47,7 @@
         <f-card title="Foto Alat" col="12" v-else>
           <div class="text-center q-py-lg text-grey-5">
             <q-icon name="image_not_supported" size="40px" />
-            <div class="q-mt-sm">Belum ada foto untuk item ini.</div>
+            <div class="q-mt-sm">No photos available for this item yet.</div>
           </div>
         </f-card>
 
@@ -117,8 +117,6 @@ const dataModel = ref(Meta.model)
 const viewList = ref<any[]>([])
 
 /** Resolve image URL — returns null on failure, never throws */
-const encodeStaticPath = (path: string) => path.split('/').map(encodeURIComponent).join('/')
-
 const resolveImageUrl = (path: string, storage?: string | null): string | null => {
   if (!path) return null
 
@@ -126,18 +124,26 @@ const resolveImageUrl = (path: string, storage?: string | null): string | null =
     return path
   }
 
-  if (storage) {
-    try {
-      const url = (Helper as any).viewBlobFile(path, false, storage)
-      return typeof url === 'string' ? url : null
-    } catch {
-      return null
-    }
-  }
-
   const token = authStore().getToken()
   const baseUrl = Config.apiUrl('rental')
-  return `${baseUrl}static_files/${encodeStaticPath(path)}${token ? `?token=${token}` : ''}`
+
+  // Gunakan static_files jika path dimulai dengan prefix yang dikenal,
+  // atau jika storage bertipe STATIC (sama seperti logika di FormPage)
+  if (
+    path.startsWith('rental/') ||
+    path.startsWith('crm/') ||
+    path.startsWith('static_files/') ||
+    (storage && storage.startsWith('STATIC'))
+  ) {
+    return `${baseUrl}static_files/${encodeURIComponent(path)}${token ? `?token=${token}` : ''}`
+  }
+
+  try {
+    const url = (Helper as any).viewBlobFile(path, false, storage)
+    return typeof url === 'string' ? url : null
+  } catch {
+    return null
+  }
 }
 
 /** Image list derived from dataModel.images — only entries with valid URLs */

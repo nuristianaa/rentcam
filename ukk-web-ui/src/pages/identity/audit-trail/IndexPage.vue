@@ -151,7 +151,7 @@ const getUsers = async () => {
     (status: number, data: any) => {
       if (status === 200) approversList.value = data
     },
-    'main'
+    'identity'
   )
 }
 
@@ -159,10 +159,9 @@ const getModules = async () => {
   await API.get(
     `${Meta.module}?fetch_module=True&${epQuery.value}`,
     (status: number, data: any) => {
-      console.log(data)
       if (status === 200) moduleOptions.value = data
     },
-    'main'
+    'identity'
   )
 }
 
@@ -175,7 +174,7 @@ const getDetail = async (data_id: string) => {
         showDialog('detail', 'Detail', data)
       }
     },
-    'main'
+    'identity'
   )
 }
 
@@ -205,7 +204,7 @@ const applyFilters = async (filters: FilterItem[], signPlacements: DataModel[]) 
         window.open(url, '_blank')
       }
     },
-    'user',
+    'identity',
     false,
     'blob'
   )

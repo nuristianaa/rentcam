@@ -10,7 +10,7 @@
           <!-- Update Status -->
           <q-btn
             v-if="allowedNextStatuses.length"
-            label="Ubah Status"
+            label="Update Status"
             icon="swap_horiz"
             color="primary"
             unelevated
@@ -58,7 +58,7 @@
           <!-- Lihat Profil Customer -->
           <q-btn
             v-if="dataModel.customer_id"
-            label="Profil Customer"
+            label="Customer Profile"
             icon="person_search"
             color="blue-grey"
             unelevated
@@ -71,7 +71,7 @@
       <div class="row q-pa-sm q-col-gutter-sm">
 
         <!-- ─── Info Utama ───────────────────────────────────── -->
-        <f-card title="Detail Rental" col="6">
+        <f-card title="Rental Detail" col="6">
           <!-- Status badge -->
           <div class="q-mb-sm">
             <q-badge
@@ -129,8 +129,8 @@
                   <div class="row items-center q-gutter-xs">
                     <q-icon name="logout" color="purple" />
                     <span class="text-subtitle2 text-purple">Checkout</span>
-                    <q-badge v-if="checkoutDone" color="purple" label="Selesai" class="q-ml-auto" />
-                    <q-badge v-else color="grey" label="Belum" class="q-ml-auto" />
+                    <q-badge v-if="checkoutDone" color="purple" label="Completed" class="q-ml-auto" />
+                    <q-badge v-else color="grey" label="Pending" class="q-ml-auto" />
                   </div>
                 </q-card-section>
                 <q-card-section v-if="checkoutData">
@@ -139,7 +139,7 @@
                   </div>
                 </q-card-section>
                 <q-card-section v-else class="text-grey-5 text-caption">
-                  Belum ada data checkout.
+                  No checkout data yet.
                 </q-card-section>
               </q-card>
             </div>
@@ -151,15 +151,15 @@
                   <div class="row items-center q-gutter-xs">
                     <q-icon name="login" color="teal" />
                     <span class="text-subtitle2 text-teal">Checkin</span>
-                    <q-badge v-if="checkinDone" color="teal" label="Selesai" class="q-ml-auto" />
-                    <q-badge v-else color="grey" label="Belum" class="q-ml-auto" />
+                    <q-badge v-if="checkinDone" color="teal" label="Completed" class="q-ml-auto" />
+                    <q-badge v-else color="grey" label="Pending" class="q-ml-auto" />
                   </div>
                 </q-card-section>
                 <q-card-section v-if="checkinData">
                   <checkpoint-detail :data="checkinData" />
                 </q-card-section>
                 <q-card-section v-else class="text-grey-5 text-caption">
-                  Belum ada data checkin.
+                  No checkin data yet.
                 </q-card-section>
               </q-card>
             </div>
@@ -168,7 +168,7 @@
         </f-card>
 
         <!-- ─── Pembayaran ─────────────────────────────────────── -->
-        <f-card title="Pembayaran" col="12">
+        <f-card title="Payment" col="12">
           <q-table
             :rows="dataModel.payments ?? []"
             :columns="paymentColumns"
@@ -189,11 +189,11 @@
               <q-td :props="props">{{ formatDatetime(props.row.created_at) }}</q-td>
             </template>
             <template #no-data>
-              <div class="text-grey-5 text-caption q-pa-sm">Belum ada pembayaran.</div>
+              <div class="text-grey-5 text-caption q-pa-sm">No payments yet.</div>
             </template>
           </q-table>
           <div class="q-mt-sm text-caption text-grey-6">
-            {{ verifiedPayment ? `Pembayaran terverifikasi ditemukan: ${formatCurrency(verifiedPayment.amount)} (${verifiedPayment.payment_method ?? 'tanpa metode'})` : 'Tidak ada pembayaran terverifikasi untuk rental ini.' }}
+            {{ verifiedPayment ? `Verified payment found: ${formatCurrency(verifiedPayment.amount)} (${verifiedPayment.payment_method ?? 'no method'})` : 'No verified payments for this rental.' }}
           </div>
         </f-card>
 
@@ -245,13 +245,13 @@
               </q-td>
             </template>
             <template #no-data>
-              <div class="text-grey-5 text-caption q-pa-sm">Belum ada invoice.</div>
+              <div class="text-grey-5 text-caption q-pa-sm">No invoices yet.</div>
             </template>
           </q-table>
         </f-card>
 
         <!-- ─── Riwayat Status ───────────────────────────────── -->
-        <f-card title="Riwayat Status" col="12">
+        <f-card title="Status History" col="12">
           <q-timeline color="primary" layout="dense">
             <q-timeline-entry
               v-for="(h, i) in dataModel.histories ?? []"
@@ -278,7 +278,7 @@
               <div v-if="h.notes" class="text-caption q-mt-xs">{{ h.notes }}</div>
             </q-timeline-entry>
             <div v-if="!dataModel.histories?.length" class="text-grey-5 text-caption q-pa-sm">
-              Belum ada riwayat.
+              No history yet.
             </div>
           </q-timeline>
         </f-card>
@@ -292,12 +292,12 @@
     <q-dialog v-model="statusDialog.show" persistent>
       <q-card style="min-width: 360px">
         <q-card-section class="bg-primary text-white">
-          <div class="text-h6">Ubah Status Rental</div>
+          <div class="text-h6">Change Rental Status</div>
         </q-card-section>
         <q-card-section class="q-col-gutter-sm">
           <q-select
             v-model="statusDialog.status"
-            label="Status Baru"
+            label="New Status"
             :options="allowedNextStatuses"
             option-label="label"
             option-value="value"
@@ -308,7 +308,7 @@
           />
           <q-input
             v-model="statusDialog.notes"
-            label="Catatan"
+            label="Notes"
             type="textarea"
             rows="3"
             outlined
@@ -317,11 +317,11 @@
           />
         </q-card-section>
         <q-card-actions align="right">
-          <q-btn flat label="Batal" @click="statusDialog.show = false" />
+          <q-btn flat label="Cancel" @click="statusDialog.show = false" />
           <q-btn
             unelevated
             color="primary"
-            label="Simpan"
+            label="Save"
             :loading="statusDialog.loading"
             :disable="!statusDialog.status"
             @click="submitStatus"
@@ -351,10 +351,10 @@
           />
           <div v-else class="text-center q-pa-lg text-grey-6">
             <div v-if="pdfLoading">
-              Memuat preview invoice...
+              Loading preview...
             </div>
             <div v-else>
-              Tidak ada preview saat ini. Tutup dan coba lagi.
+              No preview available right now. Close and try again.
             </div>
           </div>
         </q-card-section>
@@ -369,7 +369,7 @@
         <q-card-section :class="checkpointDialog.type === 'checkout' ? 'bg-purple text-white' : 'bg-teal text-white'">
           <div class="text-h6 row items-center q-gutter-xs">
             <q-icon :name="checkpointDialog.type === 'checkout' ? 'logout' : 'login'" />
-            {{ checkpointDialog.type === 'checkout' ? 'Checkout — Serahkan Alat' : 'Checkin — Terima Alat Kembali' }}
+            {{ checkpointDialog.type === 'checkout' ? 'Checkout — Handover Equipment' : 'Checkin — Receive Equipment Back' }}
           </div>
         </q-card-section>
         <q-card-section class="q-col-gutter-sm">
@@ -377,7 +377,7 @@
           <!-- Kondisi alat -->
           <q-select
             v-model="checkpointDialog.condition"
-            label="Kondisi Alat"
+            label="Equipment Condition"
             :options="conditionOptions"
             option-label="label"
             option-value="value"
@@ -389,7 +389,7 @@
           <q-input
             v-if="checkpointDialog.condition && checkpointDialog.condition !== 'baik'"
             v-model="checkpointDialog.condition_notes"
-            label="Keterangan Kondisi"
+            label="Condition Notes"
             type="textarea"
             rows="2"
             outlined
@@ -407,18 +407,18 @@
                 v-if="!cl.ok"
                 v-model="cl.note"
                 dense borderless
-                placeholder="Catatan"
+                placeholder="Notes"
                 class="col"
               />
               <q-btn flat round dense icon="close" color="negative" size="xs" @click="removeChecklist(ci)" />
             </div>
-            <q-btn flat size="xs" icon="add" color="primary" label="Tambah item checklist" @click="addChecklist" />
+            <q-btn flat size="xs" icon="add" color="primary" label="Add checklist item" @click="addChecklist" />
           </div>
 
           <!-- Catatan -->
           <q-input
             v-model="checkpointDialog.notes"
-            label="Catatan"
+            label="Notes"
             type="textarea"
             rows="2"
             outlined
@@ -428,11 +428,11 @@
 
         </q-card-section>
         <q-card-actions align="right">
-          <q-btn flat label="Batal" @click="checkpointDialog.show = false" />
+          <q-btn flat label="Cancel" @click="checkpointDialog.show = false" />
           <q-btn
             unelevated
             :color="checkpointDialog.type === 'checkout' ? 'purple' : 'teal'"
-            :label="checkpointDialog.type === 'checkout' ? 'Serahkan Alat' : 'Terima Alat'"
+            :label="checkpointDialog.type === 'checkout' ? 'Handover Equipment' : 'Receive Equipment'"
             :loading="checkpointDialog.loading"
             @click="submitCheckpoint"
           />
@@ -448,7 +448,7 @@
             <span class="text-h6 text-bold text-white" style="line-height:1;">{{ customerProfileDialog.initials }}</span>
           </q-avatar>
           <div>
-            <div class="text-subtitle1 text-weight-bold">{{ customerProfileDialog.data?.name || 'Profil Customer' }}</div>
+            <div class="text-subtitle1 text-weight-bold">{{ customerProfileDialog.data?.name || 'Customer Profile' }}</div>
             <div class="text-caption opacity-80">{{ customerProfileDialog.data?.email || '-' }}</div>
           </div>
           <q-space />
@@ -465,28 +465,28 @@
               <q-item>
                 <q-item-section side><q-icon name="phone" color="primary" /></q-item-section>
                 <q-item-section>
-                  <q-item-label overline class="text-grey-6">No. HP</q-item-label>
+                  <q-item-label overline class="text-grey-6">Phone No.</q-item-label>
                   <q-item-label>{{ customerProfileDialog.data?.phone || '-' }}</q-item-label>
                 </q-item-section>
               </q-item>
               <q-item>
                 <q-item-section side><q-icon name="cake" color="primary" /></q-item-section>
                 <q-item-section>
-                  <q-item-label overline class="text-grey-6">Tanggal Lahir</q-item-label>
+                  <q-item-label overline class="text-grey-6">Date of Birth</q-item-label>
                   <q-item-label>{{ customerProfileDialog.data?.birthday ? new Date(customerProfileDialog.data.birthday).toLocaleDateString('id-ID', { day:'2-digit', month:'long', year:'numeric' }) : '-' }}</q-item-label>
                 </q-item-section>
               </q-item>
               <q-item>
                 <q-item-section side><q-icon name="home" color="primary" /></q-item-section>
                 <q-item-section>
-                  <q-item-label overline class="text-grey-6">Alamat</q-item-label>
+                  <q-item-label overline class="text-grey-6">Address</q-item-label>
                   <q-item-label>{{ customerProfileDialog.data?.location || '-' }}</q-item-label>
                 </q-item-section>
               </q-item>
               <q-item>
                 <q-item-section side><q-icon name="badge" color="primary" /></q-item-section>
                 <q-item-section>
-                  <q-item-label overline class="text-grey-6">Foto KTP</q-item-label>
+                  <q-item-label overline class="text-grey-6">ID Card Photo</q-item-label>
                   <q-item-label>
                     <template v-if="customerProfileDialog.data?.profile_picture">
                       <q-img
@@ -502,7 +502,7 @@
                         </template>
                       </q-img>
                     </template>
-                    <q-badge v-else color="negative" label="Belum Upload" />
+                    <q-badge v-else color="negative" label="Not Uploaded" />
                   </q-item-label>
                 </q-item-section>
               </q-item>
@@ -516,11 +516,11 @@
               class="bg-amber-1 text-amber-10 q-mt-sm"
             >
               <template #avatar><q-icon name="warning" color="amber-8" /></template>
-              Profil customer <strong>belum lengkap</strong>. Pastikan nama, no. HP, alamat, dan foto KTP sudah terisi.
+              Customer profile is <strong>incomplete</strong>. Ensure name, phone no., address, and ID card photo are filled.
             </q-banner>
             <q-banner v-else rounded dense class="bg-green-1 text-green-9 q-mt-sm">
               <template #avatar><q-icon name="check_circle" color="green-7" /></template>
-              Profil customer sudah lengkap dan siap rental.
+              Customer profile is complete and ready for rental.
             </q-banner>
           </q-card-section>
         </template>
@@ -549,7 +549,7 @@ const CheckpointDetail = defineComponent({
       : '—'
 
     const condLabel: Record<string, string> = {
-      baik: 'Baik', cacat_ringan: 'Cacat Ringan', rusak: 'Rusak', hilang: 'Hilang',
+      baik: 'Good', cacat_ringan: 'Slight Defect', rusak: 'Broken', hilang: 'Lost',
     }
     const condColor: Record<string, string> = {
       baik: 'positive', cacat_ringan: 'warning', rusak: 'negative', hilang: 'red-9',
@@ -560,30 +560,30 @@ const CheckpointDetail = defineComponent({
       if (!d) return null
       return h('div', { class: 'q-gutter-xs' }, [
         h('div', { class: 'text-caption text-grey-7' }, [
-          h('span', { class: 'text-weight-medium' }, 'Waktu: '),
+          h('span', { class: 'text-weight-medium' }, 'Time: '),
           fmt(d.actual_at),
         ]),
         d.condition
           ? h('div', { class: 'q-mt-xs' }, [
-              h('span', { class: 'text-caption text-grey-7 text-weight-medium' }, 'Kondisi: '),
+              h('span', { class: 'text-caption text-grey-7 text-weight-medium' }, 'Condition: '),
               h('q-badge', { color: condColor[d.condition] ?? 'grey', label: condLabel[d.condition] ?? d.condition }),
             ])
           : null,
         d.condition_notes
           ? h('div', { class: 'text-caption q-mt-xs' }, [
-              h('span', { class: 'text-weight-medium' }, 'Ket. Kondisi: '),
+              h('span', { class: 'text-weight-medium' }, 'Cond. Notes: '),
               d.condition_notes,
             ])
           : null,
         d.officer_name
           ? h('div', { class: 'text-caption q-mt-xs' }, [
-              h('span', { class: 'text-weight-medium' }, 'Petugas: '),
+              h('span', { class: 'text-weight-medium' }, 'Officer: '),
               d.officer_name,
             ])
           : null,
         d.notes
           ? h('div', { class: 'text-caption q-mt-xs' }, [
-              h('span', { class: 'text-weight-medium' }, 'Catatan: '),
+              h('span', { class: 'text-weight-medium' }, 'Notes: '),
               d.notes,
             ])
           : null,
@@ -688,7 +688,7 @@ const openPdfPreview = async (invoice: any) => {
   pdfLoading.value = false
 
   if (!blob) {
-    Helper.showError('Gagal membuka preview invoice.')
+    Helper.showError('Failed to open invoice preview.')
     pdfPreviewDialog.value.show = false
     return
   }
@@ -706,7 +706,7 @@ const openPdfInNewTab = () => {
 const downloadPdf = async (invoice: any) => {
   const blob = await fetchPdfBlob(invoice.id, 'download-pdf')
   if (!blob) {
-    Helper.showError('Gagal mengunduh invoice.')
+    Helper.showError('Failed to download invoice.')
     return
   }
   const url = URL.createObjectURL(blob)
@@ -742,7 +742,7 @@ const historyIcon = (event: string) => {
 const pdfStatusColor = (s: string) =>
   ({ pending: 'orange', generated: 'positive', failed: 'negative' }[s] ?? 'grey')
 const pdfStatusLabel = (s: string) =>
-  ({ pending: 'Pending', generated: 'Selesai', failed: 'Gagal' }[s] ?? s)
+  ({ pending: 'Pending', generated: 'Completed', failed: 'Failed' }[s] ?? s)
 
 // ─── Computed: checkpoint state ──────────────────────────────
 const checkoutData = computed(() =>
@@ -761,33 +761,33 @@ const allowedNextStatuses = computed(() =>
 
 // ─── Table columns ───────────────────────────────────────────
 const itemColumns = [
-  { name: 'item_name',      label: 'Item',       field: 'item_name',      align: 'left'  as const },
+  { name: 'item_name',      label: 'Item Name',       field: 'item_name',      align: 'left'  as const },
   { name: 'quantity',       label: 'Qty',        field: 'quantity',       align: 'right' as const },
-  { name: 'price_per_day',  label: 'Harga/Hari', field: 'price_per_day',  align: 'right' as const },
+  { name: 'price_per_day',  label: 'Price/Day', field: 'price_per_day',  align: 'right' as const },
   { name: 'deposit_amount', label: 'Deposit',    field: 'deposit_amount', align: 'right' as const },
   { name: 'subtotal',       label: 'Subtotal',   field: 'subtotal',       align: 'right' as const },
 ]
 
 const paymentColumns = [
-  { name: 'rental_code',    label: 'Kode Rental',     field: 'rental_code',    align: 'left'   as const },
-  { name: 'type',           label: 'Tipe',            field: 'type',           align: 'left'   as const },
+  { name: 'rental_code',    label: 'Rental Code',     field: 'rental_code',    align: 'left'   as const },
+  { name: 'type',           label: 'Type',            field: 'type',           align: 'left'   as const },
   { name: 'status',         label: 'Status',          field: 'status',         align: 'left'   as const },
-  { name: 'amount',         label: 'Jumlah',          field: 'amount',         align: 'right'  as const },
-  { name: 'payment_method', label: 'Metode',          field: 'payment_method', align: 'left'   as const },
+  { name: 'amount',         label: 'Amount',          field: 'amount',         align: 'right'  as const },
+  { name: 'payment_method', label: 'Method',          field: 'payment_method', align: 'left'   as const },
   { name: 'bank_name',      label: 'Bank',            field: 'bank_name',      align: 'left'   as const },
-  { name: 'account_number', label: 'No. Rekening',    field: 'account_number', align: 'left'   as const },
-  { name: 'verified_by_name', label: 'Diverifikasi Oleh', field: 'verified_by_name', align: 'left' as const },
-  { name: 'paid_at',        label: 'Tgl Bayar',       field: 'paid_at',        align: 'left'   as const },
-  { name: 'created_at',     label: 'Dibuat',          field: 'created_at',     align: 'left'   as const },
+  { name: 'account_number', label: 'Account No.',    field: 'account_number', align: 'left'   as const },
+  { name: 'verified_by_name', label: 'Verified By', field: 'verified_by_name', align: 'left' as const },
+  { name: 'paid_at',        label: 'Payment Date',       field: 'paid_at',        align: 'left'   as const },
+  { name: 'created_at',     label: 'Created',          field: 'created_at',     align: 'left'   as const },
 ]
 
 const invoiceColumns = [
-  { name: 'invoice_code',   label: 'Kode Invoice', field: 'invoice_code',  align: 'left'   as const },
-  { name: 'type',           label: 'Tipe',         field: 'type',          align: 'left'   as const },
+  { name: 'invoice_code',   label: 'Invoice Code', field: 'invoice_code',  align: 'left'   as const },
+  { name: 'type',           label: 'Type',         field: 'type',          align: 'left'   as const },
   { name: 'grand_total',    label: 'Total',        field: 'grand_total',   align: 'right'  as const },
-  { name: 'payment_method', label: 'Metode',       field: 'payment_method',align: 'left'   as const },
-  { name: 'pdf_status',     label: 'Status PDF',   field: 'pdf_status',    align: 'left'   as const },
-  { name: 'pdf_url',        label: 'Aksi PDF',     field: 'pdf_url',       align: 'center' as const },
+  { name: 'payment_method', label: 'Method',       field: 'payment_method',align: 'left'   as const },
+  { name: 'pdf_status',     label: 'PDF Status',   field: 'pdf_status',    align: 'left'   as const },
+  { name: 'pdf_url',        label: 'PDF Action',     field: 'pdf_url',       align: 'center' as const },
 ]
 
 const verifiedPayment = computed(() => {
@@ -804,8 +804,8 @@ const latestInvoice = computed(() => (dataModel.value.invoices ?? [])[0] ?? null
 const canGenerateInvoice = computed(() => true)
 const canGenerateInvoiceEnabled = computed(() => !!verifiedPayment.value && !hasInvoice.value)
 const canGenerateInvoiceTooltip = computed(() => {
-  if (hasInvoice.value) return 'Invoice sudah dibuat. Gunakan tombol preview untuk melihat invoice.'
-  return 'Butuh pembayaran terverifikasi untuk membuat invoice.'
+  if (hasInvoice.value) return 'Invoice is already generated. Use the preview button to view it.'
+  return 'Verified payment needed to generate an invoice.'
 })
 
 // ─── Dialogs ─────────────────────────────────────────────────
@@ -817,10 +817,10 @@ const statusDialog = ref({
 })
 
 const conditionOptions = [
-  { label: 'Baik',         value: 'baik' },
-  { label: 'Cacat Ringan', value: 'cacat_ringan' },
-  { label: 'Rusak',        value: 'rusak' },
-  { label: 'Hilang',       value: 'hilang' },
+  { label: 'Good',         value: 'baik' },
+  { label: 'Slight Defect', value: 'cacat_ringan' },
+  { label: 'Broken',        value: 'rusak' },
+  { label: 'Lost',       value: 'hilang' },
 ]
 
 const checkpointDialog = ref({
@@ -870,7 +870,7 @@ const submitStatus = () => {
     statusDialog.value.loading = false
     if (status === 200) {
       statusDialog.value.show = false
-      Helper.showSuccess('Status berhasil diubah.')
+      Helper.showSuccess('Status updated successfully.')
       getData(id)
     }
   }, Meta.app)
@@ -889,7 +889,7 @@ const submitCheckpoint = () => {
     d.loading = false
     if (status === 200) {
       d.show = false
-      Helper.showSuccess(`${d.type === 'checkout' ? 'Checkout' : 'Checkin'} berhasil.`)
+      Helper.showSuccess(`${d.type === 'checkout' ? 'Checkout' : 'Checkin'} successful.`)
       getData(id)
     }
   }, Meta.app)
@@ -897,7 +897,7 @@ const submitCheckpoint = () => {
 
 const generateInvoice = () => {
   if (!verifiedPayment.value) {
-    Helper.showError('Belum ada pembayaran yang terverifikasi untuk rental ini.')
+    Helper.showError('No verified payments for this rental yet.')
     return
   }
 
@@ -908,7 +908,7 @@ const generateInvoice = () => {
     (status: number) => {
       loadingInvoice.value = false
       if (status === 200) {
-        Helper.showSuccess('Invoice berhasil dibuat.')
+        Helper.showSuccess('Invoice generated successfully.')
         getData(id)
       }
     },

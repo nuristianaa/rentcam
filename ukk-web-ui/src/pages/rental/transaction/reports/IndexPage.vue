@@ -259,7 +259,7 @@
               <td class="text-right">{{ formatCurrency(item.grand_total) }}</td>
             </tr>
             <tr v-if="!data || data.length === 0">
-              <td colspan="7" class="text-center">Tidak ada transaksi pada periode ini.</td>
+              <td colspan="7" class="text-center">No transactions in this period.</td>
             </tr>
           </tbody>
         </table>
@@ -312,7 +312,7 @@
               <td class="text-right">{{ formatCurrency(item.total_revenue) }}</td>
             </tr>
             <tr v-if="!dataItems || dataItems.length === 0">
-              <td colspan="6" class="text-center">Tidak ada penyewaan alat pada periode ini.</td>
+              <td colspan="6" class="text-center">No equipment rentals in this period.</td>
             </tr>
           </tbody>
         </table>
@@ -365,7 +365,7 @@
               <td class="text-center">{{ item.status }}</td>
             </tr>
             <tr v-if="!fineData || fineData.length === 0">
-              <td colspan="6" class="text-center">Tidak ada pembayaran denda pada periode ini.</td>
+              <td colspan="6" class="text-center">No fine payments in this period.</td>
             </tr>
           </tbody>
         </table>

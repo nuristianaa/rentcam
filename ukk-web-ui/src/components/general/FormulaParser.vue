@@ -155,7 +155,7 @@ function toFormulaObject(list: ReferenceItem[] = [], sources: SourceItem[] = [])
     })
   )
 
-  // ambil source yang belum ada di reference
+  // take source that is not yet in reference
   const sourceExtras = Object.fromEntries(sources.filter((s) => !list.some((ref) => ref.referenceName === s.key)).map((s) => [s.key, s.value ?? null]))
 
   // gabungkan semuanya + result
@@ -190,7 +190,7 @@ function buildFields() {
     .filter((src) => !references.some((ref) => ref.referenceName === src.key))
     .map((src) => ({
       referenceName: src.key,
-      refCol: src.refCol, // default label jika tidak ada di reference
+      refCol: src.refCol, // default label if not in reference
       formula: `${src.value ?? ''}`,
       type: 'default'
     }))

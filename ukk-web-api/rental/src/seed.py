@@ -5,7 +5,7 @@ import sys
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
 from db.database import Session
-from seeders import item_categories_seeder, items_seeder
+from seeders import item_categories_seeder, items_seeder, transactions_seeder
 
 
 def init():
@@ -20,6 +20,9 @@ def init():
 
     # 2. Seed item alat foto
     items_seeder.run(db)
+
+    # 3. Seed transaksi: rental, payment, review
+    transactions_seeder.run(db)
 
     print("=" * 50)
     print("  Seeding selesai!")

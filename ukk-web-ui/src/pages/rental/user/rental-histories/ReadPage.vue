@@ -6,18 +6,18 @@
       <q-dialog v-if="!isReviewed(selectedItem)" v-model="reviewDialog" persistent>
         <q-card style="min-width: 350px">
           <q-card-section>
-            <div class="text-h6">Beri Review untuk {{ selectedItem?.item_name }}</div>
+            <div class="text-h6">Give Review for {{ selectedItem?.item_name }}</div>
           </q-card-section>
           <q-card-section class="q-pt-none">
             <div class="q-mb-md">
               <div class="text-subtitle2 q-mb-xs">Rating</div>
               <q-rating v-model="reviewForm.rating" max="5" size="2em" color="warning" icon="star_border" icon-selected="star" />
             </div>
-            <q-input v-model="reviewForm.comment" type="textarea" label="Komentar" outlined dense />
+            <q-input v-model="reviewForm.comment" type="textarea" label="Comment" outlined dense />
           </q-card-section>
           <q-card-actions align="right">
-            <q-btn flat label="Batal" color="primary" v-close-popup />
-            <q-btn flat label="Simpan Review" color="primary" @click="submitReview" />
+            <q-btn flat label="Cancel" color="primary" v-close-popup />
+            <q-btn flat label="Save Review" color="primary" @click="submitReview" />
           </q-card-actions>
         </q-card>
       </q-dialog>
@@ -32,7 +32,7 @@
           @click="back"
         />
         <div class="col">
-          <div class="text-h6 text-weight-bold">Detail Booking</div>
+          <div class="text-h6 text-weight-bold">Booking Detail</div>
           <div class="text-caption text-grey-6">{{ dataModel.rental_code ?? '-' }}</div>
         </div>
         <div class="col-auto">
@@ -48,20 +48,20 @@
       <q-card flat bordered class="q-mb-md">
         <q-card-section>
           <div class="text-subtitle2 text-weight-bold q-mb-sm">
-            <q-icon name="info" class="q-mr-xs" /> Informasi Booking
+            <q-icon name="info" class="q-mr-xs" /> Booking Information
           </div>
 
           <div class="row q-col-gutter-sm">
             <div class="col-6 col-sm-3">
-              <div class="text-caption text-grey-6">Kode Booking</div>
+              <div class="text-caption text-grey-6">Booking Code</div>
               <div class="text-body2 text-weight-medium">{{ dataModel.rental_code ?? '-' }}</div>
             </div>
             <div class="col-6 col-sm-3">
-              <div class="text-caption text-grey-6">Nama Pelanggan</div>
+              <div class="text-caption text-grey-6">Customer Name</div>
               <div class="text-body2 text-weight-medium">{{ dataModel.customer_name ?? '-' }}</div>
             </div>
             <div class="col-6 col-sm-3">
-              <div class="text-caption text-grey-6">Metode Pembayaran</div>
+              <div class="text-caption text-grey-6">Payment Method</div>
               <div class="text-body2 text-weight-medium">
                 <q-icon
                   :name="dataModel.payment_method === 'transfer' ? 'account_balance' : 'payments'"
@@ -87,10 +87,10 @@
       <q-card flat bordered class="q-mb-md">
         <q-card-section>
           <div class="text-subtitle2 text-weight-bold q-mb-sm">
-            <q-icon name="place" class="q-mr-xs" /> Lokasi Toko
+            <q-icon name="place" class="q-mr-xs" /> Store Location
           </div>
           <div class="text-caption q-mb-xs">
-            📍 Jl. Cihampelas No. 123, Bandung, Jawa Barat
+            📍 Jl. Cihampelas No. 123, Bandung, West Java
           </div>
           <div class="text-caption q-mb-sm">
             <a
@@ -98,10 +98,10 @@
               href="https://www.google.com/maps/search/?api=1&query=Jl.+Cihampelas+No.+123,+Bandung,+Jawa+Barat"
               target="_blank"
               rel="noopener noreferrer"
-            >Lihat di Google Maps</a>
+            >View on Google Maps</a>
           </div>
           <div class="text-caption q-mb-sm">
-            Kunjungi toko kami untuk mengambil alat secara langsung. Review hanya bisa dikirim setelah status transaksi selesai.
+            Visit our store to pick up the item. Reviews can only be submitted after the transaction is completed.
           </div>
           <q-separator class="q-my-sm" />
           <div class="q-mt-sm" style="width:100%;height:240px;overflow:hidden;border-radius:12px;">
@@ -122,26 +122,26 @@
       <q-card flat bordered class="q-mb-md">
         <q-card-section>
           <div class="text-subtitle2 text-weight-bold q-mb-sm">
-            <q-icon name="calendar_today" class="q-mr-xs" /> Periode Sewa
+            <q-icon name="calendar_today" class="q-mr-xs" /> Rental Period
           </div>
 
           <div class="row q-col-gutter-sm">
             <div class="col-6 col-sm-4">
-              <div class="text-caption text-grey-6">Tanggal Mulai</div>
+              <div class="text-caption text-grey-6">Start Date</div>
               <div class="text-body2 text-weight-medium">{{ dataModel.start_date ?? '-' }}</div>
             </div>
             <div class="col-6 col-sm-4">
-              <div class="text-caption text-grey-6">Tanggal Selesai</div>
+              <div class="text-caption text-grey-6">End Date</div>
               <div class="text-body2 text-weight-medium">{{ dataModel.end_date ?? '-' }}</div>
             </div>
             <div class="col-6 col-sm-4">
-              <div class="text-caption text-grey-6">Durasi</div>
-              <div class="text-body2 text-weight-medium">{{ dataModel.duration_days ?? '-' }} hari</div>
+              <div class="text-caption text-grey-6">Duration</div>
+              <div class="text-body2 text-weight-medium">{{ dataModel.duration_days ?? '-' }} days</div>
             </div>
           </div>
 
           <div v-if="dataModel.notes" class="q-mt-sm">
-            <div class="text-caption text-grey-6">Catatan</div>
+            <div class="text-caption text-grey-6">Notes</div>
             <div class="text-body2">{{ dataModel.notes }}</div>
           </div>
         </q-card-section>
@@ -151,7 +151,7 @@
       <q-card flat bordered class="q-mb-md">
         <q-card-section>
           <div class="text-subtitle2 text-weight-bold q-mb-sm">
-            <q-icon name="list_alt" class="q-mr-xs" /> Item yang Disewa
+            <q-icon name="list_alt" class="q-mr-xs" /> Rented Items
           </div>
 
           <q-table
@@ -162,7 +162,7 @@
             dense
             hide-pagination
             :pagination="{ rowsPerPage: 0 }"
-            no-data-label="Tidak ada item."
+            no-data-label="No items."
           >
             <template #body-cell-price_per_day="props">
               <q-td :props="props" class="text-right">
@@ -190,7 +190,7 @@
                     size="sm"
                     color="positive"
                     text-color="white"
-                    label="Telah di-review"
+                    label="Reviewed"
                     disable
                   />
                 </div>
@@ -199,7 +199,7 @@
                   size="sm"
                   :color="dataModel.status === 'selesai' ? 'primary' : 'grey-5'"
                   :text-color="dataModel.status === 'selesai' ? 'white' : 'black'"
-                  :label="dataModel.status === 'selesai' ? 'Beri Review' : 'Review akan aktif setelah selesai'"
+                  :label="dataModel.status === 'selesai' ? 'Give Review' : 'Review available after completion'"
                   :disable="dataModel.status !== 'selesai'"
                   @click="dataModel.status === 'selesai' ? openReviewDialog(props.row) : undefined"
                 />
@@ -224,31 +224,31 @@
       <q-card flat bordered class="q-mb-md">
         <q-card-section>
           <div class="text-subtitle2 text-weight-bold q-mb-md">
-            <q-icon name="timeline" class="q-mr-xs" /> Tracking & Log Pemeriksaan
+            <q-icon name="timeline" class="q-mr-xs" /> Tracking & Inspection Log
           </div>
           
           <q-timeline layout="dense" color="primary" class="q-px-sm" v-if="checkpoints.length > 0 || dataModel.status">
-            <q-timeline-entry icon="shopping_cart_checkout" title="Booking Dibuat" :subtitle="dataModel.created_at ? new Date(dataModel.created_at).toLocaleString('id-ID') : '...'" />
-            <q-timeline-entry v-if="dataModel.status !== 'menunggu_bayar'" icon="account_balance_wallet" title="Pembayaran Terselesaikan" color="positive" />
+            <q-timeline-entry icon="shopping_cart_checkout" title="Booking Created" :subtitle="dataModel.created_at ? new Date(dataModel.created_at).toLocaleString('id-ID') : '...'" />
+            <q-timeline-entry v-if="dataModel.status !== 'menunggu_bayar'" icon="account_balance_wallet" title="Payment Completed" color="positive" />
             
             <q-timeline-entry
               v-for="cp in checkpoints"
               :key="cp.id"
-              :title="cp.type === 'OUT' ? 'Alat Diserahkan ke Penyewa' : (cp.type === 'IN' ? 'Alat Dikembalikan & Diperiksa' : cp.type)"
+              :title="cp.type === 'OUT' ? 'Equipment Handed Over' : (cp.type === 'IN' ? 'Equipment Returned & Inspected' : cp.type)"
               :subtitle="cp.actual_at ? new Date(cp.actual_at).toLocaleString('id-ID') : '...'"
               :color="cp.type === 'OUT' ? 'info' : 'positive'"
               :icon="cp.type === 'OUT' ? 'outbox' : 'fact_check'"
             >
-              <div class="text-body2 text-grey-8">Kondisi: <strong>{{ cp.condition || '-' }}</strong></div>
-              <div v-if="cp.condition_notes" class="text-caption text-grey-6">Catatan: {{ cp.condition_notes }}</div>
-              <div class="text-caption text-grey-6">Petugas: {{ cp.officer_name || '-' }}</div>
+              <div class="text-body2 text-grey-8">Condition: <strong>{{ cp.condition || '-' }}</strong></div>
+              <div v-if="cp.condition_notes" class="text-caption text-grey-6">Notes: {{ cp.condition_notes }}</div>
+              <div class="text-caption text-grey-6">Agent: {{ cp.officer_name || '-' }}</div>
             </q-timeline-entry>
             
-            <q-timeline-entry v-if="dataModel.status === 'selesai'" title="Selesai" subtitle="Transaksi telah ditutup" icon="check_circle" color="green" />
-            <q-timeline-entry v-if="dataModel.status === 'batal'" title="Dibatalkan" subtitle="Transaksi dibatalkan" icon="cancel" color="negative" />
+            <q-timeline-entry v-if="dataModel.status === 'selesai'" title="Completed" subtitle="Transaction has been closed" icon="check_circle" color="green" />
+            <q-timeline-entry v-if="dataModel.status === 'batal'" title="Cancelled" subtitle="Transaction was cancelled" icon="cancel" color="negative" />
           </q-timeline>
           <div v-else class="text-caption text-grey-6 q-pa-md text-center">
-            Belum ada log tracking.
+            No tracking logs available yet.
           </div>
         </q-card-section>
       </q-card>
@@ -257,16 +257,16 @@
       <q-card flat bordered class="q-mb-md bg-grey-1">
         <q-card-section>
           <div class="text-subtitle2 text-weight-bold q-mb-md">
-            <q-icon name="receipt_long" class="q-mr-xs" /> Rincian Pembayaran
+            <q-icon name="receipt_long" class="q-mr-xs" /> Payment Details
           </div>
 
           <div class="column q-gutter-y-sm text-body2">
             <div class="row justify-between">
-              <span class="text-grey-8">Subtotal Sewa</span>
+              <span class="text-grey-8">Rental Subtotal</span>
               <span class="text-weight-medium">{{ formatCurrency(dataModel.subtotal) }}</span>
             </div>
             <div class="row justify-between">
-              <span class="text-grey-8">Desposit Jaminan</span>
+              <span class="text-grey-8">Security Deposit</span>
               <span class="text-weight-medium">{{ formatCurrency(dataModel.deposit_total) }}</span>
             </div>
             
@@ -289,17 +289,17 @@
         <template #avatar>
           <q-icon name="info" color="blue-7" size="24px" />
         </template>
-        <div class="text-caption text-weight-bold q-mb-xs">Instruksi Pembayaran Transfer</div>
+        <div class="text-caption text-weight-bold q-mb-xs">Transfer Payment Instructions</div>
         <div class="text-caption q-mb-xs">
-          Silakan transfer ke rekening berikut, lalu kirim bukti transfer via WhatsApp:
+          Please transfer to the following account, then send the payment receipt via WhatsApp:
         </div>
         <div class="text-caption q-mb-xs">
-          🏦 <b>Bank BCA</b> — No. Rek: <b>1234567890</b> a.n. <b>Admin Rental Kamera</b>
+          🏦 <b>BCA Bank</b> — Account No: <b>1234567890</b> a.n. <b>Camera Rental Admin</b>
         </div>
         <div class="text-caption">
-          📱 WhatsApp Admin:
+          📱 Admin WhatsApp:
           <a
-            :href="`https://wa.me/6281234567890?text=Halo Admin, saya ${dataModel.customer_name ?? ''} ingin mengirim bukti transfer untuk booking ${dataModel.rental_code ?? ''}.`"
+            :href="`https://wa.me/6281234567890?text=Hello Admin, I am ${dataModel.customer_name ?? ''} sending the transfer receipt for booking ${dataModel.rental_code ?? ''}.`"
             target="_blank"
             class="text-blue-10 text-weight-bold"
           >0812-3456-7890</a>
@@ -333,12 +333,12 @@ const reviewForm = ref({ rating: 5, comment: '' })
 
 // ─── Columns ──────────────────────────────────────────────────────────────────
 const itemColumns = [
-  { name: 'item_name',     label: 'Nama Item',  field: 'item_name',     align: 'left' as const },
+  { name: 'item_name',     label: 'Item Name',  field: 'item_name',     align: 'left' as const },
   { name: 'quantity',      label: 'Qty',        field: 'quantity',      align: 'center' as const },
-  { name: 'price_per_day', label: 'Harga/Hari', field: 'price_per_day', align: 'right' as const },
+  { name: 'price_per_day', label: 'Price/Day', field: 'price_per_day', align: 'right' as const },
   { name: 'deposit_amount',label: 'Deposit',    field: 'deposit_amount',align: 'right' as const },
   { name: 'subtotal',      label: 'Subtotal',   field: 'subtotal',      align: 'right' as const },
-  { name: 'action',        label: 'Aksi',       field: 'action',        align: 'center' as const },
+  { name: 'action',        label: 'Action',       field: 'action',        align: 'center' as const },
 ]
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -388,11 +388,11 @@ const submitReview = () => {
   }
   API.post(`transaction/reviews`, payload, (status: number, data: any) => {
     if (status === 200 || status === 201) {
-      $q.notify({ type: 'positive', message: 'Review berhasil disimpan' })
+      $q.notify({ type: 'positive', message: 'Review saved successfully' })
       reviewDialog.value = false
       loadData()
     } else {
-      $q.notify({ type: 'negative', message: data?.message || 'Gagal menyimpan review' })
+      $q.notify({ type: 'negative', message: data?.message || 'Failed to save review' })
     }
   }, Meta.app)
 }

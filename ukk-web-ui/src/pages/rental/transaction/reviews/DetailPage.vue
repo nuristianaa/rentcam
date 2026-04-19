@@ -28,7 +28,7 @@
       </div>
     </h-detail>
 
-    <!-- Dialog konfirmasi toggle visible -->
+    <!-- Visibility toggle confirmation dialog -->
     <q-dialog v-model="dialogVisible">
       <q-card style="min-width: 350px">
         <q-card-section>
@@ -96,7 +96,7 @@ const toggleVisible = () => {
   API.put(`${Meta.module}/${dataModel.value.id}/toggle-visible`, payload, (status: number) => {
     if (status === 200) {
       Helper.showSuccess(
-        payload.is_visible ? 'Ulasan berhasil ditampilkan.' : 'Ulasan berhasil disembunyikan.'
+        payload.is_visible ? 'Review has been successfully shown.' : 'Review has been successfully hidden.'
       )
       dialogVisible.value = false
       getData(dataModel.value.id!)

@@ -12,10 +12,10 @@
       <div class="faq-hero__inner">
         <div class="faq-hero__badge">
           <q-icon name="help_outline" size="14px" />
-          Pusat Bantuan
+          Help Center
         </div>
-        <h1 class="faq-hero__title">Ada yang bisa<br /><span class="faq-hero__title--accent">kami bantu?</span></h1>
-        <p class="faq-hero__sub">Temukan jawaban dari pertanyaan yang sering ditanyakan seputar layanan rental kami.</p>
+        <h1 class="faq-hero__title">How can we<br /><span class="faq-hero__title--accent">help you?</span></h1>
+        <p class="faq-hero__sub">Find answers to frequently asked questions about our rental service.</p>
 
         <!-- Search -->
         <div class="faq-search-wrap">
@@ -23,7 +23,7 @@
           <input
             v-model="search"
             class="faq-search-input"
-            placeholder="Cari pertanyaan..."
+            placeholder="Search questions..."
           />
           <button v-if="search" class="faq-search-clear" @click="search = ''">
             <q-icon name="close" size="16px" />
@@ -34,12 +34,12 @@
         <div class="faq-hero__stats">
           <div class="faq-stat">
             <span class="faq-stat__num">{{ allFaq.length }}</span>
-            <span class="faq-stat__label">Pertanyaan</span>
+            <span class="faq-stat__label">Questions</span>
           </div>
           <div class="faq-stat-sep" />
           <div class="faq-stat">
             <span class="faq-stat__num">{{ categories.length - 1 }}</span>
-            <span class="faq-stat__label">Kategori</span>
+            <span class="faq-stat__label">Categories</span>
           </div>
           <div class="faq-stat-sep" />
           <div class="faq-stat">
@@ -77,11 +77,11 @@
         <div class="faq-empty__icon">
           <q-icon name="search_off" size="30px" />
         </div>
-        <div class="faq-empty__title">Tidak ditemukan</div>
-        <div class="faq-empty__text">Tidak ada hasil untuk <strong>"{{ search }}"</strong></div>
+        <div class="faq-empty__title">Not found</div>
+        <div class="faq-empty__text">No results for <strong>"{{ search }}"</strong></div>
         <button class="faq-reset-btn" @click="search = ''; activeCategory = 'semua'">
           <q-icon name="refresh" size="14px" />
-          Reset Pencarian
+          Reset Search
         </button>
       </div>
 
@@ -134,8 +134,8 @@
         <div class="faq-cta__icon">
           <q-icon name="support_agent" size="28px" />
         </div>
-        <div class="faq-cta__title">Masih ada pertanyaan?</div>
-        <div class="faq-cta__sub">Tim support kami siap membantu kamu kapan saja — 24 jam, 7 hari seminggu.</div>
+        <div class="faq-cta__title">Still have questions?</div>
+        <div class="faq-cta__sub">Our support team is ready to help anytime — 24 hours a day, 7 days a week.</div>
         <div class="faq-cta__actions">
           <a href="https://wa.me/6281234567890" target="_blank" class="cta-btn cta-btn--primary">
             <q-icon name="chat" size="16px" />
@@ -143,7 +143,7 @@
           </a>
           <a href="mailto:support@ukkreental.id" class="cta-btn cta-btn--outline">
             <q-icon name="email" size="16px" />
-            Kirim Email
+            Send Email
           </a>
         </div>
       </div>
@@ -173,45 +173,45 @@ const highlight = (text: string) => {
 }
 
 const categories = [
-  { key: 'semua',      label: 'Semua',         icon: 'apps' },
-  { key: 'rental',     label: 'Cara Rental',   icon: 'camera_alt' },
-  { key: 'bayar',      label: 'Pembayaran',    icon: 'payments' },
-  { key: 'pengiriman', label: 'Ambil di Toko',  icon: 'storefront' },
-  { key: 'status',     label: 'Status Booking', icon: 'alt_route' },
-  { key: 'lainnya',    label: 'Lainnya',       icon: 'help_outline' },
+  { key: 'semua',      label: 'All',         icon: 'apps' },
+  { key: 'rental',     label: 'How to Rent',   icon: 'camera_alt' },
+  { key: 'bayar',      label: 'Payment',    icon: 'payments' },
+  { key: 'pengiriman', label: 'Store Pickup',  icon: 'storefront' },
+  { key: 'status',     label: 'Booking Status', icon: 'alt_route' },
+  { key: 'lainnya',    label: 'Others',       icon: 'help_outline' },
 ]
 
 const allFaq = [
-  // ── Cara Rental
-  { cat: 'rental', q: 'Bagaimana cara menyewa alat foto?', a: 'Pilih alat di halaman <em>Alat Foto</em>, klik "Sewa Sekarang", tentukan tanggal mulai & selesai, lalu selesaikan pembayaran. Booking akan masuk ke status <em>Menunggu Bayar</em> secara otomatis.' },
-  { cat: 'rental', q: 'Berapa durasi minimal penyewaan?', a: 'Durasi minimal penyewaan adalah <strong>1 hari</strong>. Tidak ada batas maksimal durasi, namun ketersediaan alat tergantung booking lain.' },
-  { cat: 'rental', q: 'Apakah saya bisa memperpanjang masa sewa?', a: 'Bisa! Hubungi kami sebelum masa sewa berakhir via WhatsApp dan kami akan membantu proses perpanjangan selama alat masih tersedia.' },
-  { cat: 'rental', q: 'Apa saja alat foto yang tersedia?', a: 'Kami menyediakan kamera mirrorless, DSLR, lensa berbagai mount, drone, lighting, gimbal, dan aksesori lainnya. Cek halaman <em>Alat Foto</em> untuk daftar lengkap dan ketersediaan real-time.' },
-  { cat: 'rental', q: 'Apakah ada syarat khusus untuk menyewa?', a: 'Penyewa wajib: (1) memiliki akun terdaftar, (2) melampirkan KTP/identitas valid, dan (3) membayar deposit sesuai nilai alat. Untuk alat premium tertentu mungkin diperlukan verifikasi tambahan.' },
-  // ── Pembayaran
-  { cat: 'bayar', q: 'Metode pembayaran apa yang diterima?', a: 'Kami menerima <strong>Transfer Bank</strong> dan <strong>COD (bayar tunai di toko)</strong> saat pengambilan alat.' },
-  { cat: 'bayar', q: 'Bagaimana cara konfirmasi pembayaran transfer bank?', a: 'Setelah melakukan transfer, <strong>kirim foto bukti transfer ke WhatsApp admin</strong> terlebih dahulu. Setelah dikonfirmasi, status booking akan diperbarui. Jangan hanya upload di sistem tanpa menghubungi WA admin.' },
-  { cat: 'bayar', q: 'Ke nomor WhatsApp mana saya kirim bukti transfer?', a: 'Kirim bukti transfer ke nomor WhatsApp admin yang tertera di halaman kontak. Klik tombol <em>Chat WhatsApp</em> di website ini untuk langsung terhubung.' },
-  { cat: 'bayar', q: 'Apakah ada deposit?', a: 'Ya, deposit wajib dibayarkan saat pengambilan alat di toko sebagai jaminan. Dikembalikan penuh setelah alat dikembalikan dalam kondisi baik.' },
-  { cat: 'bayar', q: 'Bagaimana jika saya membatalkan pesanan?', a: 'Pembatalan sebelum alat diambil dapat dilakukan tanpa biaya. Hubungi kami via WhatsApp segera jika ingin membatalkan.' },
-  { cat: 'bayar', q: 'Berapa lama verifikasi pembayaran transfer?', a: 'Setelah Anda mengirim bukti transfer via WhatsApp, admin akan mengkonfirmasi dalam <strong>1-2 jam</strong> di hari kerja (Senin-Sabtu, 08.00-20.00 WIB).' },
-  // ── Ambil di Toko
-  { cat: 'pengiriman', q: 'Apakah ada layanan pengiriman atau antar ke rumah?', a: 'Tidak ada layanan pengiriman. Alat wajib diambil dan dikembalikan <strong>langsung ke toko kami</strong> di Bandung. Ini memastikan kondisi alat dapat dicek bersama saat serah terima.' },
-  { cat: 'pengiriman', q: 'Di mana saya bisa mengambil alat?', a: 'Ambil alat langsung di toko kami yang berlokasi di <strong>Bandung, Jawa Barat</strong>. Lihat peta lokasi di halaman Tentang Kami atau klik tombol Google Maps.' },
-  { cat: 'pengiriman', q: 'Kapan saya bisa mengambil alat?', a: 'Alat dapat diambil pada tanggal mulai sewa sesuai booking Anda. Jam operasional toko: <strong>Senin-Sabtu, 08.00-20.00 WIB</strong>.' },
-  { cat: 'pengiriman', q: 'Bagaimana proses pengembalian alat?', a: 'Kembalikan alat ke toko sebelum atau tepat pada tanggal selesai sewa. Kondisi alat akan dicek bersama. Jika baik, deposit dikembalikan saat itu atau dalam 1-3 hari kerja.' },
-  { cat: 'pengiriman', q: 'Bagaimana kondisi alat saat diserahkan?', a: 'Setiap alat dicek dan dibersihkan. Kami melampirkan berita acara kondisi alat yang ditandatangani bersama saat serah terima di toko.' },
-  // ── Status Booking
-  { cat: 'status', q: 'Apa saja status booking yang ada?', a: 'Ada 5 status utama: <strong>Menunggu Bayar</strong> → <strong>Menunggu Verifikasi</strong> → <strong>Diproses</strong> → <strong>Aktif</strong> → <strong>Selesai</strong>. Ditambah status <em>Dibatalkan</em> jika booking dibatalkan.' },
-  { cat: 'status', q: 'Apa artinya status "Menunggu Bayar"?', a: 'Booking berhasil dibuat. Lakukan pembayaran dan kirim bukti transfer ke WhatsApp admin (jika transfer). COD bisa langsung datang ke toko saat pickup.' },
-  { cat: 'status', q: 'Apa artinya status "Menunggu Verifikasi"?', a: 'Admin sedang memverifikasi bukti transfer yang Anda kirim via WhatsApp. Proses ini biasanya berlangsung 1-2 jam di hari kerja.' },
-  { cat: 'status', q: 'Apa artinya status "Diproses"?', a: 'Pembayaran telah diverifikasi dan alat sedang disiapkan. Anda bisa datang ke toko untuk mengambil alat sesuai tanggal booking.' },
-  { cat: 'status', q: 'Apa artinya status "Aktif"?', a: 'Alat sudah di tangan Anda dan masa sewa sedang berjalan. Jaga alat dengan baik dan kembalikan ke toko sesuai tanggal selesai.' },
-  { cat: 'status', q: 'Apa artinya status "Selesai"?', a: 'Alat telah dikembalikan ke toko dan dikonfirmasi oleh admin. Deposit akan diproses untuk dikembalikan ke Anda.' },
-  // ── Lainnya
-  { cat: 'lainnya', q: 'Apa yang terjadi jika alat rusak saat di tangan saya?', a: 'Penyewa bertanggung jawab atas kerusakan selama masa sewa. Biaya perbaikan/penggantian disesuaikan dengan nilai kerusakan dan dapat dipotong dari deposit.' },
-  { cat: 'lainnya', q: 'Bisakah saya melihat alat sebelum menyewa?', a: 'Tentu! Karena sistem kami berbasis pickup di toko, Anda bisa datang langsung ke toko kami di Bandung untuk melihat kondisi alat. Hubungi kami dulu via WhatsApp untuk membuat janji.' },
-  { cat: 'lainnya', q: 'Apakah tersedia asuransi alat?', a: 'Saat ini kami belum menyediakan paket asuransi tersendiri. Kami menyarankan penyewa untuk selalu berhati-hati dalam penggunaan alat.' },
+  // ── How to Rent
+  { cat: 'rental', q: 'How do I rent camera equipment?', a: 'Choose the equipment on the <em>Photo Equipment</em> page, click "Rent Now", set your start & end dates, and complete the payment. Your booking will enter <em>Waiting for Payment</em> status automatically.' },
+  { cat: 'rental', q: 'What is the minimum rental duration?', a: 'The minimum rental duration is <strong>1 day</strong>. There is no maximum limit, but equipment availability depends on other bookings.' },
+  { cat: 'rental', q: 'Can I extend my rental period?', a: 'Yes! Contact us before your rental period ends via WhatsApp, and we will help you extend it as long as the equipment is available.' },
+  { cat: 'rental', q: 'What equipment is available?', a: 'We provide mirrorless cameras, DSLRs, lenses with various mounts, drones, lighting, gimbals, and accessories. Check the <em>Photo Equipment</em> page for a full list and real-time availability.' },
+  { cat: 'rental', q: 'Are there any specific requirements to rent?', a: 'Renters must: (1) have a registered account, (2) provide a valid ID card (KTP), and (3) pay a deposit based on the value of the equipment. Additional verification may be required for certain premium items.' },
+  // ── Payment
+  { cat: 'bayar', q: 'What payment methods are accepted?', a: 'We accept <strong>Bank Transfers</strong> and <strong>COD (cash payment in store)</strong> upon bringing the equipment.' },
+  { cat: 'bayar', q: 'How to confirm a bank transfer payment?', a: 'After transferring, <strong>send a photo of your transfer receipt to the WhatsApp admin</strong> first. After confirmation, the booking status will update. Do not just upload it in the system without contacting WA admin.' },
+  { cat: 'bayar', q: 'Which WhatsApp number should I send the transfer receipt to?', a: 'Send the transfer receipt to the admin WhatsApp number listed on the contact page. Click the <em>Chat WhatsApp</em> button on this website to get directly connected.' },
+  { cat: 'bayar', q: 'Is there a deposit?', a: 'Yes, a deposit is required to be paid during pickup at the store as a guarantee. It is fully refunded after the equipment is returned in good condition.' },
+  { cat: 'bayar', q: 'What if I cancel my order?', a: 'Cancellations before the item is picked up can be made at no cost. Contact us via WhatsApp immediately to cancel.' },
+  { cat: 'bayar', q: 'How long does transfer payment verification take?', a: 'After sending the transfer receipt via WhatsApp, the admin will confirm it within <strong>1-2 hours</strong> during business hours (Monday-Saturday, 08:00-20:00 WIB).' },
+  // ── Store Pickup
+  { cat: 'pengiriman', q: 'Is there a delivery or home drop-off service?', a: 'There are no delivery services. Equipment must be picked up and returned <strong>directly to our store</strong> in Bandung. This ensures the condition of the equipment is checked together during handover.' },
+  { cat: 'pengiriman', q: 'Where do I pick up the equipment?', a: 'Pick up the equipment directly at our store located in <strong>Bandung, West Java</strong>. See the location map on the About Us page or click the Google Maps button.' },
+  { cat: 'pengiriman', q: 'When can I pick up the equipment?', a: 'Equipment can be obtained on the rental start date according to your booking. Store operating hours: <strong>Monday-Saturday, 08:00-20:00 WIB</strong>.' },
+  { cat: 'pengiriman', q: 'How is the return process?', a: 'Return the equipment to the store before or right on the rental end date. Condition is checked together. If good, deposit will be refunded on the spot or within 1-3 business days.' },
+  { cat: 'pengiriman', q: 'What condition should the equipment be in upon handover?', a: 'Each piece of equipment is checked and cleaned. We attach an equipment condition record signed together during handover in the store.' },
+  // ── Booking Status
+  { cat: 'status', q: 'What are the different booking statuses?', a: 'There are 5 main statuses: <strong>Waiting for Payment</strong> → <strong>Waiting for Verification</strong> → <strong>Processing</strong> → <strong>Active</strong> → <strong>Completed</strong>. Plus a <em>Cancelled</em> status if the booking is cancelled.' },
+  { cat: 'status', q: 'What does "Waiting for Payment" mean?', a: 'Your booking has been created successfully. Make your payment and send the transfer receipt to WA admin (for transfers). COD buyers can come directly to the store for pickup.' },
+  { cat: 'status', q: 'What does "Waiting for Verification" mean?', a: 'Admin is verifying the transfer receipt you sent via WhatsApp. This process usually takes 1-2 hours on business days.' },
+  { cat: 'status', q: 'What does "Processing" mean?', a: 'Your payment has been verified, and the equipment is being prepared. You can come to the store to pick up the equipment on your booked date.' },
+  { cat: 'status', q: 'What does "Active" mean?', a: 'The equipment is in your hands, and the rental period has begun. Store everything properly, use them with care, and return to the store on schedule.' },
+  { cat: 'status', q: 'What does "Completed" mean?', a: 'The equipment has been returned to the store and confirmed by the admin. The deposit will be processed to be returned to you.' },
+  // ── Others
+  { cat: 'lainnya', q: 'What happens if the equipment is damaged while I have it?', a: 'The renter is responsible for damages incurred during the rental period. Repair or replacement costs are adjusted based on the extent of the damage and may be deducted from the deposit.' },
+  { cat: 'lainnya', q: 'Can I check out the equipment before renting?', a: 'Of course! As our system is store-pickup based, you can come directly to our store in Bandung to check the condition of the equipment. Contact us first via WhatsApp to set an appointment.' },
+  { cat: 'lainnya', q: 'Is equipment insurance available?', a: 'Currently, we do not provide a separate insurance package. We advise renters to always be careful when using our equipment.' },
 ]
 
 const filteredItems = computed(() =>

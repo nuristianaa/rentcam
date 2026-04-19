@@ -187,7 +187,7 @@ const submit = async () => {
         )
       }
 
-      Helper.showSuccess('Data berhasil disimpan.')
+      Helper.showSuccess('Data successfully saved.')
       back()
     }
     loading.value = false

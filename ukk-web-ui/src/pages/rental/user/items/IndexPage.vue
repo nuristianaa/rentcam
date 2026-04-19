@@ -87,12 +87,11 @@
               <q-card-actions class="q-px-md q-pb-md bg-white q-pt-none flex-center" align="between">
                 <q-btn outline rounded color="primary" label="Detail" @click.stop="detail(itemModel(raw))" />
                 <q-btn
-                  v-if="isLoggedIn"
                   unelevated
                   rounded
                   color="primary"
                   icon="shopping_cart"
-                  label="Sewa"
+                  label="Rent"
                   @click.stop="rent(itemModel(raw))"
                   :disable="itemStockNum(raw) <= 0"
                 />
@@ -234,15 +233,8 @@ const init = () => {
   if (route.query.category) {
     searchQuery.value = String(route.query.category)
   }
-  Handler.permissions(router, 'browse', Meta, (status, data) => {
-    Meta.permission = data
-    if (status) {
-      fetchData()
-      fetchCategories()
-    } else {
-      loading.value = false
-    }
-  })
+  fetchData()
+  fetchCategories()
 }
 
 const fetchData = () => {
@@ -324,6 +316,10 @@ const detail = (data: any) => showDialog('detail', 'Detail', data)
 const rent = (item: any) => {
   const id = item?.id
   if (!id) return
+  if (!isLoggedIn.value) {
+    router.push({ name: 'login', query: { redirect: `/rental/user/rental?item_id=${id}` } })
+    return
+  }
   router.push({ name: 'rental/user/rental', query: { item_id: String(id) } })
 }
 

@@ -7,7 +7,7 @@
       <template #actions>
         <q-btn
           v-if="dataModel.status === 'menunggu' && Meta.permission.update"
-          label="Verifikasi"
+          label="Verify"
           icon="verified"
           color="positive"
           unelevated
@@ -18,7 +18,7 @@
       <div class="row q-pa-sm">
 
         <!-- Info utama -->
-        <f-card title="Detail Pembayaran" col="6">
+        <f-card title="Payment Detail" col="6">
           <s-list
             v-for="(item, i) in viewList"
             :key="i"
@@ -37,11 +37,11 @@
             />
           </div>
           <div v-if="dataModel.verified_by_name" class="q-mb-sm">
-            <div class="text-caption text-grey">Diverifikasi oleh</div>
+            <div class="text-caption text-grey">Verified by</div>
             <div class="text-body2">{{ dataModel.verified_by_name }}</div>
           </div>
           <div v-if="dataModel.verified_at" class="q-mb-sm">
-            <div class="text-caption text-grey">Waktu verifikasi</div>
+            <div class="text-caption text-grey">Verify time</div>
             <div class="text-body2">{{ formatDate(dataModel.verified_at) }}</div>
           </div>
           <q-separator class="q-my-md" />
@@ -55,7 +55,7 @@
     <q-dialog v-model="verifyDialog" persistent>
       <q-card style="min-width: 400px">
         <q-card-section class="row items-center q-pb-none">
-          <div class="text-h6">Verifikasi Pembayaran</div>
+          <div class="text-h6">Verify Payment</div>
           <q-space />
           <q-btn icon="close" flat round dense v-close-popup />
         </q-card-section>
@@ -63,7 +63,7 @@
         <q-card-section>
           <div class="text-body2 q-mb-md">
             Rental: <strong>{{ dataModel.rental_code }}</strong> —
-            Jumlah: <strong>{{ formatCurrency(dataModel.amount) }}</strong>
+            Amount: <strong>{{ formatCurrency(dataModel.amount) }}</strong>
           </div>
 
           <q-option-group
@@ -76,7 +76,7 @@
 
           <q-input
             v-model="verifyNotes"
-            label="Catatan (opsional)"
+            label="Notes (optional)"
             type="textarea"
             outlined
             autogrow
@@ -85,9 +85,9 @@
         </q-card-section>
 
         <q-card-actions align="right" class="q-px-md q-pb-md">
-          <q-btn flat label="Batal" v-close-popup />
+          <q-btn flat label="Cancel" v-close-popup />
           <q-btn
-            :label="verifyStatus === 'terverifikasi' ? 'Verifikasi ✓' : 'Tolak ✗'"
+            :label="verifyStatus === 'terverifikasi' ? 'Verify ✓' : 'Reject ✗'"
             :color="verifyStatus === 'terverifikasi' ? 'positive' : 'negative'"
             unelevated
             :loading="verifyLoading"
@@ -123,8 +123,8 @@ const dataModel = ref<DataModel>({ ...Meta.model })
 const viewList  = ref<{ label: string; value: any }[]>([])
 
 const verifyOptions = [
-  { label: 'Terverifikasi', value: 'terverifikasi' },
-  { label: 'Ditolak',       value: 'ditolak' },
+  { label: 'Verified', value: 'terverifikasi' },
+  { label: 'Rejected',       value: 'ditolak' },
 ]
 
 // ─── Helpers ───────────────────────────────────────────────────
@@ -179,14 +179,14 @@ const getData = (targetId?: string | number | null) => {
 
 const buildViewList = (data: DataModel) => {
   return [
-    { label: 'Kode Rental',   value: data.rental_code },
-    { label: 'Tipe',          value: Meta.typeOptions.find((o) => o.value === data.type)?.label ?? data.type },
-    { label: 'Jumlah',        value: formatCurrency(data.amount) },
-    { label: 'Metode',        value: data.payment_method ?? '-' },
+    { label: 'Rental Code',   value: data.rental_code },
+    { label: 'Type',          value: Meta.typeOptions.find((o) => o.value === data.type)?.label ?? data.type },
+    { label: 'Amount',        value: formatCurrency(data.amount) },
+    { label: 'Method',        value: data.payment_method ?? '-' },
     { label: 'Bank',          value: data.bank_name ?? '-' },
-    { label: 'No. Rekening',  value: data.account_number ?? '-' },
-    { label: 'Tgl Bayar',     value: formatDate(data.paid_at) },
-    { label: 'Catatan',       value: data.notes ?? '-' },
+    { label: 'Account No.',  value: data.account_number ?? '-' },
+    { label: 'Payment Date',     value: formatDate(data.paid_at) },
+    { label: 'Notes',       value: data.notes ?? '-' },
   ].filter((item) => item.value && item.value !== '-')
 }
 
@@ -211,8 +211,8 @@ const submitVerify = () => {
         verifyDialog.value = false
         Helper.showSuccess(
           verifyStatus.value === 'terverifikasi'
-            ? 'Pembayaran berhasil diverifikasi. Invoice akan digenerate otomatis.'
-            : 'Pembayaran ditolak.'
+            ? 'Payment verified successfully. Invoice will be generated automatically.'
+            : 'Payment rejected.'
         )
         getData(id) // refresh tanpa full reload
       }

@@ -90,7 +90,7 @@ function mail2username(mail: any) {
 
   const atIndex = mail.indexOf('@')
   if (atIndex === -1) {
-    return mail // tidak ada '@', return semua
+    return mail // no '@', return all
   }
   return mail.substring(0, atIndex)
 }

@@ -27,7 +27,7 @@
         </slot>
       </div>
     </div>
-    <q-uploader v-else bordered flat :label="props.label" auto-upload max-files="1" :accept="acceptFile" :factory="uploadFunc" @rejected="onRejected">
+    <q-uploader v-else bordered flat :label="props.label" max-files="1" :accept="acceptFile" @added="onFileAdded" @rejected="onRejected" :no-thumbnails="false">
       <template v-slot:header="scope">
         <div class="row no-wrap items-center q-pa-sm q-gutter-xs">
           <q-btn v-if="scope.queuedFiles.length > 0" icon="clear_all" @click="scope.removeQueuedFiles" round dense flat>
@@ -66,7 +66,6 @@
 <script setup lang="ts">
 import { Helper } from 'src/services/helper'
 import { ref, watch, onMounted, computed } from 'vue'
-import type { QUploaderFactoryObject } from 'quasar'
 
 // Define Props
 interface Props {
@@ -110,10 +109,9 @@ watch(
 )
 
 // Methods
-const uploadFunc = (files: readonly File[]): QUploaderFactoryObject | Promise<QUploaderFactoryObject> => {
+const onFileAdded = (files: readonly File[]) => {
   const file = files[0]
   if (file) emits('update:modelValue', file)
-  return {}
 }
 
 const onChange = () => {

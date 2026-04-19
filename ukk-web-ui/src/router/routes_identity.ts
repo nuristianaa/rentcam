@@ -20,11 +20,6 @@ export default [
   },
   { name: 'auth/roles', path: 'roles', component: () => import('pages/identity/roles/IndexPage.vue') },
   {
-    name: 'auth/menu-items',
-    path: 'menu-items',
-    component: () => import('pages/identity/menu-items/IndexPage.vue')
-  },
-  {
     name: 'auth/master-files',
     path: 'master-files',
     component: () => import('pages/identity/master-files/IndexPage.vue')

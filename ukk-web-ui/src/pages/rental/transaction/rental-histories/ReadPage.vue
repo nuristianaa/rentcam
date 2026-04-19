@@ -99,7 +99,7 @@
                   </div>
                 </q-card-section>
                 <q-card-section v-else class="text-grey-5 text-caption">
-                  Belum ada data checkout.
+                  No checkout data yet.
                 </q-card-section>
               </q-card>
             </div>
@@ -119,7 +119,7 @@
                   <checkpoint-detail :data="checkinData" />
                 </q-card-section>
                 <q-card-section v-else class="text-grey-5 text-caption">
-                  Belum ada data checkin.
+                  No checkin data yet.
                 </q-card-section>
               </q-card>
             </div>
@@ -149,7 +149,7 @@
               <q-td :props="props">{{ formatDatetime(props.row.created_at) }}</q-td>
             </template>
             <template #no-data>
-              <div class="text-grey-5 text-caption q-pa-sm">Belum ada pembayaran.</div>
+              <div class="text-grey-5 text-caption q-pa-sm">No payment recorded.</div>
             </template>
           </q-table>
         </f-card>
@@ -202,7 +202,7 @@
                </q-td>
              </template>
              <template #no-data>
-               <div class="text-grey-5 text-caption q-pa-sm">Belum ada invoice.</div>
+               <div class="text-grey-5 text-caption q-pa-sm">No invoice available.</div>
              </template>
            </q-table>
         </f-card>
@@ -235,7 +235,7 @@
               <div v-if="h.notes" class="text-caption q-mt-xs">{{ h.notes }}</div>
             </q-timeline-entry>
             <div v-if="!dataModel.histories?.length" class="text-grey-5 text-caption q-pa-sm">
-              Belum ada riwayat.
+              No history available.
             </div>
           </q-timeline>
         </f-card>
@@ -390,7 +390,7 @@ const openPdfPreview = async (invoice: any) => {
   pdfPreviewDialog.value = { show: true, url: '', title: invoice.invoice_code ?? 'Invoice' }
   const blob = await fetchPdfBlob(invoice.id, 'preview-pdf')
   if (!blob) {
-    Helper.showError('Gagal membuka preview invoice.')
+    Helper.showError('Failed to open invoice preview.')
     pdfPreviewDialog.value.show = false
     return
   }
@@ -408,7 +408,7 @@ const openPdfInNewTab = () => {
 const downloadPdf = async (invoice: any) => {
   const blob = await fetchPdfBlob(invoice.id, 'download-pdf')
   if (!blob) {
-    Helper.showError('Gagal mengunduh invoice.')
+    Helper.showError('Failed to download invoice.')
     return
   }
   const url = URL.createObjectURL(blob)
@@ -444,7 +444,7 @@ const historyIcon = (event: string) => {
 const pdfStatusColor = (s: string) =>
   ({ pending: 'orange', generated: 'positive', failed: 'negative' }[s] ?? 'grey')
 const pdfStatusLabel = (s: string) =>
-  ({ pending: 'Pending', generated: 'Selesai', failed: 'Gagal' }[s] ?? s)
+  ({ pending: 'Pending', generated: 'Completed', failed: 'Failed' }[s] ?? s)
 
 // ─── Computed: checkpoint state ──────────────────────────────
 const checkoutData = computed(() =>

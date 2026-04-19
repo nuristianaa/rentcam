@@ -20,7 +20,7 @@
                         </div>
   
                         <div>
-                          <q-input filled v-model="dataModel.email" placeholder="email/username" class="q-mb-md">
+                          <q-input filled v-model="dataModel.email" placeholder="email" class="q-mb-md">
                             <template v-slot:prepend>
                               <q-icon name="person" />
                             </template>
@@ -166,10 +166,10 @@ const auth = (data: any) => {
         const userMenuItems = Array.isArray(data.menu.menu_items) ? data.menu.menu_items : []
         if (userMenuItems.length === 0) {
           data.menu.menu_items = [
-            { app: 'rental', name: 'Beranda', slug: 'rental/user', path: '/rental/user', icon: 'home' },
-            { app: 'rental', name: 'Alat Foto', slug: 'rental/user/items', path: '/rental/user/items', icon: 'photo_camera' },
-            { app: 'rental', name: 'Cara Sewa', slug: 'rental/user/how-to', path: '/rental/user/how-to', icon: 'menu_book' },
-            { app: 'rental', name: 'Kontak', slug: 'rental/user/contact', path: '/rental/user/contact', icon: 'contacts' },
+            { app: 'rental', name: 'Home', slug: 'rental/user', path: '/rental/user', icon: 'home' },
+            { app: 'rental', name: 'Catalog', slug: 'rental/user/items', path: '/rental/user/items', icon: 'photo_camera' },
+            { app: 'rental', name: 'How to Rent', slug: 'rental/user/how-to', path: '/rental/user/how-to', icon: 'menu_book' },
+            { app: 'rental', name: 'Contact', slug: 'rental/user/contact', path: '/rental/user/contact', icon: 'contacts' },
             { app: 'rental', name: 'Booking', slug: 'rental/user/rental', path: '/rental/user/rental', icon: 'shopping_cart' },
             { app: 'rental', name: 'FAQ', slug: 'rental/user/faq', path: '/rental/user/faq', icon: 'help' },
             { app: 'rental', name: 'About', slug: 'rental/user/about', path: '/rental/user/about', icon: 'info' }
@@ -177,7 +177,7 @@ const auth = (data: any) => {
         }
         data.menu_favorites = Array.isArray(data.menu_favorites) && data.menu_favorites.length > 0
           ? data.menu_favorites
-          : [{ app: 'rental', name: 'Alat Foto', slug: 'rental/user/items', path: '/rental/user/items', icon: 'photo_camera' }]
+          : [{ app: 'rental', name: 'Catalog', slug: 'rental/user/items', path: '/rental/user/items', icon: 'photo_camera' }]
       }
       Auth.setUser(data)
       void router.push(getRedirectPath(data))

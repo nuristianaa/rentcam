@@ -36,7 +36,7 @@
       <template v-slot:append>
         <q-icon v-if="!time" name="event" class="cursor-pointer">
           <q-popup-proxy v-model="popupDate" ref="qDateProxy" transition-show="scale" transition-hide="scale">
-            <q-date v-if="range" v-model="rangeDate" :mask="maskDate" @update:modelValue="setDateRangeValue(rangeDate)" :readonly="props.readonly" range>
+            <q-date v-if="range" v-model="rangeDate" :mask="maskDate" @update:modelValue="setDateRangeValue(rangeDate)" :readonly="props.readonly" :options="props.options" range>
               <div class="row items-center justify-end q-gutter-sm">
                 <q-btn label="Close" color="primary" flat v-close-popup />
               </div>
@@ -44,7 +44,7 @@
 
             <DateYm v-else-if="yearMonth" v-model="dataModel" @updatevalue="emiters" @hide="popupDate = false" :readonly="props.readonly" />
 
-            <q-date v-else v-model="dataModel" :mask="maskDate" default-view="Calendar" @update:modelValue="emiters($event)" @navigation="handlerNav" :readonly="props.readonly">
+            <q-date v-else v-model="dataModel" :mask="maskDate" default-view="Calendar" @update:modelValue="emiters($event)" @navigation="handlerNav" :readonly="props.readonly" :options="props.options">
               <div class="row items-center justify-end q-gutter-sm">
                 <q-btn label="Close" color="primary" flat v-close-popup />
               </div>
@@ -103,6 +103,7 @@ const props = defineProps<{
   yearMonth?: boolean
   hideBottomSpace?: boolean
   emitValue?: boolean
+  options?: any
 }>()
 
 // const props = defineProps({

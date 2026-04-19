@@ -59,7 +59,7 @@ const submit = async () => {
     if (dataModel.value.id) status = await update()
     else status = await save()
     if (status === 200) {
-      Helper.showSuccess('Data berhasil disimpan.')
+      Helper.showSuccess('Data successfully saved.')
       back()
     }
     loading.value = false

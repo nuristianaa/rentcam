@@ -6,16 +6,13 @@
     <div v-else class="q-pa-md">
       <div class="row items-center q-col-gutter-md q-mb-md">
         <div class="col-auto">
-          <q-btn dense flat color="primary" icon="arrow_back" label="Kembali" @click="back" />
+          <q-btn dense flat color="primary" icon="arrow_back" label="Back" @click="back" />
         </div>
-        <div class="col-auto" v-if="isLoggedIn">
-          <q-btn dense flat color="positive" icon="shopping_cart" label="Sewa" @click="rent" :disable="!dataModel.id || !dataModel.is_active || dataModel.stock_total <= 0" />
-        </div>
-        <div class="col-auto" v-else>
-          <q-btn dense flat color="secondary" icon="login" label="Login untuk Sewa" @click="goToLogin" />
+        <div class="col-auto">
+          <q-btn dense flat color="positive" icon="shopping_cart" label="Rent" @click="rent" :disable="!dataModel.id || !dataModel.is_active || dataModel.stock_total <= 0" />
         </div>
         <div class="col">
-          <div class="text-h5 text-primary q-mb-xs">{{ dataModel.name || 'Detail Item' }}</div>
+          <div class="text-h5 text-primary q-mb-xs">{{ dataModel.name || 'Item Detail' }}</div>
           <div class="text-subtitle2 text-grey-7">{{ dataModel.code || '-' }}</div>
         </div>
       </div>
@@ -34,7 +31,7 @@
             >
               <template #error>
                 <div class="absolute-full flex flex-center bg-grey-3 text-grey-6 text-caption text-center q-pa-sm">
-                  Gambar tidak tersedia
+                  Image not available
                 </div>
               </template>
             </q-img>
@@ -60,7 +57,7 @@
                 >
                   <template #error>
                     <div class="absolute-full flex flex-center bg-grey-3 text-grey-6 text-caption text-center q-pa-sm">
-                      Gagal muat
+                      Failed to load
                     </div>
                   </template>
                 </q-img>
@@ -72,7 +69,7 @@
         <div class="col-12 col-lg-6">
           <q-card flat bordered class="shadow-1">
             <q-card-section class="q-pa-lg">
-              <div class="text-h6 text-primary q-mb-sm">Informasi Produk</div>
+              <div class="text-h6 text-primary q-mb-sm">Product Information</div>
 
               <div class="row q-col-gutter-lg q-mb-md">
                 <div class="col-12">
@@ -80,11 +77,11 @@
                   <div class="text-subtitle1">{{ dataModel.brand || '-' }}</div>
                 </div>
                 <div class="col-12">
-                  <div class="text-caption text-grey-6">Kategori</div>
+                  <div class="text-caption text-grey-6">Category</div>
                   <div class="text-subtitle1">{{ dataModel.category_id || '-' }}</div>
                 </div>
                 <div class="col-6">
-                  <div class="text-caption text-grey-6">Harga / Hari</div>
+                  <div class="text-caption text-grey-6">Price / Day</div>
                   <div class="text-subtitle1">{{ formattedPrice }}</div>
                 </div>
                 <div class="col-6">
@@ -92,30 +89,30 @@
                   <div class="text-subtitle1">{{ formattedDeposit }}</div>
                 </div>
                 <div class="col-6">
-                  <div class="text-caption text-grey-6">Stok</div>
+                  <div class="text-caption text-grey-6">Stock</div>
                   <div class="text-subtitle1">{{ itemStock }}</div>
                 </div>
                 <div class="col-6">
-                  <div class="text-caption text-grey-6">Kondisi</div>
+                  <div class="text-caption text-grey-6">Condition</div>
                   <div class="text-subtitle1">{{ dataModel.condition || '-' }}</div>
                 </div>
               </div>
 
               <q-separator />
 
-              <div class="q-mt-md text-caption text-grey-6">Deskripsi</div>
-              <div class="text-body1 q-mt-xs">{{ dataModel.description || 'Tidak ada deskripsi untuk item ini.' }}</div>
+              <div class="q-mt-md text-caption text-grey-6">Description</div>
+              <div class="text-body1 q-mt-xs">{{ dataModel.description || 'No description for this item.' }}</div>
 
               <div class="row items-center q-col-gutter-md q-mt-md">
                 <div class="col-auto">
                   <q-badge :color="dataModel.is_active ? 'green' : 'red'" outline>
-                    {{ dataModel.is_active ? 'Aktif' : 'Nonaktif' }}
+                    {{ dataModel.is_active ? 'Active' : 'Inactive' }}
                   </q-badge>
                 </div>
               </div>
 
               <div class="q-mt-xl">
-                <div class="text-h6 text-primary q-mb-sm">Kalender Ketersediaan</div>
+                <div class="text-h6 text-primary q-mb-sm">Availability Calendar</div>
                 <div class="row q-col-gutter-md">
                   <div class="col-12 flex flex-center">
                     <q-date
@@ -134,40 +131,32 @@
                       <div v-if="selectedAvailabilityData">
                         <div class="text-h6 text-primary font-weight-bold">{{ selectedAvailabilityDate }}</div>
                         <div class="q-mt-md text-subtitle1">
-                          Stok Tersedia: <strong :class="selectedAvailabilityData.available_quantity > 0 ? 'text-green' : 'text-red'">{{ selectedAvailabilityData.available_quantity }}</strong> / {{ availabilityData?.stock_total }}
+                          Available Stock: <strong :class="selectedAvailabilityData.available_quantity > 0 ? 'text-green' : 'text-red'">{{ selectedAvailabilityData.available_quantity }}</strong> / {{ availabilityData?.stock_total }}
                         </div>
-                        <div class="text-grey-7">Telah Disewa: {{ selectedAvailabilityData.reserved_quantity }}</div>
+                        <div class="text-grey-7">Rented: {{ selectedAvailabilityData.reserved_quantity }}</div>
                         
                         <q-btn
-                          v-if="isLoggedIn && selectedAvailabilityData.available_quantity > 0"
+                          v-if="selectedAvailabilityData.available_quantity > 0"
                           :disable="!dataModel.is_active"
                           outline
                           color="primary"
-                          label="Pilih Tanggal Ini"
+                          label="Select This Date"
                           class="q-mt-md"
                           @click="rent"
                         />
-                        <q-btn
-                          v-else-if="!isLoggedIn && selectedAvailabilityData.available_quantity > 0"
-                          flat
-                          color="primary"
-                          label="Login untuk Booking"
-                          class="q-mt-md"
-                          @click="goToLogin"
-                        />
                         <div v-else class="text-red q-mt-md text-weight-bold row items-center justify-center">
-                          <q-icon name="warning" size="sm" class="q-mr-xs"/> Habis
+                          <q-icon name="warning" size="sm" class="q-mr-xs"/> Out of Stock
                         </div>
                       </div>
                       <div v-else class="text-grey-6 row items-center justify-center">
                         <div class="q-mr-md text-center">
                           <q-icon name="event" size="30px" class="q-mb-xs" />
-                          <div class="text-caption">Pilih tanggal pada kalender<br/>untuk melihat stok tersedia.</div>
+                          <div class="text-caption">Select a date on the calendar<br/>to see available stock.</div>
                         </div>
                         <div class="text-caption text-left" style="line-height: 1.5; border-left: 1px solid #ccc; padding-left: 16px;">
-                          <q-icon name="circle" color="green" size="10px"/> Tersedia Penuh<br/>
-                          <q-icon name="circle" color="orange" size="10px"/> Sebagian Disewa<br/>
-                          <q-icon name="circle" color="red" size="10px"/> Habis
+                          <q-icon name="circle" color="green" size="10px"/> Fully Available<br/>
+                          <q-icon name="circle" color="orange" size="10px"/> Partially Rented<br/>
+                          <q-icon name="circle" color="red" size="10px"/> Out of Stock
                         </div>
                       </div>
                     </q-card>
@@ -177,18 +166,18 @@
 
               <!-- Ulasan Produk -->
               <div class="q-mt-xl">
-                <div class="text-h6 text-primary q-mb-md">Ulasan Pengguna</div>
+                <div class="text-h6 text-primary q-mb-md">User Reviews</div>
                 <div v-if="reviewsLoading" class="text-center q-pa-md">
                   <q-spinner color="primary" size="2em" />
                 </div>
                 <div v-else-if="reviews.length === 0" class="text-grey-7 text-center q-pa-md bg-grey-1" style="border-radius: 8px;">
-                  Belum ada ulasan untuk alat ini.
+                  No reviews for this item yet.
                 </div>
                 <div v-else class="q-gutter-y-md">
                   <q-card v-for="rev in reviews" :key="rev.id" flat bordered>
                     <q-card-section>
                       <div class="row items-center justify-between q-mb-xs">
-                        <div class="text-weight-bold">{{ rev.created_by || 'Anonim' }}</div>
+                        <div class="text-weight-bold">{{ rev.created_by || 'Anonymous' }}</div>
                         <div class="text-caption text-grey-6">{{ formatDate(rev.created_at) }}</div>
                       </div>
                       <q-rating :model-value="rev.rating" max="5" size="1.2em" color="warning" readonly icon="star_border" icon-selected="star" class="q-mb-sm" />
@@ -365,6 +354,10 @@ const getData = (id: string | number) => {
 
 const rent = () => {
   if (!dataModel.value.id) return
+  if (!isLoggedIn.value) {
+    goToLogin()
+    return
+  }
   router.push({ name: 'rental/user/rental', query: { item_id: String(dataModel.value.id) } })
 }
 

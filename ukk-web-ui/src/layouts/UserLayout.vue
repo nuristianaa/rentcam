@@ -8,7 +8,7 @@
               <div class="brand-title">
                 <span class="text-primary">RENT</span><span class="text-secondary" style="color: #64748b;">CAM</span>
               </div>
-              <div class="brand-subtitle">rental alat photo</div>
+              <div class="brand-subtitle">photo equipment rental</div>
             </div>
           </router-link>
         </q-toolbar-title>
@@ -39,7 +39,7 @@
             rounded
             color="primary"
             icon="login"
-            label="Masuk"
+            label="Login"
             to="/login"
             class="login-btn q-px-md gt-xs"
           />
@@ -70,7 +70,7 @@
         <div class="row items-center justify-between q-mt-xs q-mb-md">
           <div class="user-brand-text user-brand-text-only">
             <div class="brand-title text-h6" style="font-size: 1.2rem;">RENTCAM</div>
-            <div class="brand-subtitle" style="font-size: 0.75rem;">rental alat photo</div>
+            <div class="brand-subtitle" style="font-size: 0.75rem;">photo equipment rental</div>
           </div>
           <q-btn flat round dense icon="close" @click="mobileMenuOpen = false" color="grey-8" />
         </div>
@@ -104,7 +104,7 @@
              unelevated
              color="primary"
              class="full-width rounded-borders"
-             label="Masuk"
+             label="Login"
              icon="login"
              to="/login"
              size="md"
@@ -135,16 +135,26 @@ const topMenuItems = computed(() => {
   
   const hasHowTo = menus.some((m: any) => m.path === '/rental/user/how-to')
   const hasContact = menus.some((m: any) => m.path === '/rental/user/contact')
+  const hasRiwayat = menus.some((m: any) => m.path === '/rental/user/rental-histories')
 
   if (!hasHowTo) {
     const faqIndex = menus.findIndex((m: any) => m.path === '/rental/user/faq')
-    const howToItem = { name: 'Cara Sewa', path: '/rental/user/how-to' }
+    const howToItem = { name: 'How to Rent', path: '/rental/user/how-to' }
     if (faqIndex !== -1) menus.splice(faqIndex, 0, howToItem)
     else menus.push(howToItem)
   }
 
   if (!hasContact) {
-    menus.push({ name: 'Kontak', path: '/rental/user/contact' })
+    menus.push({ name: 'Contact', path: '/rental/user/contact' })
+  }
+
+  if (!hasRiwayat && auth.getToken()) {
+    const bookingIndex = menus.findIndex((m: any) => m.path === '/rental/user/rental')
+    if (bookingIndex !== -1) {
+      menus.splice(bookingIndex + 1, 0, { name: 'History', path: '/rental/user/rental-histories' })
+    } else {
+      menus.push({ name: 'History', path: '/rental/user/rental-histories' })
+    }
   }
 
   return menus

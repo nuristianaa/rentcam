@@ -8,7 +8,7 @@
         <div class="col">
           <div class="text-h6 text-weight-bold">{{ Meta.title }}</div>
           <div class="text-caption text-grey-6">
-            Menampilkan riwayat booking atas nama:
+            Showing booking history for:
             <span class="text-weight-medium text-dark">{{ currentUserName }}</span>
           </div>
         </div>
@@ -16,7 +16,7 @@
           <q-btn
             unelevated
             rounded
-            label="Booking Baru"
+            label="New Booking"
             color="primary"
             icon="add"
             @click="goToCreate"
@@ -31,7 +31,7 @@
           :outline="filterStatus !== null"
           color="primary"
           text-color="white"
-          label="Semua"
+          label="All"
           @click="filterStatus = null"
         />
         <q-chip
@@ -68,12 +68,12 @@
         class="column flex-center q-py-xl text-grey-5"
       >
         <q-icon name="receipt_long" size="72px" />
-        <div class="text-body1 q-mt-sm">Belum ada riwayat booking.</div>
+        <div class="text-body1 q-mt-sm">No booking history yet.</div>
         <q-btn
           flat
           rounded
           color="primary"
-          label="Mulai Booking Sekarang"
+          label="Start Booking Now"
           icon="add"
           class="q-mt-sm"
           @click="goToCreate"
@@ -122,7 +122,7 @@
                   </span>
                   <span>
                     <q-icon name="timelapse" size="12px" class="q-mr-xs" />
-                    {{ row.duration_days ?? '-' }} hari
+                    {{ row.duration_days ?? '-' }} days
                   </span>
                   <span>
                     <q-icon name="payments" size="12px" class="q-mr-xs" />

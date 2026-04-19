@@ -21,7 +21,7 @@ export const Meta = {
   app: 'rental',
   schema: 'rental',
   name: 'rental-histories',
-  title: 'Riwayat Booking',
+  title: 'Booking History',
   module: 'user/rental-histories',
   apiModule: 'transaction/rentals',
   route_ui: 'user/rental-histories',
@@ -61,12 +61,12 @@ export const Meta = {
   ],
 
   statusOptions: [
-    { label: 'Menunggu Bayar', value: 'menunggu_bayar' },
-    { label: 'Menunggu Verifikasi', value: 'menunggu_verif' },
-    { label: 'Diproses', value: 'diproses' },
-    { label: 'Aktif', value: 'aktif' },
-    { label: 'Selesai', value: 'selesai' },
-    { label: 'Dibatalkan', value: 'dibatalkan' }
+    { label: 'Waiting for Payment', value: 'menunggu_bayar' },
+    { label: 'Waiting for Verification', value: 'menunggu_verif' },
+    { label: 'Processing', value: 'diproses' },
+    { label: 'Active', value: 'aktif' },
+    { label: 'Completed', value: 'selesai' },
+    { label: 'Cancelled', value: 'dibatalkan' }
   ],
 
   statusColor: {

@@ -3,7 +3,7 @@
     <s-loading v-if="loading" />
     <h-form v-else :meta="Meta" @submit="submit" @back="back">
       <template #buttons>
-        <q-btn flat rounded label="Riwayat Rental" icon="history" color="secondary" @click="$router.push({ name: 'user/rental-histories' })" class="q-mr-sm" />
+        <q-btn flat rounded label="Rental History" icon="history" color="secondary" @click="$router.push({ name: 'user/rental-histories' })" class="q-mr-sm" />
         <q-btn outline rounded label="Cancel" @click="back" />
         <q-btn unelevated rounded label="Submit" color="primary" icon="check_circle" type="submit" class="text-bold" />
       </template>
@@ -11,7 +11,7 @@
 
         <!-- ─── Section: Informasi Pemesanan ──────────────────── -->
         <div class="col-12">
-          <div class="form-title q-mb-sm">Informasi Pemesanan</div>
+          <div class="form-title q-mb-sm">Booking Information</div>
           <div class="row q-col-gutter-sm">
             <f-select
               v-model="dataModel.payment_method"
@@ -36,14 +36,14 @@
                 <template #avatar>
                   <q-icon name="info" color="blue-7" />
                 </template>
-                <div class="text-caption text-weight-bold q-mb-xs">Instruksi Pembayaran Transfer</div>
-                <div class="text-caption q-mb-xs">Silakan transfer ke rekening berikut, lalu kirim bukti transfer via WhatsApp:</div>
-                <div class="text-caption q-mb-xs">🏦 <b>Bank BCA</b> — No. Rek: <b>1234567890</b> a.n. <b>Admin Rental Kamera</b></div>
-                <div class="text-caption q-mb-xs">Pembayaran hanya melalui transfer bank. Setelah transfer, kirim bukti WA untuk mempercepat verifikasi dan konfirmasi pesanan.</div>
+                <div class="text-caption text-weight-bold q-mb-xs">Transfer Payment Instructions</div>
+                <div class="text-caption q-mb-xs">Please transfer to the following account, then send the payment proof via WhatsApp:</div>
+                <div class="text-caption q-mb-xs">🏦 <b>BCA Bank</b> — Account No: <b>1234567890</b> a.n. <b>Camera Rental Admin</b></div>
+                <div class="text-caption q-mb-xs">Payment is primarily via bank transfer. After transferring, send the receipt via WA to speed up verification and confirmation.</div>
                 <div class="text-caption">
-                  📱 WhatsApp Admin:
+                  📱 Admin WhatsApp:
                   <a
-                    :href="`https://wa.me/6281234567890?text=Halo Admin, saya ${dataModel.customer_name ?? ''} ingin mengirim bukti transfer untuk booking rental kamera.`"
+                    :href="`https://wa.me/6281234567890?text=Hello Admin, I am ${dataModel.customer_name ?? ''} sending the transfer receipt for my camera rental booking.`"
                     target="_blank"
                     class="text-blue-9 text-weight-bold"
                   >0812-3456-7890</a>
@@ -55,13 +55,14 @@
 
         <!-- ─── Section: Periode Sewa ─────────────────────────── -->
         <div class="col-12">
-          <div class="form-title q-mb-sm">Periode Sewa</div>
+          <div class="form-title q-mb-sm">Rental Period</div>
           <div class="row q-col-gutter-sm">
             <f-date
               v-model="dataModel.date_range"
               col="8"
               range
               :label="Lang.module(Meta, 'start_date')"
+              :options="isFutureDate"
               required
               @update:modelValue="updateDateRange"
             />
@@ -69,7 +70,7 @@
               v-model="dataModel.duration_days"
               col="4"
               :label="Lang.module(Meta, 'duration_days')"
-              suffix="hari"
+              suffix="days"
               readonly
               precision="0"
             />
@@ -86,7 +87,7 @@
           <div class="row items-center justify-between q-mb-sm">
             <div class="form-title">{{ Lang.module(Meta, 'items') }}</div>
             <q-btn
-              label="Tambah Item"
+              label="Add Item"
               icon="add"
               color="primary"
               size="sm"
@@ -147,7 +148,7 @@
                   fill-input
                   input-debounce="200"
                   style="min-width:240px;"
-                  :placeholder="ps.row.item_id ? resolveSelectedLabel(ps.row.item_id) : 'Cari item...'"
+                  :placeholder="ps.row.item_id ? resolveSelectedLabel(ps.row.item_id) : 'Search items...'"
                   @filter="filterItems"
                   @update:model-value="(val) => { onLineItemChange(ps.row, val); filterText = '' }"
                   @blur="filterText = ''"
@@ -176,25 +177,25 @@
                         <q-item-label class="text-weight-medium">[{{ resolveItemCode(scope.opt) }}]</q-item-label>
                         <q-item-label caption>{{ resolveItemName(scope.opt) }}</q-item-label>
                         <q-item-label caption class="text-grey-6">
-                          Stok: {{ scope.opt.stock_available ?? '-' }} &nbsp;|&nbsp; {{ formatCurrency(scope.opt.price_per_day) }}/hari
+                          Stock: {{ scope.opt.stock_available ?? '-' }} &nbsp;|&nbsp; {{ formatCurrency(scope.opt.price_per_day) }}/day
                         </q-item-label>
                       </q-item-section>
                     </q-item>
                   </template>
                   <template #no-option>
                     <q-item>
-                      <q-item-section class="text-grey-6 text-caption">Item tidak ditemukan</q-item-section>
+                      <q-item-section class="text-grey-6 text-caption">Item not found</q-item-section>
                     </q-item>
                   </template>
                 </q-select>
                 <div v-if="ps.row.checking_availability" class="text-caption text-blue-7 q-mt-xs q-ml-sm">
-                  <q-spinner-dots size="xs" color="blue" class="q-mr-xs" /> Mengecek ketersediaan...
+                  <q-spinner-dots size="xs" color="blue" class="q-mr-xs" /> Checking availability...
                 </div>
                 <div v-else-if="ps.row.has_clash" class="text-caption text-negative q-mt-xs q-ml-sm">
-                  <q-icon name="error" /> Stok habis di tanggal ini!
+                  <q-icon name="error" /> Out of stock on this date!
                 </div>
                 <div v-else-if="ps.row.max_available !== null" class="text-caption text-positive q-mt-xs q-ml-sm">
-                  <q-icon name="check_circle" /> Tersedia (Max: {{ ps.row.max_available }})
+                  <q-icon name="check_circle" /> Available (Max: {{ ps.row.max_available }})
                 </div>
               </q-td>
             </template>
@@ -245,7 +246,7 @@
 
         <!-- ─── Section: Ringkasan Biaya ──────────────────────── -->
         <div class="col-12">
-          <div class="form-title q-mb-sm">Ringkasan Biaya</div>
+          <div class="form-title q-mb-sm">Cost Summary</div>
           <div class="row q-col-gutter-sm justify-end">
             <f-number v-model="dataModel.subtotal" col="4" :label="Lang.module(Meta, 'subtotal')" prefix="Rp" readonly />
             <f-number v-model="dataModel.deposit_total" col="4" :label="Lang.module(Meta, 'deposit_total')" prefix="Rp" readonly />
@@ -255,9 +256,9 @@
 
         <div class="col-12">
           <q-card flat bordered class="bg-grey-1 q-pa-md q-mt-md">
-            <div class="text-subtitle2 text-weight-bold q-mb-sm">Lokasi Toko</div>
+            <div class="text-subtitle2 text-weight-bold q-mb-sm">Store Location</div>
             <div class="text-caption q-mb-xs">
-              📍 Jl. Cihampelas No. 123, Bandung, Jawa Barat
+              📍 Jl. Cihampelas No. 123, Bandung, West Java
             </div>
             <div class="text-caption q-mb-sm">
               <a
@@ -265,9 +266,9 @@
                 href="https://www.google.com/maps/search/?api=1&query=Jl.+Cihampelas+No.+123,+Bandung,+Jawa+Barat"
                 target="_blank"
                 rel="noopener noreferrer"
-              >Lihat di Google Maps</a>
+              >View on Google Maps</a>
             </div>
-            <div class="text-caption q-mb-sm">Kunjungi toko kami untuk ambil sendiri atau gunakan layanan antar untuk area Bandung.</div>
+            <div class="text-caption q-mb-sm">Visit our store for self-pickup or use delivery services for the Bandung area.</div>
             <q-separator class="q-my-sm" />
             <div class="q-mt-sm" style="width:100%;height:240px;overflow:hidden;border-radius:12px;">
               <iframe
@@ -311,6 +312,14 @@ const loading = ref(true)
 const dataModel = ref<DataModel>({ ...Meta.model })
 const itemOptions = ref<any[]>([])
 
+const isFutureDate = (date: string) => {
+  const today = new Date()
+  const year = today.getFullYear()
+  const month = String(today.getMonth() + 1).padStart(2, '0')
+  const day = String(today.getDate()).padStart(2, '0')
+  return date >= `${year}/${month}/${day}`
+}
+
 // ─── Search filter dropdown item ────────────────────────────
 const filterText = ref('')
 const filteredItemOptions = computed(() => {
@@ -339,10 +348,10 @@ const queryItemId = (() => {
 })()
 
 const itemColumns = [
-  { name: 'image', label: 'Foto', field: 'image', align: 'center' as const, style: 'width: 90px' },
+  { name: 'image', label: 'Photo', field: 'image', align: 'center' as const, style: 'width: 90px' },
   { name: 'item_id', label: 'Item', field: 'item_id', align: 'left' as const },
   { name: 'quantity', label: 'Qty', field: 'quantity', align: 'right' as const },
-  { name: 'price_per_day', label: 'Harga/Hari', field: 'price_per_day', align: 'right' as const },
+  { name: 'price_per_day', label: 'Price/Day', field: 'price_per_day', align: 'right' as const },
   { name: 'deposit_amount', label: 'Deposit', field: 'deposit_amount', align: 'right' as const },
   { name: 'subtotal', label: 'Subtotal', field: 'subtotal', align: 'right' as const },
   { name: 'action', label: '', field: 'id', align: 'center' as const, style: 'width: 40px' }
@@ -477,7 +486,7 @@ const onQuantityChange = (row: any, val: any) => {
   const newQty = Number.isFinite(quantity) && quantity > 0 ? quantity : 1
   if (Number(row.quantity) === newQty) return
   if (typeof row.max_available === 'number' && newQty > row.max_available) {
-    $q.notify({ type: 'warning', message: `Maksimal stok yang tersedia hanya ${row.max_available}` })
+    $q.notify({ type: 'warning', message: `Maximum available stock is only ${row.max_available}` })
     row.quantity = row.max_available
     row.has_clash = row.max_available === 0
   } else {
@@ -509,10 +518,10 @@ const checkAvailability = (row: any) => {
         
         if (row.quantity > row.max_available) {
           if (row.max_available === 0) {
-            $q.notify({ type: 'negative', message: `Stok [${row.item_code}] habis untuk tanggal terpilih.` })
+            $q.notify({ type: 'negative', message: `Out of stock for [${row.item_code}] on selected dates.` })
             row.has_clash = true
           } else {
-            $q.notify({ type: 'warning', message: `Menyesuaikan stok otomatis [${row.item_code}]: Sisa ${row.max_available}` })
+            $q.notify({ type: 'warning', message: `Auto-adjusted quantity for [${row.item_code}]: Remaining ${row.max_available}` })
             row.quantity = row.max_available
             row.has_clash = false
             recalcLineItem(row)
@@ -543,7 +552,7 @@ const recalcDuration = () => {
   const e = dataModel.value.end_date
   if (s && e) {
     const diff = Math.ceil((new Date(e).getTime() - new Date(s).getTime()) / (1000 * 60 * 60 * 24))
-    dataModel.value.duration_days = diff > 0 ? diff : 0
+    dataModel.value.duration_days = diff >= 0 ? diff + 1 : 0
     // Recalculate ALL line items subtotal based on new duration
     ;(dataModel.value.items ?? []).forEach((row: any) => {
       row.subtotal = (row.quantity ?? 0) * (row.price_per_day ?? 0) * (dataModel.value.duration_days ?? 1)
@@ -570,24 +579,24 @@ const formatCurrency = (val: number | null) =>
 
 const validateSubmit = () => {
   if (!dataModel.value.start_date || !dataModel.value.end_date) {
-    Helper.showNotif('Periode sewa wajib diisi.')
+    Helper.showNotif('Rental period is required.')
     return false
   }
   if (!dataModel.value.payment_method) {
-    Helper.showNotif('Metode pembayaran wajib diisi.')
+    Helper.showNotif('Payment method is required.')
     return false
   }
   if (!dataModel.value.items || dataModel.value.items.length === 0) {
-    Helper.showNotif('Silakan tambahkan item untuk disewa.')
+    Helper.showNotif('Please add items to rent.')
     return false
   }
   const invalidItem = dataModel.value.items.find((item: any) => !item.item_id || (item.quantity ?? 0) <= 0)
   if (invalidItem) {
-    Helper.showNotif('Pastikan semua item telah dipilih dan jumlahnya valid.')
+    Helper.showNotif('Make sure all items are selected and the quantity is valid.')
     return false
   }
   if (dataModel.value.payment_method === 'transfer') {
-    Helper.showToast('Transfer ke BCA 1234567890 a.n. Admin Rental Kamera, lalu kirim bukti ke WA 0812-3456-7890.', 'info', 8000, 'top')
+    Helper.showToast('Transfer to BCA 1234567890 a.n. Camera Rental Admin, then send the receipt to WA +62812-3456-7890.', 'info', 8000, 'top')
   }
   return true
 }
@@ -612,7 +621,11 @@ const submit = async () => {
     loading.value = false
     router.push({
       name: 'rental/user/rental-success',
-      query: { code: dataModel.value.rental_code ?? '' }
+      query: { 
+        code: dataModel.value.rental_code ?? '',
+        payment_method: dataModel.value.payment_method ?? '',
+        grand_total: dataModel.value.grand_total ?? 0
+      }
     })
     return
   }
@@ -629,6 +642,17 @@ const init = () => {
     dataModel.value.petugas_id = currentUser.id
     dataModel.value.petugas_name = currentUser.name ?? currentUser.username ?? ''
     dataModel.value.status = 'menunggu_bayar'
+    
+    // Check if profile is complete
+    API.get('me', (s: number, data: any) => {
+      if (s === 200 && data) {
+        if (!data.phone || !data.location || !data.profile_picture) {
+          Helper.showToast('Please complete your profile details and upload your ID card first.', 'negative', 5000, 'top')
+          router.push({ name: 'user-change-profile' })
+          return
+        }
+      }
+    }, 'identity')
   }
   loadOptions()
   Handler.permissions(router, 'browse', Meta, (status: boolean, data: any) => {

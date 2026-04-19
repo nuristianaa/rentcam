@@ -202,7 +202,7 @@ def post_pict(id: int, db: Session, cred: dict, file: bytes, content_type: str):
     pict = storage.upload_file(file_path=path, data=file, content_type=content_type, is_public=False)
     storage_id = pict.get("id", None)
     db.query(Model).filter(Model.id == id).update(
-      {Model.profile_picture: pict.get("path", None), Model.storage_id: storage_id}
+      {Model.profile_picture: pict.get("path", None)}
     )
     db.commit()
 

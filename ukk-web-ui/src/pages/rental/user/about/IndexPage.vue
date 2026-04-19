@@ -15,20 +15,20 @@
           RENTCAM · Bandung
         </div>
         <h1 class="hero__title">
-          Platform Rental Foto<br />
-          <span class="hero__title--accent">Terpercaya di Bandung</span>
+          Photo Rental Platform<br />
+          <span class="hero__title--accent">Trusted in Bandung</span>
         </h1>
         <p class="hero__sub">
-          Kami hadir untuk memudahkan siapa saja mengakses peralatan foto berkualitas — tanpa perlu membelinya. Dari kamera, lensa, drone, hingga lighting.
+          We are here to easily help anyone access high-quality photo equipment — without needing to buy them. From cameras, lenses, drones, and lighting.
         </p>
         <div class="hero__actions">
           <router-link to="/rental/user/items" class="btn btn--primary">
             <q-icon name="camera_alt" size="16px" />
-            Lihat Koleksi
+            View Collection
           </router-link>
           <router-link to="/rental/user/faq" class="btn btn--ghost">
             <q-icon name="help_outline" size="15px" />
-            Pusat Bantuan
+            Help Center
           </router-link>
         </div>
       </div>
@@ -53,27 +53,27 @@
         <div class="story__text">
           <div class="section-tag">
             <q-icon name="auto_stories" size="13px" />
-            Cerita Kami
+            Our Story
           </div>
-          <h2 class="section-title">Dari Proyek UKK,<br /><em>untuk Semua.</em></h2>
+          <h2 class="section-title">From a School Project,<br /><em>for Everyone.</em></h2>
           <p class="story__body">
-            RENTCAM lahir dari keresahan nyata: alat foto mahal, budget terbatas, tapi kreativitas tidak bisa ditahan. Berawal sebagai proyek Ujian Kompetensi Kejuruan di Bandung, kami membangun platform yang memudahkan siapa saja — dari pelajar, content creator, hingga fotografer profesional — untuk mengakses peralatan foto berkualitas tanpa harus membelinya.
+            RENTCAM was born from a real concern: expensive photo equipment, limited budgets, but unstoppable creativity. Starting as a vocational school project in Bandung, we built a platform that allows anyone — from students, content creators, to professional photographers — to access high-quality equipment without having to buy.
           </p>
           <p class="story__body">
-            Sistem kami sederhana: booking online, transfer dan konfirmasi via WhatsApp, lalu datang ke toko kami untuk mengambil alat langsung. Semua terdokumentasi transparan dan real-time.
+            Our system is simple: online booking, bank transfer and WhatsApp confirmation, then visit our store to directly pick up the equipment. Everything is documented transparently and in real-time.
           </p>
           <div class="story__tags">
             <span class="tag">
               <q-icon name="school" size="12px" />
-              Proyek UKK
+              Vocational Project
             </span>
             <span class="tag">
               <q-icon name="location_on" size="12px" />
-              Bandung, Jawa Barat
+              Bandung, West Java
             </span>
             <span class="tag">
               <q-icon name="emoji_objects" size="12px" />
-              Inovasi Lokal
+              Local Innovation
             </span>
           </div>
         </div>
@@ -101,10 +101,10 @@
       <div class="flow__inner">
         <div class="section-tag" style="margin: 0 auto 14px">
           <q-icon name="alt_route" size="13px" />
-          Alur Sistem
+          System Flow
         </div>
         <h2 class="section-title" style="text-align:center">
-          Bagaimana Sistem<br /><em>Kami Bekerja</em>
+          How Our System<br /><em>Works</em>
         </h2>
         <div class="flow-steps">
           <div v-for="(step, i) in flowSteps" :key="i" class="flow-step">
@@ -124,10 +124,10 @@
       <div class="features__inner">
         <div class="section-tag" style="margin: 0 auto 14px">
           <q-icon name="star_outline" size="13px" />
-          Keunggulan Kami
+          Our Advantages
         </div>
         <h2 class="section-title" style="text-align:center">
-          Yang Membuat Kami<br /><em>Berbeda</em>
+          What Makes Us<br /><em>Different</em>
         </h2>
         <div class="feat-grid">
           <div v-for="feat in features" :key="feat.title" class="feat-card">
@@ -146,10 +146,10 @@
       <div class="team__inner">
         <div class="section-tag" style="margin: 0 auto 14px">
           <q-icon name="groups" size="13px" />
-          Tim Kami
+          Our Team
         </div>
         <h2 class="section-title" style="text-align:center">
-          Orang-Orang<br /><em>di Balik Layar</em>
+          People<br /><em>Behind the Scenes</em>
         </h2>
         <div class="team__grid">
           <div v-for="member in team" :key="member.name" class="member-card">
@@ -172,11 +172,11 @@
         <div class="location__text">
           <div class="section-tag">
             <q-icon name="location_on" size="13px" />
-            Lokasi Kami
+            Our Location
           </div>
-          <h2 class="section-title">Kami ada di<br /><em>Bandung.</em></h2>
+          <h2 class="section-title">We are in<br /><em>Bandung.</em></h2>
           <p class="location__body">
-            Datang langsung ke basecamp kami atau pesan secara online — kami siap antar ke seluruh area Bandung Kota. Untuk luar kota, tersedia layanan kurir.
+            Come directly to our basecamp or book online to secure your date. Pickup your gear directly from our store in Bandung.
           </p>
           <div class="location__info">
             <div class="loc-item">
@@ -184,8 +184,8 @@
                 <q-icon name="home" size="18px" />
               </div>
               <div>
-                <div class="loc-item__label">Alamat</div>
-                <div class="loc-item__val">Bandung, Jawa Barat</div>
+                <div class="loc-item__label">Address</div>
+                <div class="loc-item__val">Bandung, West Java</div>
               </div>
             </div>
             <div class="loc-item">
@@ -193,8 +193,8 @@
                 <q-icon name="schedule" size="18px" />
               </div>
               <div>
-                <div class="loc-item__label">Jam Operasional</div>
-                <div class="loc-item__val">Senin–Sabtu, 08.00–20.00 WIB</div>
+                <div class="loc-item__label">Operating Hours</div>
+                <div class="loc-item__val">Monday–Saturday, 08:00–20:00 WIB</div>
               </div>
             </div>
             <div class="loc-item">
@@ -202,7 +202,7 @@
                 <q-icon name="support_agent" size="18px" />
               </div>
               <div>
-                <div class="loc-item__label">Hubungi via</div>
+                <div class="loc-item__label">Contact via</div>
                 <div class="loc-item__val">WhatsApp & Email</div>
               </div>
             </div>
@@ -213,7 +213,7 @@
           <div class="map-card">
             <div class="map-card__header">
               <q-icon name="location_on" size="16px" />
-              <span>RENTCAM · Bandung, Jawa Barat</span>
+              <span>RENTCAM · Bandung, West Java</span>
             </div>
             <div class="map-card__body">
               <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" class="map-svg">
@@ -252,16 +252,16 @@
         <div class="cta__icon">
           <q-icon name="camera_alt" size="28px" />
         </div>
-        <h2 class="cta__title">Siap memulai<br />petualangan fotografimu?</h2>
-        <p class="cta__sub">Jangan biarkan alat foto mahal jadi penghalang kreativitasmu.</p>
+        <h2 class="cta__title">Ready to start<br />your photography journey?</h2>
+        <p class="cta__sub">Don't let expensive photo gear be a barrier to your creativity.</p>
         <div class="cta__actions">
           <router-link to="/rental/user/items" class="btn btn--primary btn--lg">
             <q-icon name="photo_camera" size="17px" />
-            Sewa Sekarang
+            Rent Now
           </router-link>
           <router-link to="/rental/user/faq" class="btn btn--outline-white btn--lg">
             <q-icon name="help_outline" size="16px" />
-            Baca FAQ
+            Read FAQ
           </router-link>
         </div>
       </div>
@@ -272,35 +272,35 @@
 
 <script setup lang="ts">
 const stats = [
-  { icon: 'camera_alt',    num: '50+',  label: 'Alat Tersedia' },
-  { icon: 'people',        num: '200+', label: 'Pelanggan Puas' },
-  { icon: 'star',          num: '4.9',  label: 'Rating Rata-rata' },
-  { icon: 'support_agent', num: '24/7', label: 'Support Aktif' },
+  { icon: 'camera_alt',    num: '50+',  label: 'Available Equipments' },
+  { icon: 'people',        num: '200+', label: 'Happy Customers' },
+  { icon: 'star',          num: '4.9',  label: 'Average Rating' },
+  { icon: 'support_agent', num: '24/7', label: 'Active Support' },
 ]
 
 const timeline = [
-  { icon: 'emoji_objects', year: '2023', title: 'Ide Pertama',  desc: 'Lahir dari tugas UKK, muncul visi platform rental foto lokal.' },
-  { icon: 'build',         year: '2024', title: 'Dibangun',     desc: 'Tim kecil membangun sistem dari nol dengan semangat besar.' },
-  { icon: 'rocket_launch', year: '2025', title: 'Diluncurkan',  desc: 'Platform resmi live dan melayani ratusan pelanggan Bandung.' },
-  { icon: 'trending_up',   year: 'Now',  title: 'Berkembang',   desc: 'Terus berinovasi dan memperluas koleksi alat foto.' },
+  { icon: 'emoji_objects', year: '2023', title: 'First Idea',  desc: 'Born from a vocational assignment, emerged a vision for a local photo rental platform.' },
+  { icon: 'build',         year: '2024', title: 'Built',     desc: 'A small team built the system from scratch with great enthusiasm.' },
+  { icon: 'rocket_launch', year: '2025', title: 'Launched',  desc: 'The official platform went live and serves hundreds of Bandung customers.' },
+  { icon: 'trending_up',   year: 'Now',  title: 'Growing',   desc: 'Continuing to innovate and expand our photo equipment collection.' },
 ]
 
 const flowSteps = [
-  { icon: 'search',           title: 'Pilih Alat',            desc: 'Browse katalog, pilih alat yang tersedia, dan tentukan tanggal booking.' },
-  { icon: 'calendar_month',   title: 'Tentukan Periode',       desc: 'Pilih tanggal mulai dan selesai. Sistem cek ketersediaan stok secara real-time.' },
-  { icon: 'chat',             title: 'Transfer & Kirim WA',   desc: 'Transfer ke rekening kami, lalu kirim bukti foto ke WhatsApp admin untuk dikonfirmasi.' },
-  { icon: 'fact_check',       title: 'Admin Verifikasi',       desc: 'Admin memverifikasi bukti transfer dan mengkonfirmasi booking Anda.' },
-  { icon: 'storefront',       title: 'Ambil di Toko',          desc: 'Datang ke toko kami di Bandung sesuai tanggal mulai. Alat siap dan sudah dicek.' },
-  { icon: 'task_alt',         title: 'Selesai & Deposit',      desc: 'Kembalikan alat ke toko. Kondisi dicek bersama, deposit dikembalikan penuh jika baik.' },
+  { icon: 'search',           title: 'Choose Equipment',            desc: 'Browse the catalog, choose available equipment, and set booking dates.' },
+  { icon: 'calendar_month',   title: 'Set Period',       desc: 'Select the start and end dates. The system checks stock availability in real-time.' },
+  { icon: 'chat',             title: 'Transfer & Send WA',   desc: 'Transfer to our bank account, then send a photo receipt to WhatsApp admin for confirmation.' },
+  { icon: 'fact_check',       title: 'Admin Verification',       desc: 'Admin verifies the transfer receipt and confirms your booking.' },
+  { icon: 'storefront',       title: 'Store Pickup',          desc: 'Visit our store in Bandung on the start date. Equipment is ready and checked.' },
+  { icon: 'task_alt',         title: 'Complete & Deposit',      desc: 'Return the equipment to the store. Condition checked together, full deposit returned if good.' },
 ]
 
 const features = [
-  { icon: 'payments',       title: 'Harga Terjangkau',   desc: 'Sewa mulai dari harga ramah di kantong tanpa kompromi kualitas.' },
-  { icon: 'verified',       title: 'Alat Terawat',        desc: 'Setiap alat dicek dan dibersihkan sebelum diserahkan di toko.' },
-  { icon: 'storefront',     title: 'Pickup di Toko',      desc: 'Ambil dan kembalikan langsung ke toko — tidak perlu tunggu kurir.' },
-  { icon: 'shield',         title: 'Deposit Transparan',  desc: 'Sistem deposit terverifikasi untuk keamanan semua pihak.' },
-  { icon: 'chat',           title: 'Konfirmasi via WA',  desc: 'Kirim bukti transfer ke WhatsApp admin — konfirmasi cepat dalam 2 jam.' },
-  { icon: 'support_agent',  title: 'Support Responsif',   desc: 'Tim kami siap membantu kapan saja via WhatsApp.' },
+  { icon: 'payments',       title: 'Affordable Prices',   desc: 'Rent starting at pocket-friendly prices without compromising quality.' },
+  { icon: 'verified',       title: 'Well-Maintained Equipment',        desc: 'Every equipment is checked and cleaned before hand-over at the store.' },
+  { icon: 'storefront',     title: 'Store Pickup',      desc: 'Pickup and return directly to the store — no need to wait for courier.' },
+  { icon: 'shield',         title: 'Transparent Deposit',  desc: 'Verified deposit system for the safety of all parties.' },
+  { icon: 'chat',           title: 'WA Confirmation',  desc: 'Send transfer receipt to admin WhatsApp — fast confirmation within 2 hours.' },
+  { icon: 'support_agent',  title: 'Responsive Support',   desc: 'Our team is ready to help at any time via WhatsApp.' },
 ]
 
 const team = [
