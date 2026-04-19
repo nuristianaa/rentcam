@@ -95,13 +95,17 @@ class Uploader:
     # Ensure req_id is an integer if the model uses an integer primary key
     if req_id is not None:
         try:
+            old_id = req_id
             req_id = int(req_id)
+            print(f"[Uploader] Casting ID from {old_id} to {req_id}")
         except (ValueError, TypeError):
+            print(f"[Uploader] Failed to cast ID: {req_id}")
             pass
 
     column_attr = self._resolve_column(column)
-
     base_path = f"project_management/{self.module_name}/{req_code}-{req_id}"
+    
+    print(f"[Uploader] Starting upload for {self.model.__name__} ID: {req_id}")
 
     order = order or []
     delete_ids = delete_ids or []
@@ -111,7 +115,11 @@ class Uploader:
     description_map = description_map or {}
     maxheight_map = maxheight_map or {}
 
-    current_data = self.db.execute(select(column_attr).where(self.model.id == req_id, self.model.deleted_at.is_(None))).scalar_one_or_none()
+    # 1. Ambil data lama
+    print(f"[Uploader] Fetching current data...")
+    stmt = select(column_attr).where(self.model.id == req_id)
+    current_data = self.db.execute(stmt).scalar_one_or_none()
+    
     if not current_data:
       current_data = {}
     else:
@@ -122,47 +130,30 @@ class Uploader:
 
     new_attachments = {}
 
+    # 2. Proses File
     for _position, token in enumerate(order):
+      if ':' not in token: continue
       kind, token_id = token.split(":", 1)
 
-      # ===========================
-      # 1) EXISTING ATTACHMENT
-      # ===========================
       if kind == "attachment":
-        if token_id in delete_ids:
-          continue
-
-        # keep existing
+        if token_id in delete_ids: continue
         if token_id in current_data:
           new_attachments[token_id] = current_data[token_id]
-
-          # tambahkan/overwrite colSize
-          if token_id in colsize_map:
-            new_attachments[token_id]["colSize"] = colsize_map[token_id]
-          if token_id in remark_map:
-            new_attachments[token_id]["remark"] = remark_map[token_id]
-          if token_id in description_map:
-            new_attachments[token_id]["description"] = description_map[token_id]
-          if token_id in maxheight_map:
-            new_attachments[token_id]["maxHeight"] = maxheight_map[token_id]
-
+          if token_id in colsize_map: new_attachments[token_id]["colSize"] = colsize_map[token_id]
+          if token_id in remark_map: new_attachments[token_id]["remark"] = remark_map[token_id]
+          if token_id in description_map: new_attachments[token_id]["description"] = description_map[token_id]
+          if token_id in maxheight_map: new_attachments[token_id]["maxHeight"] = maxheight_map[token_id]
         continue
 
-      # ===========================
-      # 2) NEW FILE
-      # ===========================
       if kind == "new":
-        if token_id not in new_files:
-          continue
-
+        if token_id not in new_files: continue
         info = new_files[token_id]
-
+        print(f"[Uploader] Uploading new file: {token_id}")
         uploaded = storage.upload_file(
           file_path=f"{base_path}-{token_id}",
           data=info["file"],
           content_type=info["content_type"],
         )
-
         new_attachments[token_id] = {
           "path": uploaded["path"],
           "storage": uploaded["id"],
@@ -172,13 +163,14 @@ class Uploader:
           "maxHeight": maxheight_map.get(token_id, None),
         }
 
-    # update DB
+    # 3. Update Database
+    print(f"[Uploader] Saving to database...")
     self.db.execute(update(self.model).where(self.model.id == req_id).values({column_attr: new_attachments}))
     self.db.commit()
+    print(f"[Uploader] Success!")
 
-    # Get updated object
-    obj = self.db.execute(select(self.model).where(self.model.id == req_id)).scalars().first()
-    return obj
+    # Return refreshed object
+    return self.db.execute(select(self.model).where(self.model.id == req_id)).scalars().first()
 
   def _sanitize_attachment(self, attachment: dict) -> dict:
     allowed_keys = [

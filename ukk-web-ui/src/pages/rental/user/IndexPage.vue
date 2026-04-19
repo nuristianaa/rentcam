@@ -15,7 +15,7 @@
         <div class="hero__badge">
           <span class="hero__badge-dot" />
           <q-icon name="camera_alt" size="12px" />
-          Camera Equipment Rental · Karyawangi
+          Camera Equipment Rental · Bandung
         </div>
 
         <h1 class="hero__title">
