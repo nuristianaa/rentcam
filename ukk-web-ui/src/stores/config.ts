@@ -17,8 +17,8 @@ const state = {
   },
   appconfig: {
     login: false,
-    url: 'http://localhost:8190/',
-    rental: 'http://localhost:8191/',
+    url: 'https://discerning-success-production-c616.up.railway.app/',
+    rental: 'https://rentcam-production.up.railway.app/',
   },
   csvdelimiter: ','
 }
