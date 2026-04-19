@@ -66,6 +66,10 @@ const refresh = ref(0)
 const router = useRouter()
 const auth = authStore()
 
+// Cache values to avoid repeated Lookups/Re-renders
+const currentToken = ref('')
+const currentBaseUrl = ref('')
+
 const encodeStaticPath = (path: string) => path.split('/').map(encodeURIComponent).join('/')
 
 const resolveImageUrl = (path: string, storage?: string | null): string | null => {
@@ -84,30 +88,29 @@ const resolveImageUrl = (path: string, storage?: string | null): string | null =
     }
   }
 
-  const token = auth.getToken?.() ?? authStore().getToken()
-  const baseUrl = Config.apiUrl('rental')
+  const token = currentToken.value
+  const baseUrl = currentBaseUrl.value
   return `${baseUrl}static_files/${encodeStaticPath(path)}${token ? `?token=${token}` : ''}`
 }
 
 const getFirstImageUrl = (raw: any): string | null => {
   if (!raw) return null
   
-  // Jika sudah string (path langsung)
+  // Quick return for string paths
   if (typeof raw === 'string') return resolveImageUrl(raw)
 
-  // Ambil item pertama dari array atau object
+  // Avoid deep processing, just pick the first relevant item
   let firstItem = null
   if (Array.isArray(raw)) {
-    firstItem = raw[0]
+    if (raw.length > 0) firstItem = raw[0]
   } else if (typeof raw === 'object') {
-    // Jika formatnya { token_id: { path: '...' } }
     const values = Object.values(raw)
     if (values.length > 0) firstItem = values[0]
   }
 
   if (!firstItem) return null
 
-  // Resolve item yang ditemukan
+  // Process the found item
   if (typeof firstItem === 'string') return resolveImageUrl(firstItem)
   if (typeof firstItem === 'object') {
     if ('path' in firstItem) return resolveImageUrl(firstItem.path, firstItem.storage ?? null)
@@ -118,6 +121,10 @@ const getFirstImageUrl = (raw: any): string | null => {
 }
 
 const init = () => {
+  // Pre-fetch cache values
+  currentToken.value = auth.getToken?.() ?? authStore().getToken() ?? ''
+  currentBaseUrl.value = Config.apiUrl('rental')
+
   Handler.permissions(router, 'browse', Meta, (status, data) => {
     Meta.permission = data
     if (status) loading.value = false

@@ -94,6 +94,11 @@ const categoryOptions = ref<any[]>([])
 const init = () => {
   dataModel.value = Helper.unreactive(Meta.model)
   loadCategories()
+  
+  // Cache values to avoid repeated Lookups in template/computed
+  currentToken.value = authStore().getToken() ?? ''
+  currentBaseUrl.value = Config.apiUrl('rental')
+
   const action = props.props?.id ? 'update' : 'create'
   Handler.permissions(router, action, Meta, (status: boolean, data: any) => {
     Meta.permission = data
@@ -121,6 +126,10 @@ const loadCategories = () => {
   }, Meta.app)
 }
 
+// Cache values to avoid repeated Lookups
+const currentToken = ref('')
+const currentBaseUrl = ref('')
+
 /** Resolve image URL — returns null on failure, never throws */
 const resolveImageUrl = (path: string, storage?: string | null): string | null => {
   if (!path) return null
@@ -129,8 +138,8 @@ const resolveImageUrl = (path: string, storage?: string | null): string | null =
     return path
   }
 
-  const token = authStore().getToken()
-  const baseUrl = Config.apiUrl('rental')
+  const token = currentToken.value
+  const baseUrl = currentBaseUrl.value
 
   if (path.startsWith('rental/') || path.startsWith('crm/') || path.startsWith('static_files/') || (storage && storage.startsWith('STATIC'))) {
     return `${baseUrl}static_files/${encodeURIComponent(path)}${token ? `?token=${token}` : ''}`
