@@ -4,10 +4,8 @@
       "id": "STATIC_2",
       "name": "Local Storage",
       "driver": "LOCAL",
-      "config": {
-        "folder": "static_files",
-        "base_url": "/static_files"
-      }
+      "folder": "static_files",
+      "base_url": "/static_files"
     }
   ]
 }
