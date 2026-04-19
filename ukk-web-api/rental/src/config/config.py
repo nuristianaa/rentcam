@@ -4,11 +4,13 @@ from dotenv import dotenv_values, load_dotenv
 
 load_dotenv()
 config = dotenv_values(".env")
+import os
 def getenv(index: str, default: str = '') -> str:
-  try: mode = config[index]
-  except: mode = default
-  if mode: return mode
-  else: return ''
+  # Check system environment (Railway) first, then .env file
+  val = os.getenv(index)
+  if val: return val
+  try: return config[index]
+  except: return default
 
 def is_dev() -> bool:
   reload = False
