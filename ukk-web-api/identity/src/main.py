@@ -115,7 +115,16 @@ def logger_info(request: Request, req: ReqLog):
 # ==================================================================
 # 🧩 STATIC FILES
 # ==================================================================
-app.mount("/ui", StaticFiles(directory=os.path.join("src", "ui", "assets")), name="ui")
+static_dir = os.path.join("src", "ui", "assets")
+if not os.path.exists(static_dir):
+    # Try alternative path if main one fails
+    static_dir = os.path.join(os.path.dirname(__file__), "ui", "assets")
+
+if os.path.exists(static_dir):
+    app.mount("/ui", StaticFiles(directory=static_dir), name="ui")
+else:
+    print(f"⚠️ Warning: Static directory '{static_dir}' not found. Skipping mount to prevent crash.")
+
 
 
 # ==================================================================
