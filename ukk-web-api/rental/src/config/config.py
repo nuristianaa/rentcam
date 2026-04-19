@@ -20,6 +20,7 @@ def is_dev() -> bool:
 
 origins = [
   "https://localhost",
+  "https://rentcam.vercel.app",
   "https://unais.com",
   "https://qa.uanis.com",
   "https://dev.uanis.com",
