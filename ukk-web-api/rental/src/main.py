@@ -54,8 +54,14 @@ def healthz():
 # 🧩 STATIC FILES
 # ==================================================================
 root_dir = os.path.dirname(__file__)
+static_dir = os.path.join(root_dir, "..", "static_files")
+
+# Ensure static_files exists
+if not os.path.exists(static_dir):
+  os.makedirs(static_dir)
+
 app.mount("/ui", StaticFiles(directory=os.path.join(root_dir, "ui", "assets")), name="ui")
-app.mount("/static_files", StaticFiles(directory=os.path.join(root_dir, "..", "static_files")), name="static_files")
+app.mount("/static_files", StaticFiles(directory=static_dir), name="static_files")
 
 
 # ==================================================================
