@@ -5,7 +5,7 @@
       "name": "Local Storage",
       "driver": "LOCAL",
       "folder": "static_files",
-      "base_url": "/static_files"
+      "endpoint": "/static_files"
     }
   ]
 }
