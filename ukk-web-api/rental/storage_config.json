@@ -5,7 +5,7 @@
       "name": "Local Storage",
       "driver": "LOCAL",
       "config": {
-        "root_path": "static_files",
+        "folder": "static_files",
         "base_url": "/static_files"
       }
     }
