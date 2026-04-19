@@ -9,9 +9,17 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from dotenv import load_dotenv, dotenv_values
 load_dotenv()
 cfg_env = dotenv_values(".env")
-DB_URL = f"postgresql://{cfg_env['DB_USER']}:{cfg_env['DB_PASSWORD']}@{cfg_env['DB_HOST']}/{cfg_env['DB_NAME']}"
+
+# Priority 1: Check for DATABASE_URL or DATABASE_PUBLIC_URL
+DATABASE_URL = cfg_env.get('DATABASE_URL') or cfg_env.get('DATABASE_PUBLIC_URL')
+if DATABASE_URL:
+    DB_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+else:
+    # Priority 2: Traditional individual variables
+    DB_URL = f"postgresql://{cfg_env.get('DB_USER', 'postgres')}:{cfg_env.get('DB_PASSWORD', '')}@{cfg_env.get('DB_HOST', 'localhost')}/{cfg_env.get('DB_NAME', 'postgres')}"
 
 engine = create_engine(DB_URL)
+
 Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
