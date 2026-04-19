@@ -1,0 +1,13 @@
+{
+  "static_file": [
+    {
+      "id": "STATIC_2",
+      "name": "Local Storage",
+      "driver": "LOCAL",
+      "config": {
+        "root_path": "static_files",
+        "base_url": "/static_files"
+      }
+    }
+  ]
+}
