@@ -21,12 +21,12 @@
     <!-- ── Contact Cards ─────────────────────────────────────── -->
     <section class="channels">
       <div class="channels__inner">
-        <a href="https://wa.me/6281234567890" target="_blank" class="channel-card channel-card--wa">
+        <a href="https://wa.me/6283851071950" target="_blank" class="channel-card channel-card--wa">
           <div class="channel-card__icon">
             <q-icon name="chat" size="28px" />
           </div>
           <div class="channel-card__label">WhatsApp</div>
-          <div class="channel-card__value">+62 812-3456-7890</div>
+          <div class="channel-card__value">+62 838-5107-1950</div>
           <div class="channel-card__note">Response within 15 minutes during working hours</div>
           <div class="channel-card__cta">
             Chat Now
@@ -34,12 +34,12 @@
           </div>
         </a>
 
-        <a href="mailto:info@ukkreental.id" class="channel-card channel-card--email">
+        <a href="mailto:info@rentcam.id" class="channel-card channel-card--email">
           <div class="channel-card__icon">
             <q-icon name="email" size="28px" />
           </div>
           <div class="channel-card__label">Email</div>
-          <div class="channel-card__value">info@ukkreental.id</div>
+          <div class="channel-card__value">info@rentcam.id</div>
           <div class="channel-card__note">For formal questions & invoices</div>
           <div class="channel-card__cta">
             Send Email
@@ -80,7 +80,7 @@
               <div class="wa-step__text">{{ s }}</div>
             </div>
           </div>
-          <a href="https://wa.me/6281234567890?text=Hello%20UKK%20Rental%2C%20I%20want%20to%20confirm%20my%20booking%20payment." target="_blank" class="wa-btn">
+          <a href="https://wa.me/6283851071957?text=Hello%20UKK%20Rental%2C%20I%20want%20to%20confirm%20my%20booking%20payment." target="_blank" class="wa-btn">
             <q-icon name="chat" size="18px" />
             Send Transfer Receipt via WA
           </a>
@@ -92,7 +92,7 @@
                 <q-icon name="camera_alt" size="18px" />
               </div>
               <div>
-                <div class="wm-name">UKK Rental</div>
+                <div class="wm-name">RentCam</div>
                 <div class="wm-status">● Online</div>
               </div>
             </div>

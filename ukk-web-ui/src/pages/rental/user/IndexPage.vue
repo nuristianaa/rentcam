@@ -15,7 +15,7 @@
         <div class="hero__badge">
           <span class="hero__badge-dot" />
           <q-icon name="camera_alt" size="12px" />
-          Camera Equipment Rental · Bandung
+          Camera Equipment Rental · Karyawangi
         </div>
 
         <h1 class="hero__title">
@@ -26,7 +26,7 @@
 
         <p class="hero__sub">
           Cameras, lenses, drones, lighting — all available at affordable prices.
-          Book online, pick up directly at our store in Bandung — fast, easy, and reliable.
+          Book online, pick up directly at our store in Karyawangi — fast, easy, and reliable.
         </p>
 
         <div class="hero__actions">
@@ -234,7 +234,7 @@
                 <div class="pay-step__text">Wait for admin confirmation (max 2 hours)</div>
               </div>
             </div>
-            <a href="https://wa.me/6281234567890" target="_blank" class="pay-wa-btn">
+            <a href="https://wa.me/6283851071957" target="_blank" class="pay-wa-btn">
               <q-icon name="chat" size="16px" />
               Send Receipt via WhatsApp
             </a>
@@ -294,7 +294,7 @@
                 <div class="loc-detail-icon"><q-icon name="location_on" size="18px" /></div>
                 <div>
                   <div class="loc-detail-label">Address</div>
-                  <div class="loc-detail-val">Bandung, West Java</div>
+                  <div class="loc-detail-val">Karyawangi, Parongpong</div>
                 </div>
               </div>
               <div class="loc-detail-item">
@@ -313,7 +313,7 @@
               </div>
             </div>
             <a
-              href="https://maps.google.com/?q=Bandung,Jawa+Barat"
+              href="https://maps.app.goo.gl/tW7X2aR8Z6B2u4E81"
               target="_blank"
               class="btn btn--primary loc-map-btn"
             >
@@ -325,7 +325,7 @@
           <div class="loc-map">
             <div class="map-embed-wrap">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.56722619052!2d107.5381682!3d-6.9174639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0x146a1f93d3e815b2!2sBandung%2C%20Kota%20Bandung%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1712900000000!5m2!1sid!2sid"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247.60451684904584!2d107.57977535754856!3d-6.809660242751447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e17ed9f03a1b%3A0x46378751ba103981!2sKaryawangi!5e0!3m2!1sid!2sid!4v1776600509593!5m2!1sid!2sid"
                 width="100%"
                 height="100%"
                 style="border:0;"
@@ -355,7 +355,7 @@
             <q-icon name="photo_camera" size="17px" />
             Explore Equipment
           </button>
-          <a href="https://wa.me/6281234567890" target="_blank" class="btn btn--outline-white btn--lg">
+          <a href="https://wa.me/6283851071957" target="_blank" class="btn btn--outline-white btn--lg">
             <q-icon name="chat" size="17px" />
             Contact via WhatsApp
           </a>
@@ -371,7 +371,7 @@
             <q-icon name="camera_alt" size="18px" />
           </div>
           <span class="footer__name">RENTCAM</span>
-          <p class="footer__tagline">Trusted camera equipment rental platform in Bandung.</p>
+          <p class="footer__tagline">Trusted camera equipment rental platform in Karyawangi.</p>
         </div>
         <div class="footer__links">
           <div class="footer__col">

@@ -145,7 +145,7 @@ def init():
     if admin:
       db.query(User).filter(User.email == 'admin@gmail.com').update(
         {
-          "name": "admin",
+          "name": "Nuristiana Izatul",
           "username": "admin",
           "email": "admin@gmail.com",
           "password": bcrypt("test1234"),
@@ -159,7 +159,7 @@ def init():
       print("admin user updated")
     else:
       admin = User(
-        name="admin",
+        name="Nuristiana Izatul",
         username="admin",
         email="admin@gmail.com",
         password=bcrypt("test1234"),

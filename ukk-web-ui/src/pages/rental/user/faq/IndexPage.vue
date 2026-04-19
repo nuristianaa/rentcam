@@ -137,7 +137,7 @@
         <div class="faq-cta__title">Still have questions?</div>
         <div class="faq-cta__sub">Our support team is ready to help anytime — 24 hours a day, 7 days a week.</div>
         <div class="faq-cta__actions">
-          <a href="https://wa.me/6281234567890" target="_blank" class="cta-btn cta-btn--primary">
+          <a href="https://wa.me/6283851071957" target="_blank" class="cta-btn cta-btn--primary">
             <q-icon name="chat" size="16px" />
             Chat via WhatsApp
           </a>
@@ -196,8 +196,8 @@ const allFaq = [
   { cat: 'bayar', q: 'What if I cancel my order?', a: 'Cancellations before the item is picked up can be made at no cost. Contact us via WhatsApp immediately to cancel.' },
   { cat: 'bayar', q: 'How long does transfer payment verification take?', a: 'After sending the transfer receipt via WhatsApp, the admin will confirm it within <strong>1-2 hours</strong> during business hours (Monday-Saturday, 08:00-20:00 WIB).' },
   // ── Store Pickup
-  { cat: 'pengiriman', q: 'Is there a delivery or home drop-off service?', a: 'There are no delivery services. Equipment must be picked up and returned <strong>directly to our store</strong> in Bandung. This ensures the condition of the equipment is checked together during handover.' },
-  { cat: 'pengiriman', q: 'Where do I pick up the equipment?', a: 'Pick up the equipment directly at our store located in <strong>Bandung, West Java</strong>. See the location map on the About Us page or click the Google Maps button.' },
+  { cat: 'pengiriman', q: 'Is there a delivery or home drop-off service?', a: 'There are no delivery services. Equipment must be picked up and returned <strong>directly to our store</strong> in Karyawangi. This ensures the condition of the equipment is checked together during handover.' },
+  { cat: 'pengiriman', q: 'Where do I pick up the equipment?', a: 'Pick up the equipment directly at our store located in <strong>Karyawangi, Parongpong</strong>. See the location map on the About Us page or click the Google Maps button.' },
   { cat: 'pengiriman', q: 'When can I pick up the equipment?', a: 'Equipment can be obtained on the rental start date according to your booking. Store operating hours: <strong>Monday-Saturday, 08:00-20:00 WIB</strong>.' },
   { cat: 'pengiriman', q: 'How is the return process?', a: 'Return the equipment to the store before or right on the rental end date. Condition is checked together. If good, deposit will be refunded on the spot or within 1-3 business days.' },
   { cat: 'pengiriman', q: 'What condition should the equipment be in upon handover?', a: 'Each piece of equipment is checked and cleaned. We attach an equipment condition record signed together during handover in the store.' },

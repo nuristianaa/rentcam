@@ -29,7 +29,7 @@
             <q-icon name="account_balance" size="lg" color="blue-7" />
             <div class="col">
               <div class="text-subtitle2 text-weight-bold" style="font-size: 1.1rem;">BCA Bank - 1234567890</div>
-              <div class="text-caption text-weight-medium" style="font-size: 0.9rem;">a.n. Camera Rental Admin</div>
+              <div class="text-caption text-weight-medium" style="font-size: 0.9rem;">a.n. Nuristiana Izatul</div>
               <div class="text-weight-bold q-mt-xs text-blue-10" style="font-size: 1.2rem;">Total Amount: {{ formatIdr(grandTotal) }}</div>
             </div>
           </div>
