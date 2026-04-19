@@ -224,8 +224,8 @@ app.add_middleware(
 if __name__ == "__main__":
   uvicorn.run(
     "main:app",
-    host=getenv("HOST", "localhost"),
-    port=int(getenv("PORT_IDENTITY", "8090")),
+    host=getenv("HOST", "0.0.0.0"),
+    port=int(getenv("PORT", getenv("PORT_IDENTITY", "8090"))),
     reload=is_dev(),
     workers=1 if is_dev() else 4,
     limit_concurrency=100,
