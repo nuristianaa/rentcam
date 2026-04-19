@@ -57,14 +57,18 @@
             :key="raw.id || raw.Item?.id"
             class="col-12 col-sm-6 col-md-4 col-lg-3"
           >
+            <!-- Card Wrapper -->
             <q-card class="product-card cursor-pointer shadow-1" @click="detail(itemModel(raw))">
               <div class="product-image-wrapper">
-                <q-img
-                  v-if="getImage(raw)"
-                  :src="getImage(raw)"
-                  fit="contain"
-                  class="product-image"
-                />
+                <template v-if="getImage(raw)">
+                  <q-img
+                    :src="getImage(raw)"
+                    fit="contain"
+                    class="product-image"
+                    loading="lazy"
+                    spinner-color="primary"
+                  />
+                </template>
                 <div v-else class="flex flex-center bg-grey-1 product-image">
                   <q-icon name="image_not_supported" size="48px" color="grey-4" />
                 </div>
@@ -184,9 +188,25 @@ const itemStatusColorHex = (raw: any) => {
   return (item.stock_available ?? 0) > 0 ? '#1976d2' : '#dc2626'
 }
 
+// Cache values to avoid repeated Lookups/Re-renders
+const currentToken = ref('')
+const currentBaseUrl = ref('')
+
 const getImage = (item: any): string | null => {
   const images = itemModel(item)?.images
-  const first = getFirstImage(images)
+  if (!images) return null
+
+  // Fast pick first image
+  let first = null
+  if (Array.isArray(images)) {
+    if (images.length > 0) first = images[0]
+  } else if (typeof images === 'object') {
+    const values = Object.values(images)
+    if (values.length > 0) first = values[0]
+  } else {
+    first = images
+  }
+
   if (!first) return null
 
   if (typeof first === 'object') {
@@ -202,34 +222,30 @@ const getImage = (item: any): string | null => {
   return null
 }
 
-const getFirstImage = (images: any): any => {
-  if (!images) return null
-  if (Array.isArray(images)) return images.length > 0 ? images[0] : null
-  if (typeof images === 'object') {
-    const values = Object.values(images)
-    return values.length > 0 ? values[0] : null
-  }
-  return images
-}
-
 const encodeStaticPath = (path: string) => path.split('/').map(encodeURIComponent).join('/')
 const isLocalStaticStorage = (storage?: string | null) => !!storage?.toUpperCase().startsWith('STATIC')
 
 const resolveImageUrl = (path: string, storage?: string | null): string | null => {
   if (!path) return null
   if (path.startsWith('http://') || path.startsWith('https://')) return path
+  
   if (storage && !isLocalStaticStorage(storage)) {
     try {
       const url = (Helper as any).viewBlobFile(path, false, storage)
       return typeof url === 'string' ? url : null
     } catch { return null }
   }
-  const token = authStore().getToken()
-  const baseUrl = Config.apiUrl('rental')
+
+  const token = currentToken.value
+  const baseUrl = currentBaseUrl.value
   return `${baseUrl}static_files/${encodeStaticPath(path)}${token ? `?token=${token}` : ''}`
 }
 
 const init = () => {
+  // Pre-fetch cache values
+  currentToken.value = auth.getToken?.() ?? authStore().getToken() ?? ''
+  currentBaseUrl.value = Config.apiUrl('rental')
+
   if (route.query.category) {
     searchQuery.value = String(route.query.category)
   }
@@ -345,7 +361,7 @@ onMounted(() => init())
 .product-card {
   border-radius: 16px;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   border: 1px solid rgba(0,0,0,0.05);
   display: flex;
   flex-direction: column;

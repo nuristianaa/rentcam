@@ -90,12 +90,12 @@
             <q-icon name="place" class="q-mr-xs" /> Store Location
           </div>
           <div class="text-caption q-mb-xs">
-            📍 Jl. Cihampelas No. 123, Bandung, West Java
+            📍 Karyawangi, Parongpong
           </div>
           <div class="text-caption q-mb-sm">
             <a
               class="text-blue text-weight-bold"
-              href="https://www.google.com/maps/search/?api=1&query=Jl.+Cihampelas+No.+123,+Bandung,+Jawa+Barat"
+              href="https://maps.app.goo.gl/tW7X2aR8Z6B2u4E81"
               target="_blank"
               rel="noopener noreferrer"
             >View on Google Maps</a>
@@ -106,14 +106,14 @@
           <q-separator class="q-my-sm" />
           <div class="q-mt-sm" style="width:100%;height:240px;overflow:hidden;border-radius:12px;">
             <iframe
-              title="Preview Google Maps"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247.60451684904584!2d107.57977535754856!3d-6.809660242751447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e17ed9f03a1b%3A0x46378751ba103981!2sKaryawangi!5e0!3m2!1sid!2sid!4v1776600509593!5m2!1sid!2sid"
               width="100%"
               height="100%"
-              frameborder="0"
               style="border:0;"
+              allowfullscreen
               loading="lazy"
-              src="https://www.google.com/maps?q=Jl.+Cihampelas+No.+123,+Bandung,+Jawa+Barat&output=embed"
-            ></iframe>
+              referrerpolicy="no-referrer-when-downgrade"
+            />
           </div>
         </q-card-section>
       </q-card>
@@ -294,15 +294,15 @@
           Please transfer to the following account, then send the payment receipt via WhatsApp:
         </div>
         <div class="text-caption q-mb-xs">
-          🏦 <b>BCA Bank</b> — Account No: <b>1234567890</b> a.n. <b>Camera Rental Admin</b>
+          🏦 <b>BCA Bank</b> — Account No: <b>083851071957</b> a.n. <b>Nuristiana Izatul</b>
         </div>
         <div class="text-caption">
           📱 Admin WhatsApp:
           <a
-            :href="`https://wa.me/6281234567890?text=Hello Admin, I am ${dataModel.customer_name ?? ''} sending the transfer receipt for booking ${dataModel.rental_code ?? ''}.`"
+            :href="`https://wa.me/6283851071957?text=Hello Admin, I am ${dataModel.customer_name ?? ''} sending the transfer receipt for booking ${dataModel.rental_code ?? ''}.`"
             target="_blank"
             class="text-blue-10 text-weight-bold"
-          >0812-3456-7890</a>
+          >0838-5107-1957</a>
         </div>
       </q-banner>
     </template>

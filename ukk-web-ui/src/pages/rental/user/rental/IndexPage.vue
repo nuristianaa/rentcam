@@ -38,15 +38,15 @@
                 </template>
                 <div class="text-caption text-weight-bold q-mb-xs">Transfer Payment Instructions</div>
                 <div class="text-caption q-mb-xs">Please transfer to the following account, then send the payment proof via WhatsApp:</div>
-                <div class="text-caption q-mb-xs">🏦 <b>BCA Bank</b> — Account No: <b>1234567890</b> a.n. <b>Camera Rental Admin</b></div>
+                <div class="text-caption q-mb-xs">🏦 <b>BCA Bank</b> — Account No: <b>083851071957</b> a.n. <b>Nuristiana Izatul</b></div>
                 <div class="text-caption q-mb-xs">Payment is primarily via bank transfer. After transferring, send the receipt via WA to speed up verification and confirmation.</div>
                 <div class="text-caption">
                   📱 Admin WhatsApp:
                   <a
-                    :href="`https://wa.me/6281234567890?text=Hello Admin, I am ${dataModel.customer_name ?? ''} sending the transfer receipt for my camera rental booking.`"
+                    :href="`https://wa.me/6283851071957?text=Hello Admin, I am ${dataModel.customer_name ?? ''} sending the transfer receipt for my camera rental booking.`"
                     target="_blank"
                     class="text-blue-9 text-weight-bold"
-                  >0812-3456-7890</a>
+                  >0838-5107-1957</a>
                 </div>
               </q-banner>
             </div>
@@ -258,28 +258,28 @@
           <q-card flat bordered class="bg-grey-1 q-pa-md q-mt-md">
             <div class="text-subtitle2 text-weight-bold q-mb-sm">Store Location</div>
             <div class="text-caption q-mb-xs">
-              📍 Jl. Cihampelas No. 123, Bandung, West Java
+              📍 Karyawangi, Parongpong
             </div>
             <div class="text-caption q-mb-sm">
               <a
                 class="text-blue text-weight-bold"
-                href="https://www.google.com/maps/search/?api=1&query=Jl.+Cihampelas+No.+123,+Bandung,+Jawa+Barat"
+                href="https://maps.app.goo.gl/tW7X2aR8Z6B2u4E81"
                 target="_blank"
                 rel="noopener noreferrer"
               >View on Google Maps</a>
             </div>
-            <div class="text-caption q-mb-sm">Visit our store for self-pickup or use delivery services for the Bandung area.</div>
+            <div class="text-caption q-mb-sm">Visit our store for self-pickup. Equipment is available at our Karyawangi branch.</div>
             <q-separator class="q-my-sm" />
             <div class="q-mt-sm" style="width:100%;height:240px;overflow:hidden;border-radius:12px;">
               <iframe
-                title="Preview Google Maps"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247.60451684904584!2d107.57977535754856!3d-6.809660242751447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e17ed9f03a1b%3A0x46378751ba103981!2sKaryawangi!5e0!3m2!1sid!2sid!4v1776600509593!5m2!1sid!2sid"
                 width="100%"
                 height="100%"
-                frameborder="0"
                 style="border:0;"
+                allowfullscreen
                 loading="lazy"
-                src="https://www.google.com/maps?q=Jl.+Cihampelas+No.+123,+Bandung,+Jawa+Barat&output=embed"
-              ></iframe>
+                referrerpolicy="no-referrer-when-downgrade"
+              />
             </div>
           </q-card>
         </div>
@@ -360,12 +360,16 @@ const itemColumns = [
 const resolveItemCode = (item: any) => item?.item_code ?? item?.code ?? item?.name ?? ''
 const resolveItemName = (item: any) => item?.item_name ?? item?.name ?? item?.code ?? null
 
+// Cache values to avoid repeated Lookups
+const currentToken = ref('')
+const currentBaseUrl = ref('')
+
 const resolveImageUrl = (path: string, storage?: string | null): string | null => {
   if (!path) return null
   if (path.startsWith('http://') || path.startsWith('https://')) return path
 
-  const token = auth.getToken?.() ?? authStore().getToken()
-  const baseUrl = Config.apiUrl('rental')
+  const token = currentToken.value
+  const baseUrl = currentBaseUrl.value
 
   // Paths stored as rental/... crm/... static_files/... or STATIC storage → use static URL
   if (
@@ -396,19 +400,26 @@ const resolveImageUrl = (path: string, storage?: string | null): string | null =
 const getFirstImageUrl = (raw: any): string | null => {
   if (!raw) return null
   if (typeof raw === 'string') return resolveImageUrl(raw)
+  
+  // Fast path for common object/array scenarios
+  let first = null
   if (Array.isArray(raw)) {
-    for (const item of raw) {
-      const url = getFirstImageUrl(item)
-      if (url) return url
-    }
-    return null
-  }
-  if (typeof raw === 'object') {
+    if (raw.length > 0) first = raw[0]
+  } else if (typeof raw === 'object') {
     if ('path' in raw) return resolveImageUrl(raw.path, raw.storage ?? null)
     if ('url' in raw && raw.url) return raw.url
-    // Object dict (key -> image obj)
-    return getFirstImageUrl(Object.values(raw))
+    const values = Object.values(raw)
+    if (values.length > 0) first = values[0]
   }
+
+  if (first) {
+    if (typeof first === 'string') return resolveImageUrl(first)
+    if (typeof first === 'object') {
+       if ('path' in first) return resolveImageUrl(first.path, first.storage ?? null)
+       if ('url' in first) return first.url
+    }
+  }
+
   return null
 }
 
@@ -596,7 +607,7 @@ const validateSubmit = () => {
     return false
   }
   if (dataModel.value.payment_method === 'transfer') {
-    Helper.showToast('Transfer to BCA 1234567890 a.n. Camera Rental Admin, then send the receipt to WA +62812-3456-7890.', 'info', 8000, 'top')
+    Helper.showToast('Transfer to BCA 083851071957 a.n. Nuristiana Izatul, then send the receipt to WA +62838-5107-1957.', 'info', 8000, 'top')
   }
   return true
 }
@@ -642,6 +653,10 @@ const init = () => {
     dataModel.value.petugas_id = currentUser.id
     dataModel.value.petugas_name = currentUser.name ?? currentUser.username ?? ''
     dataModel.value.status = 'menunggu_bayar'
+    
+    // Cache values to avoid repeated Lookups
+    currentToken.value = auth.getToken?.() ?? authStore().getToken() ?? ''
+    currentBaseUrl.value = Config.apiUrl('rental')
     
     // Check if profile is complete
     API.get('me', (s: number, data: any) => {

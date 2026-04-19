@@ -215,7 +215,9 @@ const isLoggedIn = computed(() => !!auth.getToken())
 
 const loading = ref(true)
 const dataModel = ref(Meta.model)
-const activeImageIndex = ref(0)
+// Cache values to avoid repeated Lookups
+const currentToken = ref('')
+const currentBaseUrl = ref('')
 
 // Resolve image URL — returns null on failure, never throws
 const encodeStaticPath = (path: string) => path.split('/').map(encodeURIComponent).join('/')
@@ -224,14 +226,16 @@ const isLocalStaticStorage = (storage?: string | null) => !!storage?.toUpperCase
 const resolveImageUrl = (path: string, storage?: string | null): string | null => {
   if (!path) return null
   if (path.startsWith('http://') || path.startsWith('https://')) return path
+  
   if (storage && !isLocalStaticStorage(storage)) {
     try {
       const url = (Helper as any).viewBlobFile(path, false, storage)
       return typeof url === 'string' ? url : null
     } catch { return null }
   }
-  const token = authStore().getToken()
-  const baseUrl = Config.apiUrl('rental')
+
+  const token = currentToken.value
+  const baseUrl = currentBaseUrl.value
   return `${baseUrl}static_files/${encodeStaticPath(path)}${token ? `?token=${token}` : ''}`
 }
 
@@ -239,15 +243,15 @@ const resolveImageUrl = (path: string, storage?: string | null): string | null =
 const imageList = computed<{ url: string }[]>(() => {
   const raw = (dataModel.value as any)?.images
   if (!raw || typeof raw !== 'object') return []
-  return Object.values(raw)
+
+  const items = Array.isArray(raw) ? raw : Object.values(raw)
+
+  return items
     .map((val: any) => {
       let url: string | null = null
       if (val && typeof val === 'object') {
-        if ('path' in val) {
-          url = resolveImageUrl(val.path, val.storage ?? null)
-        } else if (val.url) {
-          url = val.url
-        }
+        if ('path' in val) url = resolveImageUrl(val.path, val.storage ?? null)
+        else if (val.url) url = val.url
       } else if (typeof val === 'string') {
         url = resolveImageUrl(val)
       }
@@ -276,6 +280,11 @@ const itemStock = computed(() => {
 
 const init = () => {
   dataModel.value = Helper.unreactive(Meta.model)
+  
+  // Cache values to avoid repeated Lookups in template/computed
+  currentToken.value = auth.getToken?.() ?? authStore().getToken() ?? ''
+  currentBaseUrl.value = Config.apiUrl('rental')
+
   onRefresh()
 }
 
