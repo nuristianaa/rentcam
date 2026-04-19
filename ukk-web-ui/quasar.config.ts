@@ -53,7 +53,9 @@ export default defineConfig((/* ctx */) => {
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-file#build
     build: {
       env: {
-        API_URL: process.env.API_URL
+        API_URL: process.env.API_URL,
+        RENTAL_API_URL: process.env.RENTAL_API_URL,
+        TOKEN_SCHEMA: process.env.TOKEN_SCHEMA
       },
       // publicPath: '/',
       vueRouterMode: 'history', // available values: 'hash', 'history'

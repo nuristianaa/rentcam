@@ -34,11 +34,20 @@ export const Config = {
   apiUrl(app = 'rental') {
     const appconfig = configStore().getConfig()
     let url = ''
-    if (appconfig.login) {
+    
+    // Priority 1: Check process.env (Vercel/Production)
+    if (app == 'identity' && process.env.API_URL) {
+      url = process.env.API_URL
+    } else if (app == 'rental' && process.env.RENTAL_API_URL) {
+      url = process.env.RENTAL_API_URL
+    } 
+    // Priority 2: Check remote config
+    else if (appconfig.login) {
       if (app == 'identity') url = appconfig.url
-      else if (app == 'rental') url = appconfig.rental
       else url = appconfig.rental
-    } else {
+    } 
+    // Priority 3: Hardcoded logic
+    else {
       const hostname = window.location.hostname
       if (hostname == 'ukk.com') {
         const prefix = 'https://api.ukk.com/'
@@ -54,6 +63,9 @@ export const Config = {
         else url = 'http://localhost:8191/'
       }
     }
+
+    // Ensure trailing slash
+    if (url && !url.endsWith('/')) url += '/'
     return url
   },
   getApiRoot(app = 'rental') {
