@@ -14,6 +14,11 @@ if DATABASE_URL:
 else:
   DB_URL = f"postgresql://{getenv('DB_USER')}:{getenv('DB_PASSWORD')}@{getenv('DB_HOST')}/{getenv('DB_NAME')}"
 
+# LOG CONNECTION (Mask Password)
+import re
+masked_url = re.sub(r':([^/@]+)@', ':****@', DB_URL)
+print(f"[DB] Attempting connection to: {masked_url}")
+
 engine = create_engine(
   DB_URL,
   pool_size=10,      # default 5

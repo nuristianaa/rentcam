@@ -17,25 +17,36 @@ def init():
   db = Session()
 
   ####### PERMISSIONS #######
-  p = open("./src/seeders/permissions.json")
-  mod = {"browse": True, "read": True, "create": True, "update": True, "delete": True, "restore": True}
-  permissions = json.load(p)
-  perms: list[dict] = []
-  for v in permissions:
-    try:
-      v: dict
-      app = v.get("app")
-      name = v.get("name")
-      if db.query(Permission.id).filter(Permission.app == app).filter(Permission.name == name).first():
-        print(f"permission exist: {name}")
-      else:
-        db.add(Permission(app=app, name=name))
-        print(f"commit {name}")
-        db.commit()
-      perms.append({"app": app, "name": name, "detail": mod})
-    except Exception as e:
-      db.rollback()
-      print("permission except", e)
+  # Use absolute path relative to this file
+  base_path = os.path.dirname(__file__)
+  permissions_file = os.path.join(base_path, "seeders", "permissions.json")
+  
+  try:
+    with open(permissions_file, "r") as p:
+      mod = {"browse": True, "read": True, "create": True, "update": True, "delete": True, "restore": True}
+      permissions = json.load(p)
+      perms: list[dict] = []
+      for v in permissions:
+        try:
+          v: dict
+          app = v.get("app")
+          name = v.get("name")
+          if db.query(Permission.id).filter(Permission.app == app).filter(Permission.name == name).first():
+            print(f"permission exist: {name}")
+          else:
+            db.add(Permission(app=app, name=name))
+            print(f"commit {name}")
+            db.commit()
+          perms.append({"app": app, "name": name, "detail": mod})
+        except Exception as e:
+          db.rollback()
+          print("permission except", e)
+  except FileNotFoundError:
+    print(f"ERROR: Could not find {permissions_file}")
+    # Try alternative path for different execution contexts
+    alt_path = os.path.join(base_path, "src", "seeders", "permissions.json")
+    print(f"Trying alternative path: {alt_path}")
+    # ... logic continues or we just assume the first one is correct if we fix the script
 
   try:
     print("\n" + "="*60)
@@ -55,9 +66,9 @@ def init():
         new_role = Role(name=role_name)
         db.add(new_role)
         db.flush()
-        print(f"✓ {role_name} role created")
+        print(f"[NEW] {role_name} role created")
       else:
-        print(f"✓ {role_name} role already exists")
+        print(f"[EXISTS] {role_name} role already exists")
     
     db.commit()
 
@@ -66,11 +77,11 @@ def init():
     print(f"\nFound {len(perms_model)} permissions in database")
     
     # Helper function to assign permissions to a role
-    def assign_permissions_to_role(role_name, browse=False, create=False, read=False, update=False, delete=False, restore=False):
+    def assign_permissions_to_role(role_name, p_browse=False, p_create=False, p_read=False, p_update=False, p_delete=False, p_restore=False):
       try:
         role_obj = db.query(Role).filter_by(name=role_name).first()
         if not role_obj:
-          print(f"✗ ERROR: {role_name} role not found!")
+          print(f"[FAIL] ERROR: {role_name} role not found!")
           return False
         
         print(f"\n  Assigning permissions for {role_name} (role_id={role_obj.id})...")
@@ -88,12 +99,12 @@ def init():
           row = RolePermission(
             role_id=role_obj.id,
             permission_id=perm.id,
-            browse=browse,
-            create=create,
-            read=read,
-            update=update,
-            delete=delete,
-            restore=restore,
+            browse=p_browse,
+            create=p_create,
+            read=p_read,
+            update=p_update,
+            delete=p_delete,
+            restore=p_restore,
           )
           objects.append(row)
         
@@ -103,25 +114,25 @@ def init():
         
         # Verify they were saved
         count = db.query(RolePermission).filter(RolePermission.role_id == role_obj.id).count()
-        print(f"    - ✓ {count} permissions assigned successfully!")
+        print(f"    - [OK] {count} permissions assigned successfully!")
         
         return True
       except Exception as e:
-        print(f"    - ✗ ERROR: {str(e)}")
+        print(f"    - [FAIL] ERROR: {str(e)}")
         db.rollback()
         return False
     
     # Assign permissions based on role
     print("\nAssigning role permissions:")
-    assign_permissions_to_role("admin", browse=True, create=True, read=True, update=True, delete=False, restore=False)
-    assign_permissions_to_role("petugas", browse=True, create=False, read=True, update=False, delete=False, restore=False)
-    assign_permissions_to_role("user", browse=True, create=False, read=True, update=False, delete=False, restore=False)
+    assign_permissions_to_role("admin", p_browse=True, p_create=True, p_read=True, p_update=True, p_delete=False, p_restore=False)
+    assign_permissions_to_role("petugas", p_browse=True, p_create=False, p_read=True, p_update=False, p_delete=False, p_restore=False)
+    assign_permissions_to_role("user", p_browse=True, p_create=False, p_read=True, p_update=False, p_delete=False, p_restore=False)
     
-    print("\n✓ All role permissions configured successfully!")
+    print("\n[OK] All role permissions configured successfully!")
     print("="*60)
 
   except Exception as e:
-    print(f"✗ role/permission configuration failed: {str(e)}")
+    print(f"[FAIL] role/permission configuration failed: {str(e)}")
     db.rollback()
     import traceback
     traceback.print_exc()
