@@ -62,8 +62,8 @@ export const Config = {
         else url = 'http://localhost:8191/'
       } else {
         // PRODUCTION FALLBACK (Railway)
-        if (app == 'identity') url = 'https://discerning-success-production-c616.up.railway.app/'
-        else url = 'https://rentcam-production.up.railway.app/'
+        if (app == 'identity') url = 'https://rentcam-production.up.railway.app/'
+        else url = 'https://discerning-success-production-c616.up.railway.app/'
         
         console.log(`[Config] Using production Railway API for: ${app}`)
       }
