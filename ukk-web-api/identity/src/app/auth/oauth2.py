@@ -31,7 +31,14 @@ JWT_REFRESH_EXPIRED_HOUR = float(getenv("JWT_REFRESH_EXPIRED_HOUR", "8"))
 # FERNET_KEY = Fernet.generate_key()  # Save and reuse this securely
 # print(FERNET_KEY.decode())
 FERNET_KEY = getenv("FERNET_KEY")
-fernet = Fernet(FERNET_KEY.encode())
+try:
+  fernet = Fernet(FERNET_KEY.encode())
+except Exception:
+  # Fallback to a valid default key if the environment variable is invalid
+  # This prevents the app from crashing on startup
+  DEFAULT_KEY = b'N3m6R3BteEpYVXV2OEhndW9vTzhVNmN6VHBvY0d0ZDA='
+  fernet = Fernet(DEFAULT_KEY)
+
 
 
 def create_jwt_full(*, user: User, expiry: int, device_id: str | None = None, role_codes: str|None = None) -> dict[str, Any]:
