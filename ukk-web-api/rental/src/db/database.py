@@ -6,8 +6,14 @@ from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 from utils.responses import BadRequest400
 
-#---------- MAIN ----------#
-DB_URL = f"postgresql://{getenv('DB_USER')}:{getenv('DB_PASSWORD')}@{getenv('DB_HOST')}/{getenv('DB_NAME')}"
+# BASE DATABASE URL RESOLVER
+DATABASE_URL = getenv('DATABASE_URL') or getenv('DATABASE_PUBLIC_URL')
+if DATABASE_URL:
+  # SQLAlchemy 1.4+ requires postgresql:// instead of postgres://
+  DB_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+else:
+  DB_URL = f"postgresql://{getenv('DB_USER')}:{getenv('DB_PASSWORD')}@{getenv('DB_HOST')}/{getenv('DB_NAME')}"
+
 engine = create_engine(
   DB_URL,
   pool_size=10,      # default 5
@@ -31,7 +37,11 @@ def get_db():
 
 
 #---------- ASYNC MAIN ----------#
-DB_ASYNC_URL = f"postgresql+asyncpg://{getenv('DB_USER')}:{getenv('DB_PASSWORD')}@{getenv('DB_HOST')}/{getenv('DB_NAME')}"
+if DATABASE_URL:
+  DB_ASYNC_URL = DATABASE_URL.replace("postgres://", "postgresql+asyncpg://", 1).replace("postgresql://", "postgresql+asyncpg://", 1)
+else:
+  DB_ASYNC_URL = f"postgresql+asyncpg://{getenv('DB_USER')}:{getenv('DB_PASSWORD')}@{getenv('DB_HOST')}/{getenv('DB_NAME')}"
+
 main_async_engine = create_async_engine(
   DB_ASYNC_URL,
   echo=False,
